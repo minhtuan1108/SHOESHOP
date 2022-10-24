@@ -1,0 +1,166 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --height-header:80px;
+    --main-color:#C503EC;
+}
+
+#header{
+    width: 100%;
+    height: var(--height-header);
+    background-color: #fff;
+    box-shadow: 5px 10px 20px rgb(98, 93, 93);
+    position: fixed;
+    z-index: 3;
+}
+
+#header #container{
+    display: flex;
+    position: relative;
+}
+
+#header #logo{
+    width: 20%;
+    height: var(--height-header);
+    background: url(../img/logo/logo3-edited-removebg-preview.png) left no-repeat;
+}
+
+#header #nav{
+    margin: 0 15px;
+}
+
+#header #nav-list{
+    list-style: none;
+    display: flex;
+}
+
+#header #nav-list li{
+    font-weight: 400;
+    font-family: 'Lato', sans-serif;
+    line-height: var(--height-header);
+    padding: 0 10px;
+    text-transform: uppercase;
+    color: rgb(90, 71, 71);
+}
+
+#header li .animate{
+    width: 0%;
+    height: 4px;
+    border: 0.5px solid black;
+    border-radius: 2px;
+    display: none;
+}
+
+#header #group-account{
+    width: 20%;
+    height: var(--height-header);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: absolute;
+    right: 0;
+}
+
+#header #group-account .icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    color: black;
+    line-height: var(--height-header);
+    border-radius: 50%;
+}
+
+#header .icon i{
+    font-size: 22px;
+}
+
+#header .cart-icon{
+    position: relative;
+}
+
+#header .cart-icon i{
+    transform: rotateY(180deg);
+}
+
+#header .cart-icon .notify::before{
+    content: attr(data-count-pr);
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #eb3e32;
+    color: #fff;
+    text-align: center;
+    line-height: 18px;
+    top: 0;
+    right: 0;
+    transform: translateY(20%);
+    position: absolute;
+    font-size: 9px;
+}
+
+#header .login{
+    width: inherit;
+    padding: 0px 20px;
+    box-sizing: unset;
+    background-color: var(--main-color);
+    border-radius: 10px!important;
+}
+
+#header .login::before{
+    content: "Login";
+    margin: 0 5px;
+}
+
+/* Hover */
+#header #nav li:hover{
+    transform: translateY(-5px);
+    color: black;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s ease-in;
+}
+
+#header #nav li:hover > .animate{
+    background: linear-gradient(90deg, rgb(7, 233, 11), rgb(34, 5, 249) 65%);
+    width: 100%;
+    display: block;
+    margin: -20px 0;
+    animation: 0.5s colorbar 1;
+}
+
+#header #group-account .icon:hover{
+    cursor: pointer;
+    background-color: #ccc;
+    transition: 0.2s ease-in;
+}
+
+@keyframes colorbar{
+    from{ width: 0%;}
+    to{width: 100%;}
+}
+
+@media (min-width: 1160px) {
+    #header #container{
+        margin: 0 10px;
+    }
+
+}
+
+@media (min-width: 1240px) {
+    #header #container{
+        margin: 0 40px;
+    }   
+}
+
+
+#content{
+    position: relative;
+    top:var(--height-header);
+    z-index: 0;
+}

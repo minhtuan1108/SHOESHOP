@@ -1,0 +1,131 @@
+:root{
+    --main-color: #C503EC;
+}
+
+.slide-container{
+    width: 100%;
+    padding-top: 10px;
+}
+
+.slider{
+    width: 80%;
+    /* background-color: blueviolet; */
+    margin: 5px auto;
+    position: relative;
+}
+
+.slide-image{
+    display: none;
+    transition: all .7s ease-in-out;
+    border-radius: 15px;
+}
+
+.slider img{
+    width: 100%;
+}
+
+.slider .slide-prepare label{
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.slide-prepare label i{
+    font-size: 20px;
+}
+
+.slider .left-bar{
+    width: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.slider .right-bar{
+    width: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.slider .radio-dots{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slider .radio-dot{
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.6);
+    margin:0 2px;
+}
+
+/* Hover */
+.slide-prepare label:hover{
+    background-color: #fff;
+    
+}
+
+.slide-prepare label:hover > i{
+    font-weight: 900;
+}
+
+.slide-prepare .next:hover{
+    transform: translateX(0.5rem);
+}
+
+.slide-prepare .previous:hover{
+    transform: translateX(-0.5rem);
+}
+
+.slide-container input{
+    display: none;
+}
+
+input:checked + .slide-image{
+    animation: 5s slide 1;
+    display: block;
+}
+
+input#first:checked ~ .radio-dots label#img-dot1,
+input#second:checked ~ .radio-dots label#img-dot2,
+input#third:checked ~ .radio-dots label#img-dot3{
+    background-color: var(--main-color);
+}
+
+@keyframes slide{
+    0%{
+        opacity: 0;
+    }
+
+    100%{
+        opacity: 1;
+    }
+}
+
+.slider .radio-dot:hover{
+    background-color: var(--main-color);
+    cursor: pointer;
+}
+
+
