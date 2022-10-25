@@ -31,7 +31,7 @@
 }
 
 .top-footer .logo{
-    height: 200px;
+    height: 150px;
     text-transform: uppercase;
     font-size: 64px;
     color: var(--main-color);
@@ -56,9 +56,9 @@
 }
 
 .footer form #button{
-    padding: 15px 10px;
+    padding: 15px 20px;
     width: max-content;
-    border-radius: 15px;
+    border-radius: 30px;
     background-color: var(--main-color);
 }
 
@@ -107,7 +107,6 @@
 
 .footer .info{
     height: fit-content;
-    
     width: 30%;
 }
 
