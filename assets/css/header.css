@@ -45,14 +45,16 @@
     padding: 0 10px;
     text-transform: uppercase;
     color: rgb(90, 71, 71);
+    transition: 0.4s ease-out;
 }
 
 #header li .animate{
     width: 0%;
     height: 4px;
-    border: 0.5px solid black;
+    background: linear-gradient(90deg, rgb(7, 233, 11) 0%, rgb(34, 5, 249) 65%, rgb(213, 8, 90) 100%);
     border-radius: 2px;
-    display: none;
+    margin: -20px 0;
+    transition: 0.4s ease-out;
 }
 
 #header #group-account{
@@ -123,15 +125,12 @@
     color: black;
     font-weight: 500;
     cursor: pointer;
-    transition: 0.3s ease-in;
+    /* transition: 0.3s ease-in; */
 }
 
 #header #nav li:hover > .animate{
-    background: linear-gradient(90deg, rgb(7, 233, 11), rgb(34, 5, 249) 65%);
     width: 100%;
-    display: block;
-    margin: -20px 0;
-    animation: 0.5s colorbar 1;
+    transition: 0.4s ease-out;
 }
 
 #header #group-account .icon:hover{
@@ -158,9 +157,3 @@
     }   
 }
 
-
-#content{
-    position: relative;
-    top:var(--height-header);
-    z-index: 0;
-}

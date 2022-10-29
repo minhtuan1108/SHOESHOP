@@ -1,0 +1,64 @@
+.container-info{
+    width: 100%;
+    background: url(/assets/img/contact/bachground_contactpage.jpg) top /cover no-repeat;
+    height: 100vh;
+}
+
+.container-info .container-cards{
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    margin-top: 20vh;
+    margin-bottom: 40vh;
+    position: relative;
+}
+
+.container-info .card-info{
+    width: 220px;
+    border-radius: 10px;
+    box-shadow: -1rem 0 3rem #000;
+    background-color: #17141d;
+    color: #fff;
+    transition: 0.4s ease-out;
+    /* background: linear-gradient(45deg, rgb(229, 250, 3) 0%, rgb(250, 7, 3) 35%, rgb(52, 3, 250)70%, rgb(19, 250, 3)100%); */
+}
+
+.container-cards .card-info:not(:first-child){
+    margin-left: -50px;
+}
+
+.container-cards .card-info:hover{
+    transform: translateY(-20px);
+
+}
+
+.container-cards .card-info:hover ~ .card-info{
+    transform: translateX(50px);
+}
+
+.container-info .card-info .image-contain{
+    width: 100%;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.container-info .card-info img{
+    width: 100%;
+    border-radius: 10px;
+}
+
+.container-info .card-info .info{
+    margin: 15px;
+}
+
+.container-info .info .icon-fb{
+    margin-right: 5px;
+    margin-top: 10px;
+}
+
+.container-info .info .contact-link{
+    text-decoration: none;
+    color: unset;
+}
+
