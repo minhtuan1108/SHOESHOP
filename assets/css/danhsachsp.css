@@ -1,0 +1,40 @@
+
+/* Product Table */
+
+#displayArea
+{
+    width: 100%;
+    box-shadow: 0 0 10px  rgba(0, 0, 0, 0.2);
+}
+
+#displayArea td
+{
+    border-bottom: #333 solid 1px;
+    padding: 8px;
+}
+#displayArea tr:last-child td
+{
+    border: none;
+}
+
+#displayArea .table_pd_first_column
+{
+    width: 60%;
+}
+
+#displayArea .table_pd_second_column
+{
+
+
+}
+
+#displayArea .table_pd_fourth_column
+{
+
+
+}
+
+#footer
+{
+
+}
