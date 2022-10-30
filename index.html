@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="./assets/css/slider.css">
         <link rel="stylesheet" href="./assets/css/content/home.css">
         <link rel="stylesheet" href="./assets/css/content/contact.css">
+        <link rel="stylesheet" href="./assets/css/content/product.css">
         <link rel="stylesheet" href="./assets/css/footer.css">
         <link rel="stylesheet" href="./assets/font/themify-icons/themify-icons.css">
         <link rel="stylesheet" href="./assets/font/fontawesome-free-6.2.0-web/css/all.css">
@@ -23,7 +24,7 @@
                     <div id="logo"></div>
                     <div id="nav">
                         <ul id="nav-list">
-                            <li onclick="insertLandingPage();">Home
+                            <li onclick="insertLandingPage();" id="home">Home
                                 <div class="animate"></div>
                             </li>
                             <li>Products
@@ -64,7 +65,175 @@
                 </div>
             </div>
 
-            <div id="content">               
+            <div id="content">   
+                <div class="product-page">
+                    <div class="container">
+                        <div class="left-column">
+                            <div class="brands">
+                                <h2># Brands</h2>
+                                <div class="brand" id="all">All</div>
+                                <div class="brand" id="Asics">Asics</div>
+                                <div class="brand" id="Mizuno">Mizuno</div>
+                                <div class="brand" id="Beyono">Beyono</div>
+                                <div class="brand" id="Nike">Nike</div>
+                                <div class="brand" id="Adidas">Adidas</div>
+                            </div>
+                            <div class="option-filter">
+                                <div class="title">
+                                    <h2># Filter</h2>
+                                    <button class="clear">Clear
+                                        <i class="fa-sharp fa-solid fa-xmark"></i>
+                                    </button>
+                                </div>
+                                <div class="group-panel">
+                                    <div class="gen">
+                                        <div class="panel-heading">
+                                            <h3>By gender</h3>
+                                            <i class="fa-sharp fa-solid fa-chevron-down"></i>
+                                        </div>
+                                        <div class="panel-content">
+                                            <div class="container-radio">
+                                                <input type="radio" name="gender" id="male">
+                                                <label for="male">Male</label>
+                                            </div>
+                                            <div class="container-radio">
+                                                <input type="radio" name="gender" id="female">
+                                                <label for="female">Female</label>
+                                            </div>
+                                            <div class="container-radio">
+                                                <input type="radio" name="gender" id="none">
+                                                <label for="none">No choosen</label>
+                                            </div>                                            
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="price">
+                                        <div class="panel-heading">
+                                            <h3>By price</h3>
+                                            <i class="fa-sharp fa-solid fa-chevron-down"></i>
+                                        </div>
+                                        <div class="panel-content">
+                                            <div class="container-radio">
+                                                <input type="checkbox" name="price" id="mock1">
+                                                <label for="mock1">300000₫</label>
+                                            </div>
+                                            <div class="container-radio">
+                                                <input type="checkbox" name="price" id="mock2">
+                                                <label for="mock2">1000000₫</label>
+                                            </div>
+                                            <div class="container-radio">
+                                                <input type="checkbox" name="price" id="mock3">
+                                                <label for="mock3">2000000₫</label>
+                                            </div>  
+                                            <div class="container-radio">
+                                                <input type="checkbox" name="price" id="mock4">
+                                                <label for="mock4">3000000₫</label>
+                                            </div>  
+                                            <div class="container-radio">
+                                                <input type="checkbox" name="price" id="mock5">
+                                                <label for="mock5">4000000₫</label>
+                                            </div>  
+                                            <div class="container-radio">
+                                                <input type="checkbox" name="price" id="mock6">
+                                                <label for="mock6">5000000₫</label>
+                                            </div> 
+                                            <div class="container-radio">
+                                                <input type="checkbox" name="price" id="none">
+                                                <label for="none">No choosen</label>
+                                            </div> 
+                                            <div class="scope-price">
+                                                <div>
+                                                    <input type="number" class="filter-min" value="300000">
+                                                    <span>₫</span>
+                                                </div>
+                                                
+                                                <div>
+                                                    <input type="number" class="filter-max" value="5000000">
+                                                    <span>₫</span>
+                                                </div>
+                                            </div>                                            
+                                        </div>
+                                    </div>
+                                    <div class="size">
+                                        <div class="panel-heading">
+                                            <h3>By size</h3>
+                                            <i class="fa-sharp fa-solid fa-chevron-down"></i>
+                                        </div>
+                                        <div class="panel-content">
+                                            <div class="container-radio">
+                                                <input type="radio" name="size" id="38">
+                                                <label for="38">38</label>
+                                            </div>
+                                            <div class="container-radio">
+                                                <input type="radio" name="size" id="39">
+                                                <label for="39">39</label>
+                                            </div>
+                                            <div class="container-radio">
+                                                <input type="radio" name="size" id="40">
+                                                <label for="40">40</label>
+                                            </div>
+                                            <div class="container-radio">
+                                                <input type="radio" name="size" id="41">
+                                                <label for="41">41</label>
+                                            </div>
+                                            <div class="container-radio">
+                                                <input type="radio" name="size" id="41-5">
+                                                <label for="41-5">41.5</label>
+                                            </div>
+                                            <div class="container-radio">
+                                                <input type="radio" name="size" id="42">
+                                                <label for="42">42</label>
+                                            </div>
+                                            <div class="container-radio">
+                                                <input type="radio" name="size" id="42-5">
+                                                <label for="42-5">42.5</label>
+                                            </div>
+                                            <div class="container-radio">
+                                                <input type="radio" name="size" id="43">
+                                                <label for="43">43</label>
+                                            </div>
+                                            <div class="container-radio">
+                                                <input type="radio" name="size" id="none">
+                                                <label for="none">No choosen</label>
+                                            </div>                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <h2 class="brand"></h2>
+                            <div class="banner"></div>
+                            <!-- <div class="container-sort">
+                                <div class="label-sort"></div>
+                                <select name="" id="sort" class="">
+                                    <option value="default"></option>
+                                    <option value="name-"></option>
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                    <option value=""></option>
+                                </select>
+                            </div> -->
+                            <div class="container-product">
+                                <div class="product">
+                                    <div class="image">
+                                        <img src="" alt="">
+                                        <div class="percent-discount"></div>
+                                    </div>
+                                    <div class="info-product">
+                                        <div class="product-brand"></div>
+                                        <div class="product-name"></div>
+                                        <div class="product-price">
+                                            <div class="new-price"></div>
+                                            <div class="old-price"></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>            
             </div>
 
             <div class="footer">
@@ -120,10 +289,9 @@
             </div>
         </div>
 
-        <script src="./JS/DTO/member.js"></script>
-        <script src="./JS/loadpage.js"></script>
+        <!-- <script src="./JS/DTO/member.js"></script>
+        <script src="./JS/loadpage.js"></script> -->
         <script>
-            
         </script>
     </body>
 </html>

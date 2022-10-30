@@ -1,4 +1,9 @@
 window.onload=insertLandingPage();
+window.addEventListener('click',function(){
+    if(this.document.getElementById('home').selected){
+        slide();
+    }
+});
 
 function insertLandingPage(){
     var content = document.getElementById('content');
@@ -188,6 +193,7 @@ function insertLandingPage(){
 }
 
 var i=0;
+
 slide();
 function slide(){
     var arrslide=document.getElementsByName('radio-buttons');

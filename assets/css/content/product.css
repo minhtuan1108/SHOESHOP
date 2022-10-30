@@ -1,0 +1,127 @@
+.product-page{
+    max-width: 100%;
+    font-family: 'Lato', sans-serif;
+    color: #333333;
+}
+
+.product-page .container{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.product-page .container .left-column{
+    width: 240px;
+    padding: 20px;
+    padding-left: 0;
+    border-right: 1px solid #000;
+}
+
+.product-page .left-column .brands{
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.product-page .brands h2{
+    text-transform: uppercase;
+}
+
+.product-page .brands .brand{
+    --brand-heigth:40px;
+    height: var(--brand-heigth);
+    border: 1px solid #999;
+    border-bottom: unset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-weight: bolder;
+}
+
+.product-page .brands #Adidas{
+    border-bottom: 1px solid #999;
+}
+
+.product-page .option-filter{
+    width: 100%;
+}
+
+.product-page .option-filter .title{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #000;
+    padding: 10px 0;
+}
+
+.product-page .title h2{
+
+}
+
+.product-page .title button{
+    width: 60px;
+    padding: 5px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 15px;
+    border-width: 1px;
+    background-color: var(--main-color);
+}
+
+.product-page .title button i{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-page .group-panel{
+    width: 100%;
+}
+
+.product-page .group-panel h3{
+    font-size: smaller;
+    text-transform: uppercase;
+    color: #333333;
+}
+
+.product-page .panel-heading{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    padding-left: 0;
+    border-bottom: 1px solid #999;
+}
+
+.product-page .panel-content{
+    padding: 5px;
+    margin-bottom: 15px;
+}
+
+.product-page .panel-content .container-radio{
+    padding: 5px;
+}
+
+.product-page .panel-content .scope-price{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.product-page .panel-content .scope-price div{
+    display: flex;
+}
+
+.product-page .panel-content .scope-price input{
+    width: 70%;
+}
+
+.product-page .panel-content .scope-price span{
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
