@@ -8,6 +8,7 @@
 :root{
     --height-header:80px;
     --main-color:#C503EC;
+    --main-border-color: #999;
 }
 
 #header{
