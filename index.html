@@ -24,10 +24,10 @@
                     <div id="logo"></div>
                     <div id="nav">
                         <ul id="nav-list">
-                            <li onclick="insertLandingPage();" id="home">Home
+                            <li onclick="innerLandingPage();" id="home">Home
                                 <div class="animate"></div>
                             </li>
-                            <li>Products
+                            <li onclick="innerProductPage();">Products
                                 <div class="animate"></div>
                             </li>
                             <li>Favourite
@@ -66,7 +66,7 @@
             </div>
 
             <div id="content">   
-                <div class="product-page">
+                <!-- <div class="product-page">
                     <div class="container">
                         <div class="left-column">
                             <div class="brands">
@@ -87,11 +87,11 @@
                                 </div>
                                 <div class="group-panel">
                                     <div class="gen">
-                                        <div class="panel-heading">
+                                        <div class="panel-heading" id="gen" onclick="hiddenAndShowPanel(this);">
                                             <h3>By gender</h3>
                                             <i class="fa-sharp fa-solid fa-chevron-down"></i>
                                         </div>
-                                        <div class="panel-content">
+                                        <div class="panel-content" id="panel-gen">
                                             <div class="container-radio">
                                                 <input type="radio" name="gender" id="male">
                                                 <label for="male">Male</label>
@@ -108,11 +108,11 @@
                                     </div>
                                     
                                     <div class="price">
-                                        <div class="panel-heading">
+                                        <div class="panel-heading" id="price" onclick="hiddenAndShowPanel(this);">
                                             <h3>By price</h3>
                                             <i class="fa-sharp fa-solid fa-chevron-down"></i>
                                         </div>
-                                        <div class="panel-content">
+                                        <div class="panel-content" id="panel-price">
                                             <div class="container-radio">
                                                 <input type="checkbox" name="price" id="mock1">
                                                 <label for="mock1">300000₫</label>
@@ -155,11 +155,11 @@
                                         </div>
                                     </div>
                                     <div class="size">
-                                        <div class="panel-heading">
+                                        <div class="panel-heading" id="size" onclick="hiddenAndShowPanel(this);">
                                             <h3>By size</h3>
                                             <i class="fa-sharp fa-solid fa-chevron-down"></i>
                                         </div>
-                                        <div class="panel-content">
+                                        <div class="panel-content" id="panel-size">
                                             <div class="container-radio">
                                                 <input type="radio" name="size" id="38">
                                                 <label for="38">38</label>
@@ -195,7 +195,13 @@
                                             <div class="container-radio">
                                                 <input type="radio" name="size" id="none">
                                                 <label for="none">No choosen</label>
-                                            </div>                                            
+                                            </div>
+                                            <div class="size-guide">
+                                                <p>You don't know how to choes exactly size? 
+                                                    <span class="chooes-size-guide" onclick="openChooseSizeGuide();">Let us</span>
+                                                </p>
+                                                
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -330,7 +336,9 @@
                             </div>
                         </div>
                     </div>
-                </div>            
+                </div>    -->
+                
+                
             </div>
 
             <div class="footer">
@@ -386,9 +394,11 @@
             </div>
         </div>
 
-        <!-- <script src="./JS/DTO/member.js"></script>
-        <script src="./JS/loadpage.js"></script> -->
+        <script src="./JS/DTO/member.js"></script>
+        <script src="./JS/loadpage.js"></script>
         <script>
+            
+            
         </script>
     </body>
 </html>

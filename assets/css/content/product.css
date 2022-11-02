@@ -98,12 +98,48 @@
 }
 
 .product-page .panel-content{
-    padding: 5px;
+    margin: 5px;
     margin-bottom: 15px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
 }
 
 .product-page .panel-content .container-radio{
+    width: fit-content;
+    display: inline-block;
     padding: 5px;
+}
+
+/* Hover input tag */
+.product-page .option-filter .container-radio:hover{
+    border-color: var(--main-color);
+    color: var(--main-color);
+    cursor: pointer;
+}
+
+/* Hover panel-heading */
+.product-page .panel-heading:hover h3,
+.product-page .panel-heading:hover i{
+    transition: all 0.2s ease-in-out;
+    color: rgb(43, 43, 225);
+    cursor: pointer;
+}
+
+.product-page .panel-content .size-guide{
+    display: flex;
+    font-size: 0.8rem;
+    font-weight: 300;
+}
+
+.product-page .size-guide .chooes-size-guide{
+    font-style: italic;
+    color: blue;
+}
+
+.product-page .size-guide .chooes-size-guide:hover{
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 .product-page .panel-content .scope-price{
@@ -195,7 +231,7 @@
     align-items: center;
     background-color: #33333353;
     border-radius: 15px;
-    transition: 0.2s ease-out;
+    transition: 0.4s ease-out;
     display: none;
     
 }
@@ -207,6 +243,12 @@
     padding: 5px 10px;
     border: 1px solid var(--main-border-color);
     border-radius: 20px;
+}
+
+.product-page .product .image .view-detail:hover{
+    background-color: var(--main-color);
+    color: #fff;
+    border: unset;
 }
 
 .product-page .product .product-label{
@@ -260,6 +302,7 @@
 
 /* Hover in product */
 .product-page .container-products .product:hover{
+    cursor: pointer;
     transform: translateY(-5px);
     box-shadow: 0px 10px 20px #000;
 }
@@ -314,3 +357,40 @@
     cursor: unset;
 }
 
+/*Popup choose size guide*/
+.container-guide{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    min-height: 100vh;
+    display: none;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 999;
+}
+
+.container-guide .size-guide{
+    position: relative;
+    width: 400px;
+}
+
+.container-guide .size-guide img{
+    width: 100%;
+}
+
+.container-guide .size-guide i{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: red;
+    color: #fff;
+    padding: 5px 15px;
+}
+
+.container-guide .size-guide i:hover{
+    opacity: 0.6;
+}
