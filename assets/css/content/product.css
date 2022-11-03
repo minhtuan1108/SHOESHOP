@@ -37,6 +37,13 @@
     align-items: center;
     text-transform: uppercase;
     font-weight: bolder;
+    transition: 0.3s ease-in-out;
+}
+
+.product-page .brands .brand:hover{
+    box-shadow: 10px 10px 20px #333;
+    background-color: #aaa;
+    cursor: pointer;
 }
 
 .product-page .brands #Adidas{
@@ -69,6 +76,14 @@
     border-radius: 15px;
     border-width: 1px;
     background-color: var(--main-color);
+    transition: 0.3s ease-out;
+}
+
+.product-page .title button:hover{
+    border: none;
+    box-shadow: 5px 5px 20px #333;
+    cursor: pointer;
+    background-color: #aaa;
 }
 
 .product-page .title button i{
@@ -142,22 +157,22 @@
     cursor: pointer;
 }
 
-.product-page .panel-content .scope-price{
+.product-page .scope-price{
     width: 100%;
     display: flex;
     justify-content: space-between;
     margin: 10px 0;
 }
 
-.product-page .panel-content .scope-price div{
+.product-page .scope-price div{
     display: flex;
 }
 
-.product-page .panel-content .scope-price input{
+.product-page .scope-price input{
     width: 70%;
 }
 
-.product-page .panel-content .scope-price span{
+.product-page .scope-price span{
     font-size: 20px;
     display: flex;
     flex-direction: column;
@@ -357,8 +372,8 @@
     cursor: unset;
 }
 
-/*Popup choose size guide*/
-.container-guide{
+/*Popup main div*/
+.container-popUp{
     position: fixed;
     top: 0;
     left: 0;
@@ -373,16 +388,18 @@
     z-index: 999;
 }
 
-.container-guide .size-guide{
+/* Popup choose size guide */
+
+.container-popUp .size-guide{
     position: relative;
-    width: 400px;
+    width: 30%;
 }
 
-.container-guide .size-guide img{
+.container-popUp img{
     width: 100%;
 }
 
-.container-guide .size-guide i{
+.container-popUp .size-guide i{
     position: absolute;
     top: 0;
     right: 0;
@@ -391,6 +408,139 @@
     padding: 5px 15px;
 }
 
-.container-guide .size-guide i:hover{
+.container-popUp .size-guide i:hover{
     opacity: 0.6;
+}
+
+/* Popup product detail */
+.container-popUp .container-form-product{
+    width:50%
+}
+
+.container-popUp .container-form-product form{
+    width: 100%;
+    display: flex;
+    border-radius: 20px;
+    background-color: #fff;
+}
+
+.container-form-product form .image-product{
+    width: 50%;
+    border-radius: 20px;
+}
+
+.container-form-product form .image-product img{
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.container-form-product form .main-info{
+    width: 50%;
+    margin-left: 20px;
+    position: relative;
+}
+
+.container-form-product form .main-info .info-detail{
+    height: 70%;
+}
+
+.container-form-product .info-detail .product-name{
+    margin: 10px 0;
+    text-align: center;
+}
+
+form .main-info .price > div,
+form .main-info .price{
+    display: flex;
+}
+
+form .main-info .price .new-price{
+    font-weight: bold;
+    color: rgb(255, 55, 0);
+    margin-left: 5px;
+}
+
+form .main-info .price .old-price{
+    margin-left: 15px;
+    text-decoration: line-through;
+    color: #aaa;
+}
+
+form .main-info .title{
+    color: #aaa;
+}
+
+.container-form-product .main-info .size{
+    display: flex;
+}
+
+.container-form-product .main-info .size p{
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+.container-form-product .main-info .desc{
+    /* display: flex; */
+}
+
+.container-form-product .main-info .desc p{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    overflow: hidden;
+    font-family:'Times New Roman', serif;
+}
+
+.container-form-product .main-info .chosen{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.container-form-product .main-info .chosen p{
+    font-weight: bold;
+}
+
+.container-form-product .main-info .chosen .size-option,
+.container-form-product .main-info .chosen .quantity-option{
+    width: 20%;
+    margin: 0 10px;
+}
+
+.container-form-product .chosen select,
+.container-form-product .chosen #quantity{
+    width: 100%;
+    padding: 5px 5px;
+    border-radius: 10px;
+    border: 1px solid #000;
+}
+
+.container-form-product .add-cart{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    right: 0;
+}
+
+.container-form-product .add-cart input{
+    min-width: 30%;
+    padding: 10px 20px;
+    border: unset;
+    background-color: #aaa;
+    border-radius: 10px;
+    margin: 0 10px;
+}
+
+.container-form-product .add-cart input:hover{
+    background-color: var(--main-color);
+    color: #fff;
+    font-weight: bold;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }

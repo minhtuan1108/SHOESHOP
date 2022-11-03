@@ -469,15 +469,7 @@ function innerProductPage(){
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- Popup items -->
-                <div class="container-guide">
-                    <div class="size-guide">
-                        <img src="./assets/img/product/chon-size.png" alt="">
-                        <i class="fa-solid fa-xmark" onclick="closeChooseSizeGuide();"></i>
-                    </div>
-                </div>
-                <!-- End popup items -->`;
+                </div>`;
     content.innerHTML=contentInner;
 }
 

@@ -15,21 +15,75 @@
     </head>
     <body>
         <div class="main">
-            <div class="container-guide">
-                <div class="size-guide">
-                    <img src="./assets/img/product/chon-size.png" alt="">
-                    <i class="fa-solid fa-xmark" onclick="closeChooseSizeGuide();"></i>
+            <div class="container-card">
+                <div class="container-form-product">
+                    <form action="./JS/index.js" method="post">
+                        <div class="image-product">
+                            <img src="https://myshoes.vn/image/cache/catalog/2022/nike2/28.10/giay-nike-air-max-alpha-tr-5-nam-den-trang-01-250x250.jpg" alt="">
+                        </div>
+                        <div class="main-info">
+                            <div class="info-detail">
+                                <h2 class="product-name">Giày Asics Upcourt 4</h2>
+                                <div class="price">
+                                    <p class="label-price title">Price: </p>
+                                    <div class="new-price">
+                                        <p>1050000</p>
+                                        <span>đ</span>
+                                    </div>
+                                    <div class="old-price">
+                                        <p>850000</p>
+                                        <span>đ</span>
+                                    </div>
+                                </div>
+                                <div class="size">
+                                    <div class="label-size title">Current size: </div>
+                                    <p>38-42</p>
+                                </div>
+                                <div class="desc">
+                                    <p class="label-desc title">Description: </p>
+                                    <p>This product order form template is a fast way to get started selling online. The template is fully customizable, enabling you to add new fields, design it to match your brand, and add new products to sell. Best of all, you can connect this order form to a Jotform payment partner (more than 30 secure payment gateways, including Square, PayPal and Stripe) and collect money directly through the form itself, reducing back-and-forth emails when you need to get paid after an order request.</p>
+                                </div>
+                            </div>
+                            <div class="chosen">
+                                <div class="size-option">
+                                    <p>Size</p>
+                                    <select name="chosen-size" id="chosen-size">
+                                        <option value="38">38</option>
+                                        <option value="39">39</option>
+                                        <option value="40">40</option>
+                                        <option value="41">41</option>
+                                        <option value="41.5">41.5</option>
+                                        <option value="42">42</option>
+                                        <option value="42.5">42.5</option>
+                                        <option value="43">43</option>
+                                    </select>
+                                </div>
+                                <div class="quantity-option">
+                                    <p>Quantity</p>
+                                    <input type="number" name="quantity" id="quantity" value="1">
+                                </div>
+                            </div>
+                            <div class="add-cart">
+                                <input type="submit" value="Add to cart">
+                                <input type="button" value="Cancel" onclick="closeChooseSizeGuide();">
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
         <script>
             function openChooseSizeGuide(){
-                document.querySelector('.container-guide').style.display= 'flex';
+                document.querySelector('.container-popUp').style.display= 'flex';
             }
 
             function closeChooseSizeGuide(){
-                document.querySelector('.container-guide').style.display = 'none';
+                document.querySelector('.container-popUp').style.display = 'none';
             }
+
+            // function closeProductForm(){
+            //     document.querySelector('.con')
+            // }
         </script>
     </body>
-</html></html>
+</html>
