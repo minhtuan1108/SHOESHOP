@@ -1,0 +1,40 @@
+
+/* Product Table */
+
+#displayListProduct
+{
+    width: 100%;
+    box-shadow: 0 0 10px  rgba(0, 0, 0, 0.2);
+}
+
+#displayListProduct td
+{
+    border-bottom: #333 solid 1px;
+    padding: 8px;
+}
+#displayListProduct tr:last-child td
+{
+    border: none;
+    
+}
+
+#displayListProduct .table_pd_first_column
+{
+    width: 20%;
+}
+
+#displayListProduct .table_pd_second_column
+{
+    width: 20%;
+}
+
+#displayListProduct .table_pd_fourth_column
+{
+
+
+}
+
+#footer
+{
+
+}

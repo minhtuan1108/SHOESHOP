@@ -1,0 +1,60 @@
+
+/* Product Table */
+
+#displayEditArea
+{
+    width: 100%;
+    box-shadow: 0 0 10px  rgba(0, 0, 0, 0.2);
+}
+
+#displayEditArea td
+{
+    border-bottom: #333 solid 1px;
+    padding: 8px;
+}
+#displayEditArea tr:last-child td
+{
+    border: none;
+}
+
+#displayEditArea .table_pd_first_column
+{
+    width: 20%;
+}
+
+#displayEditArea .table_pd_second_column
+{
+    width: 20%;
+
+}
+
+#displayEditArea .table_pd_fourth_column
+{
+
+
+}
+
+/* PRODUCT FORM */
+
+.product_form .product_name
+{
+    padding-top: 32px;
+}
+
+.product_form .close-btn:hover
+{
+    background-color: crimson;
+}
+
+.product_form .close-btn
+{
+    float: right;   
+    padding: 3px 9px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+#footer
+{
+
+}
