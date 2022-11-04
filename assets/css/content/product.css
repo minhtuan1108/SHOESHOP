@@ -251,6 +251,10 @@
     
 }
 
+.product-page .container-button-view .id-product{
+    display: none;
+}
+
 .product-page .product .image .view-detail{
     height: fit-content;
     width: fit-content;
@@ -441,7 +445,7 @@
 }
 
 .container-form-product form .main-info .info-detail{
-    height: 70%;
+    height: fit-content;
 }
 
 .container-form-product .info-detail .product-name{
@@ -467,7 +471,7 @@ form .main-info .price .old-price{
 }
 
 form .main-info .title{
-    color: #aaa;
+    color: #000;
 }
 
 .container-form-product .main-info .size{
@@ -477,24 +481,31 @@ form .main-info .title{
 .container-form-product .main-info .size p{
     margin-left: 5px;
     font-weight: bold;
+    color: #aaa;
 }
 
-.container-form-product .main-info .desc{
-    /* display: flex; */
-}
-
-.container-form-product .main-info .desc p{
+.container-form-product .main-info .desc .label-desc{
+    color: #000;
+    font-family: 'Lato', sans-serif;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 5;
     overflow: hidden;
+}
+
+.container-form-product .main-info .label-desc i{
     font-family:'Times New Roman', serif;
+    color: #aaa;
 }
 
 .container-form-product .main-info .chosen{
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: left;
+    padding: 5px 0 10px 0;
+    margin: 20px 10px 0 0;
+    border-bottom: 1px solid var(--main-border-color);
+    border-top: 1px solid var(--main-border-color);
 }
 
 .container-form-product .main-info .chosen p{
@@ -504,7 +515,7 @@ form .main-info .title{
 .container-form-product .main-info .chosen .size-option,
 .container-form-product .main-info .chosen .quantity-option{
     width: 20%;
-    margin: 0 10px;
+    margin-right: 10px;
 }
 
 .container-form-product .chosen select,
@@ -537,10 +548,4 @@ form .main-info .title{
     background-color: var(--main-color);
     color: #fff;
     font-weight: bold;
-}
-
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
 }

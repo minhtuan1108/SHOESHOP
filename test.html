@@ -10,80 +10,242 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./assets/css/main.css">
+        <link rel="stylesheet" href="./assets/css/header.css">
+        <link rel="stylesheet" href="./assets/css/slider.css">
+        <link rel="stylesheet" href="./assets/css/content/home.css">
+        <link rel="stylesheet" href="./assets/css/content/contact.css">
         <link rel="stylesheet" href="./assets/css/content/product.css">
+        <link rel="stylesheet" href="./assets/css/footer.css">
+        <link rel="stylesheet" href="./assets/font/themify-icons/themify-icons.css">
         <link rel="stylesheet" href="./assets/font/fontawesome-free-6.2.0-web/css/all.css">
     </head>
     <body>
         <div class="main">
-            <div class="container-card">
-                <div class="container-form-product">
-                    <form action="./JS/index.js" method="post">
-                        <div class="image-product">
-                            <img src="https://myshoes.vn/image/cache/catalog/2022/nike2/28.10/giay-nike-air-max-alpha-tr-5-nam-den-trang-01-250x250.jpg" alt="">
-                        </div>
-                        <div class="main-info">
-                            <div class="info-detail">
-                                <h2 class="product-name">Giày Asics Upcourt 4</h2>
-                                <div class="price">
-                                    <p class="label-price title">Price: </p>
-                                    <div class="new-price">
-                                        <p>1050000</p>
-                                        <span>đ</span>
-                                    </div>
-                                    <div class="old-price">
-                                        <p>850000</p>
-                                        <span>đ</span>
-                                    </div>
-                                </div>
-                                <div class="size">
-                                    <div class="label-size title">Current size: </div>
-                                    <p>38-42</p>
-                                </div>
-                                <div class="desc">
-                                    <p class="label-desc title">Description: </p>
-                                    <p>This product order form template is a fast way to get started selling online. The template is fully customizable, enabling you to add new fields, design it to match your brand, and add new products to sell. Best of all, you can connect this order form to a Jotform payment partner (more than 30 secure payment gateways, including Square, PayPal and Stripe) and collect money directly through the form itself, reducing back-and-forth emails when you need to get paid after an order request.</p>
-                                </div>
-                            </div>
-                            <div class="chosen">
-                                <div class="size-option">
-                                    <p>Size</p>
-                                    <select name="chosen-size" id="chosen-size">
-                                        <option value="38">38</option>
-                                        <option value="39">39</option>
-                                        <option value="40">40</option>
-                                        <option value="41">41</option>
-                                        <option value="41.5">41.5</option>
-                                        <option value="42">42</option>
-                                        <option value="42.5">42.5</option>
-                                        <option value="43">43</option>
-                                    </select>
-                                </div>
-                                <div class="quantity-option">
-                                    <p>Quantity</p>
-                                    <input type="number" name="quantity" id="quantity" value="1">
-                                </div>
-                            </div>
-                            <div class="add-cart">
-                                <input type="submit" value="Add to cart">
-                                <input type="button" value="Cancel" onclick="closeChooseSizeGuide();">
-                            </div>
-                        </div>
-                    </form>
-                </div>
+            <div id="content">
+
             </div>
         </div>
+        <script src="./JS/DATA/CreateProductData.js"></script>
+        <script src="./JS/DTO/member.js"></script>
+        <script src="./JS/loadpage.js"></script>
         <script>
+            function hiddenAndShowPanel(obj){
+                var idPanel = obj.id;
+                var panel;
+                var icon;
+                switch (idPanel) {
+                    case "gen":
+                        panel = document.querySelector("#panel-gen");
+                        icon = document.querySelector(".gen").querySelector("i");
+                        console.log(panel);
+                        console.log(panel.style.display);
+                        console.log(panel.offsetHeight);
+
+                        break;
+                
+                    case "price":
+                        panel = document.querySelector("#panel-price");
+                        icon = document.querySelector(".price").querySelector("i");
+                        break;
+
+                    case "size":
+                        panel = document.querySelector("#panel-size");
+                        icon = document.querySelector(".size").querySelector("i");
+                        break;
+
+                    default:
+                        break;
+                }
+
+                if(panel.offsetHeight == 0){
+                        console.log("none thì vào đây!");
+                        panel.style = `height: fit-content;
+                                        margin: 5px;
+                                        margin-bottom: 15px;
+                                        display: flex;
+                                        `;
+                        icon.style = 'transform: rotate(0);';
+                    }else {
+                        console.log("flex thì vào đây!");
+                        panel.style = `height: 0;
+                                        margin: 0;
+                                        display: none;
+                                        `;
+                        icon.style = 'transform: rotate(-90deg);'
+                    }
+                    console.log(panel);
+            }
+
             function openChooseSizeGuide(){
-                document.querySelector('.container-popUp').style.display= 'flex';
+                var container = document.querySelector('.container-popUp');
+                container.innerHTML=`<div class="size-guide">
+                                        <img src="./assets/img/product/chon-size.png" alt="">
+                                        <i class="fa-solid fa-xmark" onclick="closeChooseSizeGuide();"></i>
+                                    </div>`;
+                container.style.display = 'flex';
             }
 
             function closeChooseSizeGuide(){
                 document.querySelector('.container-popUp').style.display = 'none';
             }
 
-            // function closeProductForm(){
-            //     document.querySelector('.con')
-            // }
+            function openProductCard(view_button){
+                var id_pr = view_button.querySelector('.id-product').textContent;
+                // Lấy danh sách sản phẩm rồi so sách với id để lấy đối tượng sản phẩm ra cuối cùng lấy giá trị để đưa vào form hiển thị sản phẩm
+                var container = document.querySelector('.container-popUp');
+                container.innerHTML = `<div class="container-form-product">
+                                            <form action="./JS/index.js" method="post">
+                                                <div class="image-product">
+                                                    <img src="https://myshoes.vn/image/cache/catalog/2022/nike2/28.10/giay-nike-air-max-alpha-tr-5-nam-den-trang-01-250x250.jpg" alt="">
+                                                </div>
+                                                <div class="main-info">
+                                                    <div class="info-detail">
+                                                        <h2 class="product-name">Giày Asics Upcourt 4</h2>
+                                                        <div class="price">
+                                                            <p class="label-price title">Price: </p>
+                                                            <div class="new-price">
+                                                                <p>1050000</p>
+                                                                <span>đ</span>
+                                                            </div>
+                                                            <div class="old-price">
+                                                                <p>850000</p>
+                                                                <span>đ</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="size">
+                                                            <div class="label-size title">Current size: </div>
+                                                            <p>38-42</p>
+                                                        </div>
+                                                        <div class="desc">
+                                                            <p class="label-desc title">Description: 
+                                                                <i>This product order form template is a fast way to get started selling online. The template is fully customizable, enabling you to add new fields, design it to match your brand, and add new products to sell. Best of all, you can connect this order form to a Jotform payment partner (more than 30 secure payment gateways, including Square, PayPal and Stripe) and collect money directly through the form itself, reducing back-and-forth emails when you need to get paid after an order request.</i>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="chosen">
+                                                        <div class="size-option">
+                                                            <p>Size</p>
+                                                            <select name="chosen-size" id="chosen-size">
+                                                                <option value="38">38</option>
+                                                                <option value="39">39</option>
+                                                                <option value="40">40</option>
+                                                                <option value="41">41</option>
+                                                                <option value="41.5">41.5</option>
+                                                                <option value="42">42</option>
+                                                                <option value="42.5">42.5</option>
+                                                                <option value="43">43</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="quantity-option">
+                                                            <p>Quantity</p>
+                                                            <input type="number" name="quantity" id="quantity" value="1">
+                                                        </div>
+                                                    </div>
+                                                    <div class="add-cart">
+                                                        <input type="submit" value="Add to cart">
+                                                        <input type="button" value="Cancel" onclick="closeChooseSizeGuide();">
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>`;
+                container.style.display='flex'
+            }
+            
+            function closeProductCard(){
+                document.querySelector('.container-popUp').style.display = 'none';
+            }
+
+            var model=document.querySelector('.container-popUp');
+            window.onclick=function(event){
+                if(event.target == model){
+                    closeChooseSizeGuide();
+                }
+                
+            }
+
+            window.onload = checkDefaultInput();
+            function checkDefaultInput(){
+                var noneInp = document.getElementsByClassName('none');
+                for( i = 0; i < noneInp.length; i++){
+                    noneInp[i].checked = true;
+                }
+                var allInp = document.querySelector('#panel-price').querySelectorAll('input');
+                for(i = 0; i < allInp.length; i++){
+                    if(allInp[i].id != 'none-price'){
+                        allInp[i].checked = false; 
+                    }
+                    
+                }
+            }
+
+            function renderCheckInput(inpContainer){
+                var allInp = document.querySelector('#panel-price').querySelectorAll('input');
+                var inp = inpContainer.querySelector('input');
+                if(inp.id != 'none-price' && inp.checked == true){
+                    console.log('Có vào đây không?');
+                    document.querySelector('#none-price').checked = false;
+                }else{
+                    if(inp.id == 'none-price'){
+                        console.log('Không lẽ vào đây?');
+                        for(i = 0; i < allInp.length; i++){
+                            if(allInp[i].id != 'none-price'){
+                               allInp[i].checked = false; 
+                            }
+                            
+                        }
+                    }
+                }
+                console.log('this is renderCheckInput');
+                console.log(document.querySelector('#none-price').checked);
+            }
+            
+            function renderPriceScope(){
+                var panelPrice = document.querySelector('#panel-price');
+                var scopePrice = document.querySelector('.scope-price');
+                var allInp = panelPrice.querySelectorAll('input');
+                var amount = allInp.length;
+                var min = scopePrice.querySelector('.filter-min');
+                var max = scopePrice.querySelector('.filter-max');
+                var checkedInput = [];
+                var count = 0;
+
+                // Check if input noneprice is checked set default scope price
+                for( i=0; i<amount; i++){
+                    if(allInp[i].checked){
+                        checkedInput = checkedInput.concat(allInp[i]);
+                    }
+                }
+
+                if(panelPrice.querySelector('#none-price').checked || checkedInput.length == 0){
+                    min.value = 300000;
+                    max.value = 5000000;
+                    return;
+                }
+
+
+                if(checkedInput.length == 1){
+                    min.value = 300000;
+                    max.value = checkedInput[0].value;
+                    return;
+                }
+
+                min.value = checkedInput[0].value;
+                if(checkedInput.length == 2){
+                    max.value = checkedInput[1].value;
+                    return;
+                }else{
+                    max.value = checkedInput[checkedInput.length-1].value;
+                    return;
+                }
+
+
+
+                console.log('This is renderPriceScope');
+                console.log(document.querySelector('#none-price').checked);
+                console.log(checkedInput);
+                
+            }
         </script>
     </body>
 </html>

@@ -49,9 +49,27 @@
                             <i class="ti-search"></i>
                         </div>
                         
-                        <div class="cart-icon icon" >
+                        <div class="cart-icon icon">
                             <i class="ti-shopping-cart"></i>
                             <div class="notify" data-count-pr="0"></div>
+                            <div class="cart-container">
+                                <div class="container-pr">
+                                    <div class="pr">
+                                        <div class="image"><img src="./assets/img/product/demo.jpg" alt="./assets/img/product/Asics/1/"></div>
+                                        <div class="info">
+                                            <h4 class="name">Asics Upcourt 4</h4>
+                                            <p class="size">Size: 38</p>
+                                            <p class="quantity">Quantity: 2</p>
+                                            <p>Price: 1050000</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="container-checkOut">
+                                    <div class="checkOut-button">Check out</div>
+                                </div>
+                                
+                            </div>
                         </div>
 
                         <div class="account-icon icon">
@@ -140,19 +158,20 @@
                                             <div class="container-radio" onclick="renderCheckInput(this);">
                                                 <input type="checkbox" name="price" id="none-price" class="none" value="0">
                                                 <label for="none-price">No choosen</label>
-                                            </div>                                                        
+                                            </div>    
+                                            <div class="scope-price">
+                                                <div>
+                                                    <input type="number" class="filter-min" value="300000">
+                                                    <span>₫</span>
+                                                </div>
+                                                
+                                                <div>
+                                                    <input type="number" class="filter-max" value="5000000">
+                                                    <span>₫</span>
+                                                </div>
+                                            </div>                                                    
                                         </div>
-                                        <div class="scope-price">
-                                            <div>
-                                                <input type="number" class="filter-min" value="300000">
-                                                <span>₫</span>
-                                            </div>
-                                            
-                                            <div>
-                                                <input type="number" class="filter-max" value="5000000">
-                                                <span>₫</span>
-                                            </div>
-                                        </div>
+                                        
                                     </div>
                                     <div class="size">
                                         <div class="panel-heading" id="size" onclick="hiddenAndShowPanel(this);">
@@ -229,7 +248,9 @@
                                             <div class="discount"></div>
                                         </div>
                                         <div class="container-button-view">
-                                            <div class="view-detail" onclick="openProductCard();">View detail</div>
+                                            <div class="view-detail" onclick="openProductCard(this);">View detail
+                                                <div class="id-product" value="5">5</div>
+                                            </div>
                                         </div>
                                         
                                     </div>
@@ -399,8 +420,10 @@
         </div>
 
 
-        <!-- <script src="./JS/DTO/member.js"></script>
-        <script src="./JS/loadpage.js"></script> -->
+        <script src="./JS/DTO/member.js"></script>
+        <script src="./JS/DTO/product.js"></script>
+        <script src="./JS/DATA/CreateProductData.js"></script>
+        <script src="./JS/loadpage.js"></script>
         <script>
             function hiddenAndShowPanel(obj){
                 var idPanel = obj.id;
@@ -462,7 +485,9 @@
                 document.querySelector('.container-popUp').style.display = 'none';
             }
 
-            function openProductCard(){
+            function openProductCard(view_button){
+                var id_pr = view_button.querySelector('.id-product').textContent;
+                // Lấy danh sách sản phẩm rồi so sách với id để lấy đối tượng sản phẩm ra cuối cùng lấy giá trị để đưa vào form hiển thị sản phẩm
                 var container = document.querySelector('.container-popUp');
                 container.innerHTML = `<div class="container-form-product">
                                             <form action="./JS/index.js" method="post">
@@ -488,8 +513,9 @@
                                                             <p>38-42</p>
                                                         </div>
                                                         <div class="desc">
-                                                            <p class="label-desc title">Description: </p>
-                                                            <p>This product order form template is a fast way to get started selling online. The template is fully customizable, enabling you to add new fields, design it to match your brand, and add new products to sell. Best of all, you can connect this order form to a Jotform payment partner (more than 30 secure payment gateways, including Square, PayPal and Stripe) and collect money directly through the form itself, reducing back-and-forth emails when you need to get paid after an order request.</p>
+                                                            <p class="label-desc title">Description: 
+                                                                <i>This product order form template is a fast way to get started selling online. The template is fully customizable, enabling you to add new fields, design it to match your brand, and add new products to sell. Best of all, you can connect this order form to a Jotform payment partner (more than 30 secure payment gateways, including Square, PayPal and Stripe) and collect money directly through the form itself, reducing back-and-forth emails when you need to get paid after an order request.</i>
+                                                            </p>
                                                         </div>
                                                     </div>
                                                     <div class="chosen">

@@ -196,281 +196,198 @@ function innerLandingPage(){
 function innerProductPage(){
     var content=document.getElementById('content');
     var contentInner = `
-                <div class="product-page">
-                    <div class="container">
-                        <div class="left-column">
-                            <div class="brands">
-                                <h2># Brands</h2>
-                                <div class="brand" id="all">All</div>
-                                <div class="brand" id="Asics">Asics</div>
-                                <div class="brand" id="Mizuno">Mizuno</div>
-                                <div class="brand" id="Beyono">Beyono</div>
-                                <div class="brand" id="Nike">Nike</div>
-                                <div class="brand" id="Adidas">Adidas</div>
+    <div class="product-page">
+        <div class="container">
+            <div class="left-column">
+                <div class="brands">
+                    <h2># Brands</h2>
+                    <div class="brand" id="all">All</div>
+                    <div class="brand" id="Asics">Asics</div>
+                    <div class="brand" id="Mizuno">Mizuno</div>
+                    <div class="brand" id="Beyono">Beyono</div>
+                    <div class="brand" id="Nike">Nike</div>
+                    <div class="brand" id="Adidas">Adidas</div>
+                </div>
+                <div class="option-filter">
+                    <div class="title">
+                        <h2># Filter</h2>
+                        <button class="clear" onclick="checkDefaultInput();">Clear
+                            <i class="fa-sharp fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                    <div class="group-panel">
+                        <div class="gen">
+                            <div class="panel-heading" id="gen" onclick="hiddenAndShowPanel(this);">
+                                <h3>By gender</h3>
+                                <i class="fa-sharp fa-solid fa-chevron-down"></i>
                             </div>
-                            <div class="option-filter">
-                                <div class="title">
-                                    <h2># Filter</h2>
-                                    <button class="clear">Clear
-                                        <i class="fa-sharp fa-solid fa-xmark"></i>
-                                    </button>
+                            <div class="panel-content" id="panel-gen">
+                                <div class="container-radio">
+                                    <input type="radio" name="gender" id="male">
+                                    <label for="male">Male</label>
                                 </div>
-                                <div class="group-panel">
-                                    <div class="gen">
-                                        <div class="panel-heading" id="gen" onclick="hiddenAndShowPanel(this);">
-                                            <h3>By gender</h3>
-                                            <i class="fa-sharp fa-solid fa-chevron-down"></i>
-                                        </div>
-                                        <div class="panel-content" id="panel-gen">
-                                            <div class="container-radio">
-                                                <input type="radio" name="gender" id="male">
-                                                <label for="male">Male</label>
-                                            </div>
-                                            <div class="container-radio">
-                                                <input type="radio" name="gender" id="female">
-                                                <label for="female">Female</label>
-                                            </div>
-                                            <div class="container-radio">
-                                                <input type="radio" name="gender" id="none">
-                                                <label for="none">No choosen</label>
-                                            </div>                                            
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="price">
-                                        <div class="panel-heading" id="price" onclick="hiddenAndShowPanel(this);">
-                                            <h3>By price</h3>
-                                            <i class="fa-sharp fa-solid fa-chevron-down"></i>
-                                        </div>
-                                        <div class="panel-content" id="panel-price">
-                                            <div class="container-radio">
-                                                <input type="checkbox" name="price" id="mock1">
-                                                <label for="mock1">300000₫</label>
-                                            </div>
-                                            <div class="container-radio">
-                                                <input type="checkbox" name="price" id="mock2">
-                                                <label for="mock2">1000000₫</label>
-                                            </div>
-                                            <div class="container-radio">
-                                                <input type="checkbox" name="price" id="mock3">
-                                                <label for="mock3">2000000₫</label>
-                                            </div>  
-                                            <div class="container-radio">
-                                                <input type="checkbox" name="price" id="mock4">
-                                                <label for="mock4">3000000₫</label>
-                                            </div>  
-                                            <div class="container-radio">
-                                                <input type="checkbox" name="price" id="mock5">
-                                                <label for="mock5">4000000₫</label>
-                                            </div>  
-                                            <div class="container-radio">
-                                                <input type="checkbox" name="price" id="mock6">
-                                                <label for="mock6">5000000₫</label>
-                                            </div> 
-                                            <div class="container-radio">
-                                                <input type="checkbox" name="price" id="none">
-                                                <label for="none">No choosen</label>
-                                            </div> 
-                                            <div class="scope-price">
-                                                <div>
-                                                    <input type="number" class="filter-min" value="300000">
-                                                    <span>₫</span>
-                                                </div>
-                                                
-                                                <div>
-                                                    <input type="number" class="filter-max" value="5000000">
-                                                    <span>₫</span>
-                                                </div>
-                                            </div>                                            
-                                        </div>
-                                    </div>
-                                    <div class="size">
-                                        <div class="panel-heading" id="size" onclick="hiddenAndShowPanel(this);">
-                                            <h3>By size</h3>
-                                            <i class="fa-sharp fa-solid fa-chevron-down"></i>
-                                        </div>
-                                        <div class="panel-content" id="panel-size">
-                                            <div class="container-radio">
-                                                <input type="radio" name="size" id="38">
-                                                <label for="38">38</label>
-                                            </div>
-                                            <div class="container-radio">
-                                                <input type="radio" name="size" id="39">
-                                                <label for="39">39</label>
-                                            </div>
-                                            <div class="container-radio">
-                                                <input type="radio" name="size" id="40">
-                                                <label for="40">40</label>
-                                            </div>
-                                            <div class="container-radio">
-                                                <input type="radio" name="size" id="41">
-                                                <label for="41">41</label>
-                                            </div>
-                                            <div class="container-radio">
-                                                <input type="radio" name="size" id="41-5">
-                                                <label for="41-5">41.5</label>
-                                            </div>
-                                            <div class="container-radio">
-                                                <input type="radio" name="size" id="42">
-                                                <label for="42">42</label>
-                                            </div>
-                                            <div class="container-radio">
-                                                <input type="radio" name="size" id="42-5">
-                                                <label for="42-5">42.5</label>
-                                            </div>
-                                            <div class="container-radio">
-                                                <input type="radio" name="size" id="43">
-                                                <label for="43">43</label>
-                                            </div>
-                                            <div class="container-radio">
-                                                <input type="radio" name="size" id="none">
-                                                <label for="none">No choosen</label>
-                                            </div>
-                                            <div class="size-guide">
-                                                <p>You don't know how to choes exactly size? 
-                                                    <span class="chooes-size-guide" onclick="openChooseSizeGuide();">Let us</span>
-                                                </p>
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="container-radio">
+                                    <input type="radio" name="gender" id="female">
+                                    <label for="female">Female</label>
                                 </div>
+                                <div class="container-radio">
+                                    <input type="radio" name="gender" id="none-gender" class="none">
+                                    <label for="none-gender">No choosen</label>
+                                </div>                                            
                             </div>
                         </div>
-                        <div class="product-content">
-                            <h2 class="brand">Giày Asics chính hãng</h2>
-                            <div class="banner">
-                                <img src="./assets/img/product/banner/giay-asics-chinh-hang.jpg" alt="">
+                        
+                        <div class="price" onclick="console.log('hello');">
+                            <div class="panel-heading" id="price" onclick="hiddenAndShowPanel(this);">
+                                <h3>By price</h3>
+                                <i class="fa-sharp fa-solid fa-chevron-down"></i>
                             </div>
-                            <div class="amount-product">
-                                <div class="label-amount">Amount of product per page:</div>
-                                <select name="product-on-page" id="amount" class="amount">
-                                    <option value="6">6</option>
-                                    <option value="8">8</option>
-                                    <option value="10">10</option>
-                                    <option value="12">12</option>
-                                </select>
+                            <div class="panel-content" id="panel-price" onclick="renderPriceScope();">
+                                <div class="container-radio" onclick="renderCheckInput(this);">
+                                    <input type="checkbox" name="price" id="mock1" value="300000">
+                                    <label for="mock1">300000₫</label>
+                                </div>
+                                <div class="container-radio" onclick="renderCheckInput(this);">
+                                    <input type="checkbox" name="price" id="mock2" value="1000000">
+                                    <label for="mock2">1000000₫</label>
+                                </div>
+                                <div class="container-radio" onclick="renderCheckInput(this);">
+                                    <input type="checkbox" name="price" id="mock3" value="2000000">
+                                    <label for="mock3">2000000₫</label>
+                                </div>  
+                                <div class="container-radio" onclick="renderCheckInput(this);">
+                                    <input type="checkbox" name="price" id="mock4" value="3000000">
+                                    <label for="mock4">3000000₫</label>
+                                </div>  
+                                <div class="container-radio" onclick="renderCheckInput(this);">
+                                    <input type="checkbox" name="price" id="mock5" value="4000000">
+                                    <label for="mock5">4000000₫</label>
+                                </div>  
+                                <div class="container-radio" onclick="renderCheckInput(this);">
+                                    <input type="checkbox" name="price" id="mock6" value="5000000">
+                                    <label for="mock6">5000000₫</label>
+                                </div> 
+                                <div class="container-radio" onclick="renderCheckInput(this);">
+                                    <input type="checkbox" name="price" id="none-price" class="none" value="0">
+                                    <label for="none-price">No choosen</label>
+                                </div>    
+                                <div class="scope-price">
+                                    <div>
+                                        <input type="number" class="filter-min" value="300000">
+                                        <span>₫</span>
+                                    </div>
+                                    
+                                    <div>
+                                        <input type="number" class="filter-max" value="5000000">
+                                        <span>₫</span>
+                                    </div>
+                                </div>                                                    
                             </div>
-                            <div class="container-products">
-                                <div class="product">
-                                    <div class="image">
-                                        <img src="https://myshoes.vn/image/cache/catalog/2022/nike2/28.10/giay-nike-air-max-alpha-tr-5-nam-den-trang-01-250x250.jpg" alt="">
-                                        <div class="product-label">
-                                            <div class="discount"></div>
-                                        </div>
-                                        <div class="container-button-view">
-                                            <div class="view-detail">View detail</div>
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="info-product">
-                                        <div class="product-brand"></div>
-                                        <div class="product-name"></div>
-                                        <div class="product-price">
-                                            <div class="new-price"></div>
-                                            <div class="old-price"></div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div class="product">
-                                    <div class="image">
-                                        <img src="https://myshoes.vn/image/cache/catalog/2022/nike2/28.10/giay-nike-air-max-alpha-tr-5-nam-den-trang-01-250x250.jpg" alt="">
-                                        <div class="product-label">
-                                            <div class="discount"></div>
-                                        </div>
-                                    </div>
-                                    <div class="info-product">
-                                        <div class="product-brand"></div>
-                                        <div class="product-name"></div>
-                                        <div class="product-price">
-                                            <div class="new-price"></div>
-                                            <div class="old-price"></div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div class="product">
-                                    <div class="image">
-                                        <img src="https://myshoes.vn/image/cache/catalog/2022/nike2/28.10/giay-nike-air-max-alpha-tr-5-nam-den-trang-01-250x250.jpg" alt="">
-                                        <div class="product-label">
-                                            <div class="discount"></div>
-                                        </div>
-                                    </div>
-                                    <div class="info-product">
-                                        <div class="product-brand"></div>
-                                        <div class="product-name"></div>
-                                        <div class="product-price">
-                                            <div class="new-price"></div>
-                                            <div class="old-price"></div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div class="product">
-                                    <div class="image">
-                                        <img src="https://myshoes.vn/image/cache/catalog/2022/nike2/28.10/giay-nike-air-max-alpha-tr-5-nam-den-trang-01-250x250.jpg" alt="">
-                                        <div class="product-label">
-                                            <div class="discount"></div>
-                                        </div>
-                                    </div>
-                                    <div class="info-product">
-                                        <div class="product-brand"></div>
-                                        <div class="product-name"></div>
-                                        <div class="product-price">
-                                            <div class="new-price"></div>
-                                            <div class="old-price"></div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div class="product">
-                                    <div class="image">
-                                        <img src="https://myshoes.vn/image/cache/catalog/2022/nike2/28.10/giay-nike-air-max-alpha-tr-5-nam-den-trang-01-250x250.jpg" alt="">
-                                        <div class="product-label">
-                                            <div class="discount">27%</div>
-                                        </div>
-                                        <div class="container-button-view">
-                                            <div class="view-detail">View detail</div>
-                                        </div>
-                                    </div>
-                                    <div class="info-product">
-                                        <div class="product-brand">Nike</div>
-                                        <div class="product-name">Giày bóng chuyền Nike</div>
-                                        <div class="product-price">
-                                            <div class="new-price">850000đ</div>
-                                            <div class="old-price">1050000đ</div>
-                                        </div>
-
-                                    </div>
-                                </div>
+                            
+                        </div>
+                        <div class="size">
+                            <div class="panel-heading" id="size" onclick="hiddenAndShowPanel(this);">
+                                <h3>By size</h3>
+                                <i class="fa-sharp fa-solid fa-chevron-down"></i>
                             </div>
-
-                            <div class="pagination">
-                                <div class="iopage page-number previous-button">
-                                    <i class="fa-solid fa-angle-left"></i>
-                                    Previous
+                            <div class="panel-content" id="panel-size">
+                                <div class="container-radio">
+                                    <input type="radio" name="size" id="38">
+                                    <label for="38">38</label>
                                 </div>
-                                <div class="page-number first-page">1</div>
-                                <div class="page-number dot-page"></div>
-                                <div class="page-number previous">3</div>
-                                <div class="page-number current">4</div>
-                                <div class="page-number next">5</div>
-                                <div class="page-number dot-page"></div>
-                                <div class="page-number last-page">10</div>
-                                <div class="iopage page-number next-button">
-                                    Next
-                                    <i class="fa-solid fa-angle-right"></i>
+                                <div class="container-radio">
+                                    <input type="radio" name="size" id="39">
+                                    <label for="39">39</label>
+                                </div>
+                                <div class="container-radio">
+                                    <input type="radio" name="size" id="40">
+                                    <label for="40">40</label>
+                                </div>
+                                <div class="container-radio">
+                                    <input type="radio" name="size" id="41">
+                                    <label for="41">41</label>
+                                </div>
+                                <div class="container-radio">
+                                    <input type="radio" name="size" id="41-5">
+                                    <label for="41-5">41.5</label>
+                                </div>
+                                <div class="container-radio">
+                                    <input type="radio" name="size" id="42">
+                                    <label for="42">42</label>
+                                </div>
+                                <div class="container-radio">
+                                    <input type="radio" name="size" id="42-5">
+                                    <label for="42-5">42.5</label>
+                                </div>
+                                <div class="container-radio">
+                                    <input type="radio" name="size" id="43">
+                                    <label for="43">43</label>
+                                </div>
+                                <div class="container-radio">
+                                    <input type="radio" name="size" id="none-size" class="none">
+                                    <label for="none-size">No choosen</label>
+                                </div>
+                                <div class="size-guide">
+                                    <p>You don't know how to choes exactly size? 
+                                        <span class="chooes-size-guide" onclick="openChooseSizeGuide();">Let us</span>
+                                    </p>
+                                    
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>`;
+                </div>
+            </div>
+            <div class="product-content">
+                <h2 class="brand">Giày Asics chính hãng</h2>
+                <div class="banner">
+                    <img src="./assets/img/product/banner/giay-asics-chinh-hang.jpg" alt="">
+                </div>
+                <div class="amount-product">
+                    <div class="label-amount">Amount of product per page:</div>
+                    <select name="product-on-page" id="amount" class="amount">
+                        <option value="6">6</option>
+                        <option value="8">8</option>
+                        <option value="10">10</option>
+                        <option value="12">12</option>
+                    </select>
+                </div>
+                <div class="container-products">
+                    
+                </div>
+
+                <div class="pagination">
+                    <div class="iopage page-number previous-button">
+                        <i class="fa-solid fa-angle-left"></i>
+                        Previous
+                    </div>
+                    <div class="page-number first-page">1</div>
+                    <div class="page-number dot-page"></div>
+                    <div class="page-number previous">3</div>
+                    <div class="page-number current">4</div>
+                    <div class="page-number next">5</div>
+                    <div class="page-number dot-page"></div>
+                    <div class="page-number last-page">10</div>
+                    <div class="iopage page-number next-button">
+                        Next
+                        <i class="fa-solid fa-angle-right"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>`;
     content.innerHTML=contentInner;
+    innerProducts();
+
+}
+
+function innerProducts(){
+    var listProduct = '';
+    for(i = 0; i < lsProduct.length; i++){
+        listProduct += lsProduct[i].showDetail();
+    }
+    console.log(listProduct);
+    document.querySelector('.product-page').querySelector('.container-products').innerHTML = listProduct;
 }
 
 var i=0;

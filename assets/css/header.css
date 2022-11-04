@@ -76,7 +76,6 @@
     width: 3rem;
     height: 3rem;
     color: black;
-    line-height: var(--height-header);
     border-radius: 50%;
 }
 
@@ -86,6 +85,43 @@
 
 #header .cart-icon{
     position: relative;
+}
+
+#header .cart-icon .cart-container{
+    position: absolute;
+    top:var(--height-header);
+    right: 0;
+    width: 300px;
+    height: 200px;
+    box-shadow: 10px 10px 20px #000;
+    border-radius: 20px;
+    background-color: #fff;
+}
+
+#header .cart-icon .pr{
+    display: flex;
+    margin: 5px;
+    border: 1px solid var(--main-border-color);
+    border-radius: 20px;
+}
+
+#header .cart-icon .pr .image{
+    width: 30%;
+}
+
+#header .cart-icon .image img{
+    width: 100%;
+    border-radius: 20px;
+}
+
+#header .cart-icon .pr .info{
+    font-size: 12px;
+    margin-left: 10px;
+    width: 70%;
+}
+
+#header .cart-icon .info .name{
+    margin: 5px 0;
 }
 
 #header .cart-icon i{
