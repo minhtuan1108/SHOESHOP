@@ -218,6 +218,9 @@
 
 .product-page .container-products .product{
     width: calc(100%/3 - 10px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     border: 1px solid var(--main-border-color);
     border-radius: 15px;
     margin: 0 5px 20px 5px;
@@ -299,7 +302,8 @@
 
 .product-page .info-product .product-brand{
     text-decoration: underline;
-    font-size: 0.8rem; 
+    font-size: 0.8rem;
+    margin-top: 5px;
 }
 
 .product-page .info-product .product-price{
@@ -418,11 +422,13 @@
 
 /* Popup product detail */
 .container-popUp .container-form-product{
-    width:50%
+    width:50%;
 }
 
 .container-popUp .container-form-product form{
     width: 100%;
+    min-height: 320px;
+    height:inherit;
     display: flex;
     border-radius: 20px;
     background-color: #fff;
@@ -489,7 +495,7 @@ form .main-info .title{
     font-family: 'Lato', sans-serif;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 5;
+    -webkit-line-clamp: 3;
     overflow: hidden;
 }
 

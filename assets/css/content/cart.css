@@ -1,0 +1,319 @@
+#content .container{
+    width: 100%;
+    font-family: 'Lato', sans-serif;
+}
+
+#content .container-cart{
+    max-width: 1000px;
+    display: flex;
+    margin: 10vh auto;
+}
+
+#content .container-pr{
+    width: calc(100% - 300px);
+    margin: 0 10px;
+}
+
+#content .container-cart h2{
+    margin-bottom: 30px;
+}
+
+#content .container-cart .products{
+    width: 100%;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#content .container-pr .pr{
+    width: 100%;
+    position: relative;
+    margin: 5px;
+    border: 1px solid var(--main-border-color);
+    border-radius: 20px;
+    display: flex;
+}
+
+#content .pr .image{
+    width: 150px;
+    padding: 5px 10px;
+}
+
+#content .pr img{
+    width: 100%;
+    border-radius: 20px;
+}
+
+#content .pr .delete{
+    position: absolute;
+    right: -1px;
+    top: -1px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    color: #fff;
+    background-color: red;
+    padding: 5px 20px;
+}
+
+.container-cart .pr .info{
+    padding: 5px 10px;
+    color: #888;
+}
+
+.container-cart .pr .info .name{
+    margin-bottom: 10px;
+    color: #000;
+}
+
+.container-cart .pr .info .group-selection{
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.container-cart .group-selection div{
+    display: flex;
+    margin-right: 10px;
+    color: #888;
+}
+
+.container-cart .group-selection select{
+    border: unset;
+    margin: 0 5px;
+}
+
+.container-cart .group-selection input{
+    border: unset;
+    width: 40px;
+    margin: 0 5px;
+}
+
+.container-cart .pr .price-cart{
+    font-weight: bold;
+    color: #000;
+    margin-top: 10px;
+}
+
+
+#content .checkOut-aria{
+    --height-div: 50px;
+    width: 300px;
+    margin-left: 10px;
+    padding: 10px;
+    border-left: 1px solid var(--main-border-color);
+}
+
+#content .checkOut-aria .total-bill{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: var(--height-div);
+    margin-bottom: 20px;
+    border-top: 1px solid var(--main-border-color);
+    border-bottom: 1px solid var(--main-border-color);
+}
+
+#content .checkOut-aria .checkout-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: var(--height-div);
+}
+
+#content .checkOut-aria .checkout-container button{
+    height: var(--height-div);
+    border-radius: 20px;
+    padding: 0 20px;
+    border: 1px solid var(--main-border-color);
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#content .checkOut-aria .checkout-container button:hover{
+    color: #fff;
+    background-color: var(--main-color);
+}
+
+/* Paid Bill */
+.container-bill{
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px auto;
+}
+
+.container-bill h2{
+    margin: 20px;
+}
+
+.container-bill .main-container{
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid var(--main-border-color);
+    padding: 20px 10px;
+}
+
+.container-bill .main-container .bill{
+    display: flex;
+    border: 1px solid var(--main-border-color);
+    border-radius: 20px;
+    margin: 5px 0;
+    transition: 0.2s ease-in;
+}
+
+.container-bill .bill .image{
+    width: 100px;
+    border-radius: 20px;
+}
+
+.container-bill .bill img{
+    width: 100%;
+    border-radius: 20px;
+}
+
+.container-bill .bill .info{
+    width: calc(100% - 120px);
+    display: flex;
+    justify-content: space-between;
+    margin-left: 20px;
+    padding: 10px 20px;
+}
+
+.container-bill .bill .info p{
+    color: #888;
+}
+
+.container-bill .bill .info span{
+    color: #000;
+}
+
+.container-bill .info .main-content{
+    flex-direction: column;
+    justify-content: center;
+    display: flex;
+}
+
+.container-bill .info .status{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.container-bill .main-container .bill:hover{
+    transform: translateY(5px);
+    transform: translateX(5px);
+    box-shadow: 10px 10px 40px #000;
+}
+
+.container-bill .main-container .bill:hover ~ .bill{
+    transform: translateY(20px);
+}
+
+/* Pop up bill detail*/
+.container-popUp .bill-detail{
+    width: 400px;
+    position: relative;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid var(--main-border-color);
+}
+
+.container-popUp .bill-detail .top{
+    max-height: 50px;
+    position: fixed;
+    padding: 5px 10px;
+    background-color: #fff;
+}
+
+.container-popUp .bill-detail .delete{
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #fff;
+    background-color: red;
+    padding: 5px 15px;
+}
+
+.delete:hover{
+    opacity: 0.6;
+    transition: 0.2s ease-in-out;
+}
+
+.container-popUp .bill-detail .top p{
+    color: #888;
+}
+
+.container-popUp .bill-detail .main-content-bill{
+    margin-top: 50px;
+    border-top: 1px solid #000;
+    max-height: 400px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.container-popUp .bill-detail .list-product{
+    background-color: #fff;
+    padding: 10px 5px;
+}
+
+.container-popUp .list-product .pr{
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--main-border-color);
+    border-radius: 20px;
+    margin: 5px 0;
+}
+
+.container-popUp .list-product .pr .image{
+    width: 80px;
+    padding: 5px;
+    margin: 5px 10px;
+}
+
+.container-popUp .list-product .pr .image img{
+    width: 100%;
+}
+
+.container-popUp .list-product .pr .info{
+    max-width: calc(100% - 80px);
+    font-size: 12px;
+}
+
+.container-popUp .pr .info p{
+    color: #888;
+}
+
+.container-popUp .pr .info .size-quantity{
+    display: flex;
+}
+
+.container-popUp .info .size-quantity p{
+    margin-right: 10px;
+}
+
+.container-popUp .bill-detail .total{
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+    padding: 10px 5px;
+    border-top: 1px solid var(--main-border-color);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px
+}
+
+.container-popUp .bill-detail .total p{
+    color: #888;
+}
+
+.container-popUp .bill-detail .total span{
+    color: #000;
+}
+
+.container-popUp .bill-detail .total .total-money{
+    font-weight: bold;
+    color: red;
+}
+
+/* Pop up  */

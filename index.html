@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="./assets/css/content/home.css">
         <link rel="stylesheet" href="./assets/css/content/contact.css">
         <link rel="stylesheet" href="./assets/css/content/product.css">
+        <link rel="stylesheet" href="./assets/css/content/cart.css">
         <link rel="stylesheet" href="./assets/css/footer.css">
         <link rel="stylesheet" href="./assets/font/themify-icons/themify-icons.css">
         <link rel="stylesheet" href="./assets/font/fontawesome-free-6.2.0-web/css/all.css">
@@ -27,7 +28,7 @@
                             <li onclick="innerLandingPage();" id="home">Home
                                 <div class="animate"></div>
                             </li>
-                            <li onclick="innerProductPage();">Products
+                            <li onclick="innerProductPage();" id="pr-page-nav">Products
                                 <div class="animate"></div>
                             </li>
                             <li>Favourite
@@ -49,27 +50,9 @@
                             <i class="ti-search"></i>
                         </div>
                         
-                        <div class="cart-icon icon">
+                        <div class="cart-icon icon" onclick="innerCartPage();">
                             <i class="ti-shopping-cart"></i>
-                            <div class="notify" data-count-pr="0"></div>
-                            <div class="cart-container">
-                                <div class="container-pr">
-                                    <div class="pr">
-                                        <div class="image"><img src="./assets/img/product/demo.jpg" alt="./assets/img/product/Asics/1/"></div>
-                                        <div class="info">
-                                            <h4 class="name">Asics Upcourt 4</h4>
-                                            <p class="size">Size: 38</p>
-                                            <p class="quantity">Quantity: 2</p>
-                                            <p>Price: 1050000</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="container-checkOut">
-                                    <div class="checkOut-button">Check out</div>
-                                </div>
-                                
-                            </div>
+                            <div class="notify" data_count_pr="0"></div>
                         </div>
 
                         <div class="account-icon icon">
@@ -84,280 +67,7 @@
             </div>
 
             <div id="content">   
-                <div class="product-page">
-                    <div class="container">
-                        <div class="left-column">
-                            <div class="brands">
-                                <h2># Brands</h2>
-                                <div class="brand" id="all">All</div>
-                                <div class="brand" id="Asics">Asics</div>
-                                <div class="brand" id="Mizuno">Mizuno</div>
-                                <div class="brand" id="Beyono">Beyono</div>
-                                <div class="brand" id="Nike">Nike</div>
-                                <div class="brand" id="Adidas">Adidas</div>
-                            </div>
-                            <div class="option-filter">
-                                <div class="title">
-                                    <h2># Filter</h2>
-                                    <button class="clear" onclick="checkDefaultInput();">Clear
-                                        <i class="fa-sharp fa-solid fa-xmark"></i>
-                                    </button>
-                                </div>
-                                <div class="group-panel">
-                                    <div class="gen">
-                                        <div class="panel-heading" id="gen" onclick="hiddenAndShowPanel(this);">
-                                            <h3>By gender</h3>
-                                            <i class="fa-sharp fa-solid fa-chevron-down"></i>
-                                        </div>
-                                        <div class="panel-content" id="panel-gen">
-                                            <div class="container-radio">
-                                                <input type="radio" name="gender" id="male">
-                                                <label for="male">Male</label>
-                                            </div>
-                                            <div class="container-radio">
-                                                <input type="radio" name="gender" id="female">
-                                                <label for="female">Female</label>
-                                            </div>
-                                            <div class="container-radio">
-                                                <input type="radio" name="gender" id="none-gender" class="none">
-                                                <label for="none-gender">No choosen</label>
-                                            </div>                                            
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="price" onclick="console.log('hello');">
-                                        <div class="panel-heading" id="price" onclick="hiddenAndShowPanel(this);">
-                                            <h3>By price</h3>
-                                            <i class="fa-sharp fa-solid fa-chevron-down"></i>
-                                        </div>
-                                        <div class="panel-content" id="panel-price" onclick="renderPriceScope();">
-                                            <div class="container-radio" onclick="renderCheckInput(this);">
-                                                <input type="checkbox" name="price" id="mock1" value="300000">
-                                                <label for="mock1">300000₫</label>
-                                            </div>
-                                            <div class="container-radio" onclick="renderCheckInput(this);">
-                                                <input type="checkbox" name="price" id="mock2" value="1000000">
-                                                <label for="mock2">1000000₫</label>
-                                            </div>
-                                            <div class="container-radio" onclick="renderCheckInput(this);">
-                                                <input type="checkbox" name="price" id="mock3" value="2000000">
-                                                <label for="mock3">2000000₫</label>
-                                            </div>  
-                                            <div class="container-radio" onclick="renderCheckInput(this);">
-                                                <input type="checkbox" name="price" id="mock4" value="3000000">
-                                                <label for="mock4">3000000₫</label>
-                                            </div>  
-                                            <div class="container-radio" onclick="renderCheckInput(this);">
-                                                <input type="checkbox" name="price" id="mock5" value="4000000">
-                                                <label for="mock5">4000000₫</label>
-                                            </div>  
-                                            <div class="container-radio" onclick="renderCheckInput(this);">
-                                                <input type="checkbox" name="price" id="mock6" value="5000000">
-                                                <label for="mock6">5000000₫</label>
-                                            </div> 
-                                            <div class="container-radio" onclick="renderCheckInput(this);">
-                                                <input type="checkbox" name="price" id="none-price" class="none" value="0">
-                                                <label for="none-price">No choosen</label>
-                                            </div>    
-                                            <div class="scope-price">
-                                                <div>
-                                                    <input type="number" class="filter-min" value="300000">
-                                                    <span>₫</span>
-                                                </div>
-                                                
-                                                <div>
-                                                    <input type="number" class="filter-max" value="5000000">
-                                                    <span>₫</span>
-                                                </div>
-                                            </div>                                                    
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="size">
-                                        <div class="panel-heading" id="size" onclick="hiddenAndShowPanel(this);">
-                                            <h3>By size</h3>
-                                            <i class="fa-sharp fa-solid fa-chevron-down"></i>
-                                        </div>
-                                        <div class="panel-content" id="panel-size">
-                                            <div class="container-radio">
-                                                <input type="radio" name="size" id="38">
-                                                <label for="38">38</label>
-                                            </div>
-                                            <div class="container-radio">
-                                                <input type="radio" name="size" id="39">
-                                                <label for="39">39</label>
-                                            </div>
-                                            <div class="container-radio">
-                                                <input type="radio" name="size" id="40">
-                                                <label for="40">40</label>
-                                            </div>
-                                            <div class="container-radio">
-                                                <input type="radio" name="size" id="41">
-                                                <label for="41">41</label>
-                                            </div>
-                                            <div class="container-radio">
-                                                <input type="radio" name="size" id="41-5">
-                                                <label for="41-5">41.5</label>
-                                            </div>
-                                            <div class="container-radio">
-                                                <input type="radio" name="size" id="42">
-                                                <label for="42">42</label>
-                                            </div>
-                                            <div class="container-radio">
-                                                <input type="radio" name="size" id="42-5">
-                                                <label for="42-5">42.5</label>
-                                            </div>
-                                            <div class="container-radio">
-                                                <input type="radio" name="size" id="43">
-                                                <label for="43">43</label>
-                                            </div>
-                                            <div class="container-radio">
-                                                <input type="radio" name="size" id="none-size" class="none">
-                                                <label for="none-size">No choosen</label>
-                                            </div>
-                                            <div class="size-guide">
-                                                <p>You don't know how to choes exactly size? 
-                                                    <span class="chooes-size-guide" onclick="openChooseSizeGuide();">Let us</span>
-                                                </p>
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h2 class="brand">Giày Asics chính hãng</h2>
-                            <div class="banner">
-                                <img src="./assets/img/product/banner/giay-asics-chinh-hang.jpg" alt="">
-                            </div>
-                            <div class="amount-product">
-                                <div class="label-amount">Amount of product per page:</div>
-                                <select name="product-on-page" id="amount" class="amount">
-                                    <option value="6">6</option>
-                                    <option value="8">8</option>
-                                    <option value="10">10</option>
-                                    <option value="12">12</option>
-                                </select>
-                            </div>
-                            <div class="container-products">
-                                <div class="product">
-                                    <div class="image">
-                                        <img src="https://myshoes.vn/image/cache/catalog/2022/nike2/28.10/giay-nike-air-max-alpha-tr-5-nam-den-trang-01-250x250.jpg" alt="">
-                                        <div class="product-label">
-                                            <div class="discount"></div>
-                                        </div>
-                                        <div class="container-button-view">
-                                            <div class="view-detail" onclick="openProductCard(this);">View detail
-                                                <div class="id-product" value="5">5</div>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="info-product">
-                                        <div class="product-brand"></div>
-                                        <div class="product-name"></div>
-                                        <div class="product-price">
-                                            <div class="new-price"></div>
-                                            <div class="old-price"></div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div class="product">
-                                    <div class="image">
-                                        <img src="https://myshoes.vn/image/cache/catalog/2022/nike2/28.10/giay-nike-air-max-alpha-tr-5-nam-den-trang-01-250x250.jpg" alt="">
-                                        <div class="product-label">
-                                            <div class="discount"></div>
-                                        </div>
-                                    </div>
-                                    <div class="info-product">
-                                        <div class="product-brand"></div>
-                                        <div class="product-name"></div>
-                                        <div class="product-price">
-                                            <div class="new-price"></div>
-                                            <div class="old-price"></div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div class="product">
-                                    <div class="image">
-                                        <img src="https://myshoes.vn/image/cache/catalog/2022/nike2/28.10/giay-nike-air-max-alpha-tr-5-nam-den-trang-01-250x250.jpg" alt="">
-                                        <div class="product-label">
-                                            <div class="discount"></div>
-                                        </div>
-                                    </div>
-                                    <div class="info-product">
-                                        <div class="product-brand"></div>
-                                        <div class="product-name"></div>
-                                        <div class="product-price">
-                                            <div class="new-price"></div>
-                                            <div class="old-price"></div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div class="product">
-                                    <div class="image">
-                                        <img src="https://myshoes.vn/image/cache/catalog/2022/nike2/28.10/giay-nike-air-max-alpha-tr-5-nam-den-trang-01-250x250.jpg" alt="">
-                                        <div class="product-label">
-                                            <div class="discount"></div>
-                                        </div>
-                                    </div>
-                                    <div class="info-product">
-                                        <div class="product-brand"></div>
-                                        <div class="product-name"></div>
-                                        <div class="product-price">
-                                            <div class="new-price"></div>
-                                            <div class="old-price"></div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div class="product">
-                                    <div class="image">
-                                        <img src="https://myshoes.vn/image/cache/catalog/2022/nike2/28.10/giay-nike-air-max-alpha-tr-5-nam-den-trang-01-250x250.jpg" alt="">
-                                        <div class="product-label">
-                                            <div class="discount">27%</div>
-                                        </div>
-                                    </div>
-                                    <div class="info-product">
-                                        <div class="product-brand">Nike</div>
-                                        <div class="product-name">Giày bóng chuyền Nike</div>
-                                        <div class="product-price">
-                                            <div class="new-price">850000đ</div>
-                                            <div class="old-price">1050000đ</div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="pagination">
-                                <div class="iopage page-number previous-button">
-                                    <i class="fa-solid fa-angle-left"></i>
-                                    Previous
-                                </div>
-                                <div class="page-number first-page">1</div>
-                                <div class="page-number dot-page"></div>
-                                <div class="page-number previous">3</div>
-                                <div class="page-number current">4</div>
-                                <div class="page-number next">5</div>
-                                <div class="page-number dot-page"></div>
-                                <div class="page-number last-page">10</div>
-                                <div class="iopage page-number next-button">
-                                    Next
-                                    <i class="fa-solid fa-angle-right"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>     
+                
             </div>
 
             <div class="footer">
@@ -419,228 +129,140 @@
             <!-- End popup items --> 
         </div>
 
-
+        
         <script src="./JS/DTO/member.js"></script>
         <script src="./JS/DTO/product.js"></script>
+        <script src="./JS/main.js"></script>
         <script src="./JS/DATA/CreateProductData.js"></script>
-        <script src="./JS/loadpage.js"></script>
+        <script src="./JS/LOADPAGE/loadhomepage.js"></script>
+        <script src="./JS/LOADPAGE/loadproductpage.js"></script>
+        <script src="./JS/LOADPAGE/loadcontactpage.js"></script>
+        <script src="./JS/LOADPAGE/loadcartpage.js"></script>
         <script>
-            function hiddenAndShowPanel(obj){
-                var idPanel = obj.id;
-                var panel;
-                var icon;
-                switch (idPanel) {
-                    case "gen":
-                        panel = document.querySelector("#panel-gen");
-                        icon = document.querySelector(".gen").querySelector("i");
-                        console.log(panel);
-                        console.log(panel.style.display);
-                        console.log(panel.offsetHeight);
+            function openBillDetail(bill){
+                var id = bill.querySelector('#billID').textContent;
+                var bill_detail = `
+                <div class="bill-detail">
+                    <div class="delete" onclick="closeProductCard();">
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+                    <div class="top">
+                        <h3 class="cus-name">ABD</h3>
+                        <p class="time">Time create: <span>1313135</span></p>
+                    </div>
 
-                        break;
-                
-                    case "price":
-                        panel = document.querySelector("#panel-price");
-                        icon = document.querySelector(".price").querySelector("i");
-                        break;
+                    <div class="main-content-bill">
+                        <div class="list-product">
+                            <div class="pr">
+                                <div class="image">
+                                    <img src="./assets/img/product/demo.jpg" alt="./assets/img/product/Asics/1/">
+                                </div>
+                                <div class="info">
+                                    <h3 class="name">Asics Upcourt 4</h3>
+                                    <h5 class="brand">Brand: Asic</h5>
+                                    <div class="size-quantity">
+                                        <p class="size">Size: <span>38</span></p>
+                                        <p class="quantity">Quantity: <span>2</span></p>
+                                    </div>                                    
+                                    <p class="price-cart">Price: 1050000đ</p>
+                                </div>
+                            </div>
+    
+                            <div class="pr">
+                                <div class="image">
+                                    <img src="./assets/img/product/demo.jpg" alt="./assets/img/product/Asics/1/">
+                                </div>
+                                <div class="info">
+                                    <h3 class="name">Asics Upcourt 4</h3>
+                                    <h5 class="brand">Brand: Asic</h5>
+                                    <div class="size-quantity">
+                                        <p class="size">Size: <span>38</span></p>
+                                        <p class="quantity">Quantity: <span>2</span></p>
+                                    </div>                                    
+                                    <p class="price-cart">Price: 1050000đ</p>
+                                </div>
+                            </div>
+    
+                            <div class="pr">
+                                <div class="image">
+                                    <img src="./assets/img/product/demo.jpg" alt="./assets/img/product/Asics/1/">
+                                </div>
+                                <div class="info">
+                                    <h3 class="name">Asics Upcourt 4</h3>
+                                    <h5 class="brand">Brand: Asic</h5>
+                                    <div class="size-quantity">
+                                        <p class="size">Size: <span>38</span></p>
+                                        <p class="quantity">Quantity: <span>2</span></p>
+                                    </div>                                    
+                                    <p class="price-cart">Price: 1050000đ</p>
+                                </div>
+                            </div>
+    
+                            <div class="pr">
+                                <div class="image">
+                                    <img src="./assets/img/product/demo.jpg" alt="./assets/img/product/Asics/1/">
+                                </div>
+                                <div class="info">
+                                    <h3 class="name">Asics Upcourt 4</h3>
+                                    <h5 class="brand">Brand: Asic</h5>
+                                    <div class="size-quantity">
+                                        <p class="size">Size: <span>38</span></p>
+                                        <p class="quantity">Quantity: <span>2</span></p>
+                                    </div>                                    
+                                    <p class="price-cart">Price: 1050000đ</p>
+                                </div>
+                            </div>
+    
+                            <div class="pr">
+                                <div class="image">
+                                    <img src="./assets/img/product/demo.jpg" alt="./assets/img/product/Asics/1/">
+                                </div>
+                                <div class="info">
+                                    <h3 class="name">Asics Upcourt 4</h3>
+                                    <h5 class="brand">Brand: Asic</h5>
+                                    <div class="size-quantity">
+                                        <p class="size">Size: <span>38</span></p>
+                                        <p class="quantity">Quantity: <span>2</span></p>
+                                    </div>                                    
+                                    <p class="price-cart">Price: 1050000đ</p>
+                                </div>
+                            </div>
+    
+                            <div class="pr">
+                                <div class="image">
+                                    <img src="./assets/img/product/demo.jpg" alt="./assets/img/product/Asics/1/">
+                                </div>
+                                <div class="info">
+                                    <h3 class="name">Asics Upcourt 4</h3>
+                                    <h5 class="brand">Brand: Asic</h5>
+                                    <div class="size-quantity">
+                                        <p class="size">Size: <span>38</span></p>
+                                        <p class="quantity">Quantity: <span>2</span></p>
+                                    </div>                                    
+                                    <p class="price-cart">Price: 1050000đ</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="total">
+                            <p>Total: <span class="total-money">1000000đ</span></p>
+                            <p>Status: 
+                                <span>cheked
+                                    <i class="fa-solid fa-check"></i>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                    
+                </div>`;
 
-                    case "size":
-                        panel = document.querySelector("#panel-size");
-                        icon = document.querySelector(".size").querySelector("i");
-                        break;
-
-                    default:
-                        break;
-                }
-
-                if(panel.offsetHeight == 0){
-                        console.log("none thì vào đây!");
-                        panel.style = `height: fit-content;
-                                        margin: 5px;
-                                        margin-bottom: 15px;
-                                        display: flex;
-                                        `;
-                        icon.style = 'transform: rotate(0);';
-                    }else {
-                        console.log("flex thì vào đây!");
-                        panel.style = `height: 0;
-                                        margin: 0;
-                                        display: none;
-                                        `;
-                        icon.style = 'transform: rotate(-90deg);'
-                    }
-                    console.log(panel);
+                document.querySelector('.container-popUp').innerHTML = bill_detail;
+                document.querySelector('.container-popUp').style.display = 'flex';
             }
 
-            function openChooseSizeGuide(){
-                var container = document.querySelector('.container-popUp');
-                container.innerHTML=`<div class="size-guide">
-                                        <img src="./assets/img/product/chon-size.png" alt="">
-                                        <i class="fa-solid fa-xmark" onclick="closeChooseSizeGuide();"></i>
-                                    </div>`;
-                container.style.display = 'flex';
-            }
-
-            function closeChooseSizeGuide(){
-                document.querySelector('.container-popUp').style.display = 'none';
-            }
-
-            function openProductCard(view_button){
-                var id_pr = view_button.querySelector('.id-product').textContent;
-                // Lấy danh sách sản phẩm rồi so sách với id để lấy đối tượng sản phẩm ra cuối cùng lấy giá trị để đưa vào form hiển thị sản phẩm
-                var container = document.querySelector('.container-popUp');
-                container.innerHTML = `<div class="container-form-product">
-                                            <form action="./JS/index.js" method="post">
-                                                <div class="image-product">
-                                                    <img src="https://myshoes.vn/image/cache/catalog/2022/nike2/28.10/giay-nike-air-max-alpha-tr-5-nam-den-trang-01-250x250.jpg" alt="">
-                                                </div>
-                                                <div class="main-info">
-                                                    <div class="info-detail">
-                                                        <h2 class="product-name">Giày Asics Upcourt 4</h2>
-                                                        <div class="price">
-                                                            <p class="label-price title">Price: </p>
-                                                            <div class="new-price">
-                                                                <p>1050000</p>
-                                                                <span>đ</span>
-                                                            </div>
-                                                            <div class="old-price">
-                                                                <p>850000</p>
-                                                                <span>đ</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="size">
-                                                            <div class="label-size title">Current size: </div>
-                                                            <p>38-42</p>
-                                                        </div>
-                                                        <div class="desc">
-                                                            <p class="label-desc title">Description: 
-                                                                <i>This product order form template is a fast way to get started selling online. The template is fully customizable, enabling you to add new fields, design it to match your brand, and add new products to sell. Best of all, you can connect this order form to a Jotform payment partner (more than 30 secure payment gateways, including Square, PayPal and Stripe) and collect money directly through the form itself, reducing back-and-forth emails when you need to get paid after an order request.</i>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="chosen">
-                                                        <div class="size-option">
-                                                            <p>Size</p>
-                                                            <select name="chosen-size" id="chosen-size">
-                                                                <option value="38">38</option>
-                                                                <option value="39">39</option>
-                                                                <option value="40">40</option>
-                                                                <option value="41">41</option>
-                                                                <option value="41.5">41.5</option>
-                                                                <option value="42">42</option>
-                                                                <option value="42.5">42.5</option>
-                                                                <option value="43">43</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="quantity-option">
-                                                            <p>Quantity</p>
-                                                            <input type="number" name="quantity" id="quantity" value="1">
-                                                        </div>
-                                                    </div>
-                                                    <div class="add-cart">
-                                                        <input type="submit" value="Add to cart">
-                                                        <input type="button" value="Cancel" onclick="closeChooseSizeGuide();">
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>`;
-                container.style.display='flex'
-            }
-            
             function closeProductCard(){
                 document.querySelector('.container-popUp').style.display = 'none';
             }
-
-            var model=document.querySelector('.container-popUp');
-            window.onclick=function(event){
-                if(event.target == model){
-                    closeChooseSizeGuide();
-                }
-                
-            }
-
-            window.onload = checkDefaultInput();
-            function checkDefaultInput(){
-                var noneInp = document.getElementsByClassName('none');
-                for( i = 0; i < noneInp.length; i++){
-                    noneInp[i].checked = true;
-                }
-                var allInp = document.querySelector('#panel-price').querySelectorAll('input');
-                for(i = 0; i < allInp.length; i++){
-                    if(allInp[i].id != 'none-price'){
-                        allInp[i].checked = false; 
-                    }
-                    
-                }
-            }
-
-            function renderCheckInput(inpContainer){
-                var allInp = document.querySelector('#panel-price').querySelectorAll('input');
-                var inp = inpContainer.querySelector('input');
-                if(inp.id != 'none-price' && inp.checked == true){
-                    console.log('Có vào đây không?');
-                    document.querySelector('#none-price').checked = false;
-                }else{
-                    if(inp.id == 'none-price'){
-                        console.log('Không lẽ vào đây?');
-                        for(i = 0; i < allInp.length; i++){
-                            if(allInp[i].id != 'none-price'){
-                               allInp[i].checked = false; 
-                            }
-                            
-                        }
-                    }
-                }
-                console.log('this is renderCheckInput');
-                console.log(document.querySelector('#none-price').checked);
-            }
             
-            function renderPriceScope(){
-                var panelPrice = document.querySelector('#panel-price');
-                var scopePrice = document.querySelector('.scope-price');
-                var allInp = panelPrice.querySelectorAll('input');
-                var amount = allInp.length;
-                var min = scopePrice.querySelector('.filter-min');
-                var max = scopePrice.querySelector('.filter-max');
-                var checkedInput = [];
-                var count = 0;
-
-                // Check if input noneprice is checked set default scope price
-                for( i=0; i<amount; i++){
-                    if(allInp[i].checked){
-                        checkedInput = checkedInput.concat(allInp[i]);
-                    }
-                }
-
-                if(panelPrice.querySelector('#none-price').checked || checkedInput.length == 0){
-                    min.value = 300000;
-                    max.value = 5000000;
-                    return;
-                }
-
-
-                if(checkedInput.length == 1){
-                    min.value = 300000;
-                    max.value = checkedInput[0].value;
-                    return;
-                }
-
-                min.value = checkedInput[0].value;
-                if(checkedInput.length == 2){
-                    max.value = checkedInput[1].value;
-                    return;
-                }else{
-                    max.value = checkedInput[checkedInput.length-1].value;
-                    return;
-                }
-
-
-
-                console.log('This is renderPriceScope');
-                console.log(document.querySelector('#none-price').checked);
-                console.log(checkedInput);
-                
-            }
         </script>
     </body>
 </html>

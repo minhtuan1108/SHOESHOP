@@ -19,233 +19,453 @@
         <link rel="stylesheet" href="./assets/css/footer.css">
         <link rel="stylesheet" href="./assets/font/themify-icons/themify-icons.css">
         <link rel="stylesheet" href="./assets/font/fontawesome-free-6.2.0-web/css/all.css">
+        <link rel="stylesheet" href="./assets/css/login.css">
     </head>
     <body>
         <div class="main">
-            <div id="content">
+            
+            <div class="container-login">
+                
 
+                <div class="container-form container-signUp">
+                    <form action="" method="get" class="signUp-form">
+                        <div class="heading-form">
+                            <h2>Sign Up</h2>
+                        </div>
+                        <div class="content-form">
+
+                            <!-- Customer name -->
+                            <div class="customer-name">
+                                <label for="name">
+                                    <i class="fa-solid fa-address-card"></i>
+                                </label>
+                                <input type="text" name="name" id="name" placeholder="Enter full name">
+                            </div>
+
+                            <!-- Address -->
+                            <div class="address">
+                                <label for="addr">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </label>
+                                <input type="text" name="adrress" id="addr" placeholder="Enter address">
+                            </div>
+
+                            <!-- Phone number -->
+                            <div class="phonenumber">
+                                <label for="phone">
+                                    <i class="fa-solid fa-phone"></i>
+                                </label>
+                                <input type="text" name="phone" id="phone" placeholder="Enter phone number *" oninput="checkingValidDataHoldTime(this);">
+                            </div>
+                            <div class="announce phone-annouce"></div>
+
+                            <!-- Email -->
+                            <div class="email">
+                                <label for="email">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </label>
+                                <input type="email" name="email" id="email" placeholder="Enter your email *" oninput="checkingValidDataHoldTime(this);">
+                            </div>
+                            <div class="announce email-annouce"></div>
+
+                            <!-- User name -->
+                            <div class="username">
+                                <label for="user">
+                                    <i class="fa-solid fa-user"></i>
+                                </label>
+                                <input type="text" name="user" id="user" placeholder="Enter user name *" oninput="checkingValidDataHoldTime(this);">
+                            </div>
+                            <div class="announce username-annouce"></div>
+
+                            <!-- Password -->
+                            <div class="password">
+                                <label for="pass">
+                                    <i class="fa-solid fa-lock"></i>
+                                </label>
+                                <input type="password" name="pass" id="pass" placeholder="Password *" oninput="checkingValidDataHoldTime(this);">
+                            </div>
+                            <div class="announce password-annouce"></div>
+
+                            <!-- Repeat password -->
+                            <div class="repeat">
+                                <label for="re-pass">
+                                    <i class="fa-solid fa-lock"></i>
+                                </label>
+                                <input type="password" name="re-pass" id="re-pass" placeholder="Repeat Password*">
+                            </div>
+                            <div class="announce repeat-annouce"></div>
+                        </div>
+
+                        <div class="button">
+                            <input type="button" value="Sign Up" onclick="addCustomer(this);">
+                        </div>
+
+                        <div class="link-signIn">
+                            <p onclick="goToSignInForm();">Sign in</p>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-        <script src="./JS/DATA/CreateProductData.js"></script>
-        <script src="./JS/DTO/member.js"></script>
-        <script src="./JS/loadpage.js"></script>
+
+
+        <script src="./JS/DTO/account.js"></script>
+        <script src="./JS/DTO/customer.js"></script>
+        <script src="./JS/main.js"></script>
         <script>
-            function hiddenAndShowPanel(obj){
-                var idPanel = obj.id;
-                var panel;
-                var icon;
-                switch (idPanel) {
-                    case "gen":
-                        panel = document.querySelector("#panel-gen");
-                        icon = document.querySelector(".gen").querySelector("i");
-                        console.log(panel);
-                        console.log(panel.style.display);
-                        console.log(panel.offsetHeight);
-
-                        break;
+            function goToSignInForm(){
+                var containerLogin = document.querySelector('.container-login');
+                var containerSignUp = document.querySelector('.container-signUp');
+             
                 
-                    case "price":
-                        panel = document.querySelector("#panel-price");
-                        icon = document.querySelector(".price").querySelector("i");
-                        break;
+                var signInForm = `<div class="container-form container-signIn">
+                    <form action="" method="post" class="signIn-form">
+                        <div class="heading-form">
+                            <h2>Sign In</h2>
+                        </div>
+                        <div class="content-form">
 
-                    case "size":
-                        panel = document.querySelector("#panel-size");
-                        icon = document.querySelector(".size").querySelector("i");
-                        break;
-
-                    default:
-                        break;
-                }
-
-                if(panel.offsetHeight == 0){
-                        console.log("none thì vào đây!");
-                        panel.style = `height: fit-content;
-                                        margin: 5px;
-                                        margin-bottom: 15px;
-                                        display: flex;
-                                        `;
-                        icon.style = 'transform: rotate(0);';
-                    }else {
-                        console.log("flex thì vào đây!");
-                        panel.style = `height: 0;
-                                        margin: 0;
-                                        display: none;
-                                        `;
-                        icon.style = 'transform: rotate(-90deg);'
-                    }
-                    console.log(panel);
-            }
-
-            function openChooseSizeGuide(){
-                var container = document.querySelector('.container-popUp');
-                container.innerHTML=`<div class="size-guide">
-                                        <img src="./assets/img/product/chon-size.png" alt="">
-                                        <i class="fa-solid fa-xmark" onclick="closeChooseSizeGuide();"></i>
-                                    </div>`;
-                container.style.display = 'flex';
-            }
-
-            function closeChooseSizeGuide(){
-                document.querySelector('.container-popUp').style.display = 'none';
-            }
-
-            function openProductCard(view_button){
-                var id_pr = view_button.querySelector('.id-product').textContent;
-                // Lấy danh sách sản phẩm rồi so sách với id để lấy đối tượng sản phẩm ra cuối cùng lấy giá trị để đưa vào form hiển thị sản phẩm
-                var container = document.querySelector('.container-popUp');
-                container.innerHTML = `<div class="container-form-product">
-                                            <form action="./JS/index.js" method="post">
-                                                <div class="image-product">
-                                                    <img src="https://myshoes.vn/image/cache/catalog/2022/nike2/28.10/giay-nike-air-max-alpha-tr-5-nam-den-trang-01-250x250.jpg" alt="">
-                                                </div>
-                                                <div class="main-info">
-                                                    <div class="info-detail">
-                                                        <h2 class="product-name">Giày Asics Upcourt 4</h2>
-                                                        <div class="price">
-                                                            <p class="label-price title">Price: </p>
-                                                            <div class="new-price">
-                                                                <p>1050000</p>
-                                                                <span>đ</span>
-                                                            </div>
-                                                            <div class="old-price">
-                                                                <p>850000</p>
-                                                                <span>đ</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="size">
-                                                            <div class="label-size title">Current size: </div>
-                                                            <p>38-42</p>
-                                                        </div>
-                                                        <div class="desc">
-                                                            <p class="label-desc title">Description: 
-                                                                <i>This product order form template is a fast way to get started selling online. The template is fully customizable, enabling you to add new fields, design it to match your brand, and add new products to sell. Best of all, you can connect this order form to a Jotform payment partner (more than 30 secure payment gateways, including Square, PayPal and Stripe) and collect money directly through the form itself, reducing back-and-forth emails when you need to get paid after an order request.</i>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="chosen">
-                                                        <div class="size-option">
-                                                            <p>Size</p>
-                                                            <select name="chosen-size" id="chosen-size">
-                                                                <option value="38">38</option>
-                                                                <option value="39">39</option>
-                                                                <option value="40">40</option>
-                                                                <option value="41">41</option>
-                                                                <option value="41.5">41.5</option>
-                                                                <option value="42">42</option>
-                                                                <option value="42.5">42.5</option>
-                                                                <option value="43">43</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="quantity-option">
-                                                            <p>Quantity</p>
-                                                            <input type="number" name="quantity" id="quantity" value="1">
-                                                        </div>
-                                                    </div>
-                                                    <div class="add-cart">
-                                                        <input type="submit" value="Add to cart">
-                                                        <input type="button" value="Cancel" onclick="closeChooseSizeGuide();">
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>`;
-                container.style.display='flex'
-            }
-            
-            function closeProductCard(){
-                document.querySelector('.container-popUp').style.display = 'none';
-            }
-
-            var model=document.querySelector('.container-popUp');
-            window.onclick=function(event){
-                if(event.target == model){
-                    closeChooseSizeGuide();
-                }
-                
-            }
-
-            window.onload = checkDefaultInput();
-            function checkDefaultInput(){
-                var noneInp = document.getElementsByClassName('none');
-                for( i = 0; i < noneInp.length; i++){
-                    noneInp[i].checked = true;
-                }
-                var allInp = document.querySelector('#panel-price').querySelectorAll('input');
-                for(i = 0; i < allInp.length; i++){
-                    if(allInp[i].id != 'none-price'){
-                        allInp[i].checked = false; 
-                    }
-                    
-                }
-            }
-
-            function renderCheckInput(inpContainer){
-                var allInp = document.querySelector('#panel-price').querySelectorAll('input');
-                var inp = inpContainer.querySelector('input');
-                if(inp.id != 'none-price' && inp.checked == true){
-                    console.log('Có vào đây không?');
-                    document.querySelector('#none-price').checked = false;
-                }else{
-                    if(inp.id == 'none-price'){
-                        console.log('Không lẽ vào đây?');
-                        for(i = 0; i < allInp.length; i++){
-                            if(allInp[i].id != 'none-price'){
-                               allInp[i].checked = false; 
-                            }
                             
+                            <!-- User name -->
+                            <div class="username">
+                                <label for="user">
+                                    <i class="fa-solid fa-user"></i>
+                                </label>
+                                <input type="text" name="user" id="user" placeholder="Enter user name *">
+                            </div>
+                            <div class="announce username-annouce"></div>
+
+                            <!-- Password -->
+                            <div class="password">
+                                <label for="pass">
+                                    <i class="fa-solid fa-lock"></i>
+                                </label>
+                                <input type="password" name="pass" id="pass" placeholder="Password *">
+                            </div>
+                            <div class="announce password-annouce"></div>
+
+                            
+                        </div>
+
+                        <div class="button">
+                            <input type="submit" value="Sign In">
+                        </div>
+                        <div class="announce forgot-password"></div>
+
+                        <div class="link-signIn">
+                            <p onclick="goToSignUpForm();">Sign Up</p>
+                        </div>
+                    </form>
+                </div>`;
+                containerLogin.innerHTML=signInForm;
+                
+            }
+
+            function goToSignUpForm(){
+                var containerSignIn = document.querySelector('.container-signIn');
+                var signUpForm = `
+                <div class="container-form container-signUp">
+                    <form action="" method="post" class="signUp-form">
+                        <div class="heading-form">
+                            <h2>Sign Up</h2>
+                        </div>
+                        <div class="content-form">
+
+                            <!-- Customer name -->
+                            <div class="customer-name">
+                                <label for="name">
+                                    <i class="fa-solid fa-address-card"></i>
+                                </label>
+                                <input type="text" name="name" id="name" placeholder="Enter full name">
+                            </div>
+
+                            <!-- Address -->
+                            <div class="address">
+                                <label for="addr">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </label>
+                                <input type="text" name="adrress" id="addr" placeholder="Enter address">
+                            </div>
+
+                            <!-- Phone number -->
+                            <div class="phonenumber">
+                                <label for="phone">
+                                    <i class="fa-solid fa-phone"></i>
+                                </label>
+                                <input type="text" name="phone" id="phone" placeholder="Enter phone number *">
+                            </div>
+                            <div class="announce phone-annouce"></div>
+
+                            <!-- Email -->
+                            <div class="email">
+                                <label for="email">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </label>
+                                <input type="email" name="email" id="email" placeholder="Enter your email *">
+                            </div>
+                            <div class="announce email-annouce"></div>
+
+                            <!-- User name -->
+                            <div class="username">
+                                <label for="user">
+                                    <i class="fa-solid fa-user"></i>
+                                </label>
+                                <input type="text" name="user" id="user" placeholder="Enter user name *">
+                            </div>
+                            <div class="announce username-annouce"></div>
+
+                            <!-- Password -->
+                            <div class="password">
+                                <label for="pass">
+                                    <i class="fa-solid fa-lock"></i>
+                                </label>
+                                <input type="password" name="pass" id="pass" placeholder="Password *">
+                            </div>
+                            <div class="announce password-annouce"></div>
+
+                            <!-- Repeat password -->
+                            <div class="repeat">
+                                <label for="re-pass">
+                                    <i class="fa-solid fa-lock"></i>
+                                </label>
+                                <input type="password" name="re-pass" id="re-pass" placeholder="Repeat Password*">
+                            </div>
+                            <div class="announce repeat-annouce"></div>
+                        </div>
+
+                        <div class="button">
+                            <input type="submit" value="Sign Up">
+                        </div>
+
+                        <div class="link-signIn">
+                            <p onclick="goToSignInForm();">Sign in</p>
+                        </div>
+                    </form>
+                </div>`;
+                
+                document.querySelector('.container-login').innerHTML = signUpForm;
+            }
+
+            
+            var check = false;
+            function addCustomer(button){
+                var formContent = button.form.querySelector('.content-form');
+                var inputs = formContent.querySelectorAll('input');
+                var name = formContent.querySelector("#name");
+                var addr = formContent.querySelector("#addr");
+                var email = formContent.querySelector("#email");
+                var phone = formContent.querySelector("#phone");
+                var user = formContent.querySelector("#user");
+                var pass = formContent.querySelector("#pass");
+                var rePass = formContent.querySelector("#re-pass");
+                var errorIndexs = [];
+                
+                
+                
+                if(!isValidPhoneNumber(phone.value)){
+                    console.log("Sai số điện thoại");
+                    errorIndexs = errorIndexs.concat(phone);
+                }
+
+                if(!isValidEmail(email.value)){
+                    console.log("Có vào đây không!");
+                    errorIndexs = errorIndexs.concat(email);
+                }
+
+                if(!isValidUserName(user.value)){
+                    errorIndex = errorIndexs.concat(user);
+                }
+
+                if(!isValidPassword(pass.value)){
+                    errorIndexs = errorIndexs.concat(pass);
+                }
+   
+
+                if(errorIndexs.length == 0){
+                    var announce = formContent.querySelector('.repeat-annouce');
+
+                    if(formContent.querySelector('#re-pass').value == pass.value){
+                        announce.style.display = 'none';
+                        if(isInitCustomer(email.value, phone.value,user.value)){
+                            saveDataCustomer(name.value, addr.value, phone.value, email.value, user.value, pass.value);
+                            check = false;
+                        }
+                                     
+                    }else{
+                        check = true;
+                        rePass.focus();
+                        announce.style.display = 'block';
+                        if(rePass.value == ''){
+                            announce.innerHTML = '*Repeat password can\'t empty';
+                        }
+                        announce.innerHTML = '*Your repeat password is incorrect!';
+                    }
+                }else{
+                    errorIndexs[0].focus;
+                    check = true;
+                }
+                return true;
+                
+            }
+
+            function saveAccount(id, username, pass, position){
+                lsAccount = JSON.parse(data.getItem("listAccount"));
+                var acc = new account(id, username, pass, new Date(), position);
+                lsAccount = lsAccount.concat(acc);
+                data.setItem("listAccount", JSON.stringify(lsAccount));
+            }
+
+            function saveDataCustomer(name, addr, phone, email, username, pass){
+                lsCustomer = JSON.parse(data.getItem("listCustomer"));
+                var id = createGeneralID(lsCustomer);
+                var idAcc = createGeneralID(JSON.parse(data.getItem("listAccount")));
+                var custom = new customer(id, name, phone, email, addr, idAcc);
+                saveAccount(idAcc, username, pass, 1);
+                lsCustomer = lsCustomer.concat(custom);
+                data.setItem("listCustomer", JSON.stringify(lsCustomer));
+            }
+
+            function isValidPhoneNumber(phone){
+                var announce = document.querySelector('.phone-annouce');
+                var len = phone.length;
+                console.log(len);
+                var annouceText='';
+                if(phone == ''){
+                    annouceText = '*Phone number can\'t empty';
+                    console.log(annouceText);
+                }else{
+                    if(len < 10 || len > 12){
+                        annouceText = '*Your phone number should be 10-12 numbers';
+                        console.log(annouceText);
+                    }else{
+                        try {
+                            parseInt(phone);
+                            console.log("Đúng số điện thoại!");
+                            announce.style.display='none';
+                            return true;
+                        } catch (error) {
+                            annouceText = '*Please, enter number 0-9';
+                            console.log(annouceText);
                         }
                     }
                 }
-                console.log('this is renderCheckInput');
-                console.log(document.querySelector('#none-price').checked);
+                announce.style.display='block';
+                announce.innerHTML = annouceText;
+                return false;
+                
             }
-            
-            function renderPriceScope(){
-                var panelPrice = document.querySelector('#panel-price');
-                var scopePrice = document.querySelector('.scope-price');
-                var allInp = panelPrice.querySelectorAll('input');
-                var amount = allInp.length;
-                var min = scopePrice.querySelector('.filter-min');
-                var max = scopePrice.querySelector('.filter-max');
-                var checkedInput = [];
-                var count = 0;
 
-                // Check if input noneprice is checked set default scope price
-                for( i=0; i<amount; i++){
-                    if(allInp[i].checked){
-                        checkedInput = checkedInput.concat(allInp[i]);
+            
+            function isValidEmail(email){
+                var regex = /^[A-Z0-9._]+@[A-Z0-9._]+\.[A-Z]{2,4}$/i;
+                var checked = email.match(regex);
+                var announce = document.querySelector('.email-annouce');
+                var annouceText = '';
+
+                console.log(email);
+                if(email == ''){
+                    annouceText = '*Email can\'t empty'
+                }else{
+                    if(checked != email){    
+                        annouceText = '*Sorry, only fill follow digits a-z, 0-9, A-Z, ., _';
+                        
+                    }else{
+                        announce.style.display='none';
+                        return true;
+                    } 
+                }
+
+                announce.innerHTML = annouceText;
+                announce.style.display='block';
+                return false;
+            }
+
+            function isValidUserName(username){
+                var regex = /^[A-Z0-9_-]+$/i;
+                var checked = username.match(regex);
+                var announce = document.querySelector('.username-annouce');
+                var annouceText = '';
+                if(username == ''){
+                    annouceText = '*User name can\'t empty';
+                }else{
+                    if(username != checked){
+                        annouceText = '*Sorry, just fill a-z, A-Z, 0-9, -, _';
+                    }else{
+                        announce.style.display='none';
+                        return true;
+                    } 
+                }
+
+                announce.innerHTML = annouceText;
+                announce.style.display = 'block';
+                return false;
+            }
+
+            function isValidPassword(pass){
+                var regex = /^[A-Z0-9]+$/i;
+                var checked = pass.match(regex);
+                var announce = document.querySelector('.password-annouce');
+                var annouceText = '';
+                if(pass == ''){
+                    annouceText = '*Password can\'t empty';
+                }else{
+                    if(pass != checked){
+                        annouceText = '*Sorry, just fill a-z, A-Z, 0-9';
+                    }else{
+                        announce.style.display = 'none';
+                        return true;
+                    } 
+                }
+
+                announce.innerHTML = annouceText;
+                announce.style.display = 'block';
+                return false
+            }
+
+            function isInitCustomer(email, phone, username){
+                lsCustomer = JSON.parse(data.getItem("listCustomer"));
+                var frm = document.querySelector('form');
+                var mailAnnounce = frm.querySelector('.email-annouce');
+                var phoneAnnounce = frm.querySelector('.phone-annouce');
+                for(i = 0; i < lsCustomer.length; i++){
+
+                    if(phone == lsCustomer[i].phoneNumber){
+                        phoneAnnounce.style.display = 'block';
+                        phoneAnnounce.innerHTML = '*This phone number was used';
+                        return false;
+                    }
+
+                    if(email == lsCustomer[i].email){
+                        mailAnnounce.style.display = 'block';
+                        mailAnnounce.innerHTML = '*This email was used'
+                        return false;
+                    }                    
+                }
+
+                lsAccount = JSON.parse(data.getItem("listAccount"));
+                var userAnnouce = frm.querySelector('.username-annouce');
+                for(i = 0; i < lsAccount.length; i++){
+                    if(username == lsAccount[i].username){
+                        userAnnouce.style.display = 'block';
+                        userAnnouce.innerHTML = '*This username was used'
+                        return false;
                     }
                 }
 
-                if(panelPrice.querySelector('#none-price').checked || checkedInput.length == 0){
-                    min.value = 300000;
-                    max.value = 5000000;
-                    return;
-                }
-
-
-                if(checkedInput.length == 1){
-                    min.value = 300000;
-                    max.value = checkedInput[0].value;
-                    return;
-                }
-
-                min.value = checkedInput[0].value;
-                if(checkedInput.length == 2){
-                    max.value = checkedInput[1].value;
-                    return;
-                }else{
-                    max.value = checkedInput[checkedInput.length-1].value;
-                    return;
-                }
-
-
-
-                console.log('This is renderPriceScope');
-                console.log(document.querySelector('#none-price').checked);
-                console.log(checkedInput);
-                
+                return true;
             }
+
+            function checkingValidDataHoldTime(input){
+                if(check){
+                    console.log('Hello');
+                    if(input.name == 'email') isValidEmail(input.value);
+                    if(input.name == 'phone') isValidPhoneNumber(input.value);
+                    if(input.name == 'user') isValidUserName(input.value);
+                    if(input.name == 'pass') isValidPassword(input.value);
+                }
+            }
+
+
         </script>
-    </body>
+</body>
 </html>
