@@ -11,7 +11,7 @@ var lsMember = [];
 var lsBillDetail = [];
 var lsPosition = [];
 var lsAccount = [];
-var activeAccount;
+var activeAccount = null;
 
 data.setItem("listProduct",JSON.stringify(lsProduct));
 data.setItem("listSize", JSON.stringify(lsSize));

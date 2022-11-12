@@ -273,16 +273,19 @@ function openProductCard(view_button){
     container.style.display='flex'
 }
 
-function closeProductCard(){
-    document.querySelector('.container-popUp').style.display = 'none';
-}
-
-var model=document.querySelector('.container-popUp');
-window.onclick=function(event){
+var model;
+window.addEventListener('click', function(event){
+    model = document.querySelector('.container-popUp');
+    console.log(model);
+    console.log(event.target);
     if(event.target == model){
+        console.log(model);
         closeChooseSizeGuide();
     }
-    
+});
+
+function closeProductCard(){
+    document.querySelector('.container-popUp').style.display = 'none';
 }
 
 function checkDefaultInput(){

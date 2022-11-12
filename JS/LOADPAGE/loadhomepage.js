@@ -42,7 +42,7 @@ function innerLandingPage(){
                     <i class="ti-user"></i>
                 </div>
                 
-                <div class="login icon" onclick="innerLoginPage();">
+                <div class="login icon" data-before="Login" onclick="innerLoginPage();">
                     <i class="ti-shift-right"></i>
                 </div>
             </div>

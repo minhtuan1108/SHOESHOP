@@ -11,8 +11,17 @@ class customer{
 
 function getCustomerByIdAccount(idAcc){
     lsCustomer = JSON.parse(data.getItem("listCustomer"));
-    for(i = 0; i < lsCustomer.length; i++){
+    for(let i = 0; i < lsCustomer.length; i++){
         if(lsCustomer[i].idAcc == idAcc){
+            return lsCustomer[i];
+        }
+    }
+}
+
+function getCustomerByID(id){
+    lsCustomer = JSON.parse(data.getItem("listCustomer"));
+    for(let i = 0; i < lsCustomer.length; i++){
+        if(lsCustomer[i].id == id){
             return lsCustomer[i];
         }
     }

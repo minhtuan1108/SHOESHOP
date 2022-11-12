@@ -201,3 +201,7 @@ function innerOptionSize(idPr, listProductDetail, idSelect){
     select.innerHTML = options;
 }
 
+function closeProductCard(){
+    document.querySelector('.container-popUp').style.display = 'none';
+}
+

@@ -114,13 +114,19 @@
 #header .login{
     width: inherit;
     padding: 0px 20px;
+    color: #fff!important;
     box-sizing: unset;
     background-color: var(--main-color);
     border-radius: 10px!important;
 }
 
+#header .login:hover{
+    color: #000!important;
+    box-shadow: 5px 5px 10px #000;
+}
+
 #header .login::before{
-    content: "Login";
+    content: attr(data-before);
     margin: 0 5px;
 }
 

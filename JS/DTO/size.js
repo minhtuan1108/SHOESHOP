@@ -7,8 +7,7 @@ class size{
 
 function getSizeById(sizeID){
     lsSize = JSON.parse(data.getItem("listSize"));
-    console.log(lsSize);
-    for( i = 0; i< lsSize.length; i++){
+    for(let i = 0; i < lsSize.length; i++){
         if(lsSize[i].id == sizeID){
             return lsSize[i];
         }

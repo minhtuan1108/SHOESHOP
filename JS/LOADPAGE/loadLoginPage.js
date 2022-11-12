@@ -1,14 +1,23 @@
 var check = false;
 
 function innerLoginPage(){
-    document.querySelector('#content').innerHTML= `<div class="container-login"></div>`;
-    goToSignUpForm();
+    var dataButton = document.querySelector('#header').querySelector('.login').getAttribute("data-before");
+    if(dataButton == "Login"){
+        document.querySelector('#content').innerHTML= `<div class="container-login"></div>`;
+        goToSignUpForm();
+    }else{
+        activeAccount = null;
+        data.setItem("activeAccount", JSON.stringify(activeAccount));
+        changeButtonLogin("Login");
+        setNotify();
+        innerProductPage();
+    }
+    
 }
 
 function goToSignInForm(){
     var containerLogin = document.querySelector('#main');
 
-    
     var signInForm = `
     <div class="container-login">
         <div class="container-form container-signIn">
@@ -163,12 +172,10 @@ function addCustomer(button){
     
     
     if(!isValidPhoneNumber(phone.value)){
-        console.log("Sai số điện thoại");
         errorIndexs = errorIndexs.concat(phone);
     }
 
     if(!isValidEmail(email.value)){
-        console.log("Có vào đây không!");
         errorIndexs = errorIndexs.concat(email);
     }
 
@@ -187,9 +194,13 @@ function addCustomer(button){
         if(formContent.querySelector('#re-pass').value == pass.value){
             announce.style.display = 'none';
             if(isInitCustomer(email.value, phone.value,user.value)){
+                wait(5);
                 alert("Sign in successfully! Welcom to become our member.");
                 saveDataCustomer(name.value, addr.value, phone.value, email.value, user.value, pass.value);
                 innerLandingPage();
+                changeButtonLogin("Logout");
+                setAutoAvaterForCustomer();
+                setNotify();
                 check = false;
             }
                          
@@ -245,24 +256,19 @@ function saveDataCustomer(name, addr, phone, email, username, pass){
 function isValidPhoneNumber(phone){
     var announce = document.querySelector('.phone-annouce');
     var len = phone.length;
-    console.log(len);
     var annouceText='';
     if(phone == ''){
         annouceText = '*Phone number can\'t empty';
-        console.log(annouceText);
     }else{
         if(len < 10 || len > 12){
             annouceText = '*Your phone number should be 10-12 numbers';
-            console.log(annouceText);
         }else{
             try {
                 parseInt(phone);
-                console.log("Đúng số điện thoại!");
                 announce.style.display='none';
                 return true;
             } catch (error) {
                 annouceText = '*Please, enter number 0-9';
-                console.log(annouceText);
             }
         }
     }
@@ -361,13 +367,17 @@ function isInitCustomer(email, phone, username){
 
     lsAccount = JSON.parse(data.getItem("listAccount"));
     var userAnnouce = frm.querySelector('.username-annouce');
-    for(i = 0; i < lsAccount.length; i++){
+    for(let i = 0; i < lsAccount.length; i++){
         if(username == lsAccount[i].username){
             userAnnouce.style.display = 'block';
             userAnnouce.innerHTML = '*This username was used'
             return false;
         }
     }
+
+    phoneAnnounce.style.display='none';
+    mailAnnounce.style.display='none';
+    userAnnouce.style.display='none';
 
     return true;
 }
@@ -401,6 +411,8 @@ function signIn(button){
         if(signInRightAccount(user.value, pass.value)){
             alert("Sign in successfully! Welcom to V-shoe");
             innerLandingPage();
+            changeButtonLogin("Logout");
+            setNotify();
         }
     }else{
         errorIndexs[0].focus;
@@ -419,7 +431,7 @@ function signInRightAccount(username, password){
         check = true;
         return false;
     }
-    for(i = 0; i < lsAccount.length; i++){
+    for(let i = 0; i < lsAccount.length; i++){
 
         if(username == lsAccount[i].username){
             announceUsername.style.display = 'none';
@@ -442,4 +454,8 @@ function signInRightAccount(username, password){
             return false;
         }
     }
+}
+
+function changeButtonLogin(value){
+    document.querySelector('#header').querySelector('.login').setAttribute("data-before", value);
 }
