@@ -1,22 +1,30 @@
 var data = window.localStorage;
 
 var lsProduct = [];
-var cart = [];
+var lsSize = [];
+var lsProductDetail = [];
+var lsCart = [];
+var lsCartDetail = [];
 var lsBill = [];
 var lsCustomer = [];
 var lsMember = [];
 var lsBillDetail = [];
 var lsPosition = [];
 var lsAccount = [];
+var activeAccount;
 
 data.setItem("listProduct",JSON.stringify(lsProduct));
+data.setItem("listSize", JSON.stringify(lsSize));
+data.setItem("listProductDetail", JSON.stringify(lsProductDetail));
 data.setItem("listBill", JSON.stringify(lsBill));
+data.setItem("listCartDetail", JSON.stringify(lsCartDetail));
 data.setItem("listCustomer", JSON.stringify(lsCustomer));
 data.setItem("listMember", JSON.stringify(lsMember));
-data.setItem("listBillDetai",JSON.stringify(lsBillDetail));
+data.setItem("listBillDetail",JSON.stringify(lsBillDetail));
 data.setItem("listPosition", JSON.stringify(lsPosition));
 data.setItem("listAccount", JSON.stringify(lsAccount));
-data.setItem("cart", JSON.stringify(cart));
+data.setItem("listCart", JSON.stringify(lsCart));
+data.setItem("activeAccount", JSON.stringify(activeAccount));
 
 
 //Hàm ngưng động thời gian:)))

@@ -1,17 +1,22 @@
 class product{
 
-    constructor(id, name, price, quantity, discount, disc, image, brand, min_size, max_size, size){
+    constructor(id, name, price, discount, disc, image, brand){
         this.id = id;
         this.name = name;
         this.price = price;
-        this.quantity = quantity;
         this.discount = discount;
         this.disc = disc;
         this.image = image;
         this.brand = brand;
-        this.min_size = min_size;
-        this.max_size = max_size;
-        this.size = size;
+    }
+}
+
+function getProductById(idPr){
+    lsProduct = JSON.parse(data.getItem('listProduct'));
+    for(let i = 0; i < lsProduct.length; i++){
+        if(lsProduct[i].id == idPr){
+            return lsProduct[i];
+        }
     }
 }
 
@@ -178,12 +183,20 @@ function showProductInForm(pr){
             </div>`;
 }
 
-function innerOptionSize(min, max, id){
-    var select = document.querySelector(`#${id}`);
+function innerOptionSize(idPr, listProductDetail, idSelect){
+    var select = document.querySelector(`#${idSelect}`);
     var options = '';
-    for(i = min; i <= max ; i++){
-        options += `<option value="${i}">${i}</option>`;
-    }
+    var listSize = JSON.parse(data.getItem("listSize"));
+    listProductDetail.forEach(element => {
+        if(element.idProduct == idPr){
+            listSize.forEach(size => {
+                if(size.id == element.idSize)
+                    options += `<option value="${size.id}">${size.value}</option>`;
+            });
+        }
+        
+    });
+    
     console.log("Xuất options size: " + options);
     select.innerHTML = options;
 }

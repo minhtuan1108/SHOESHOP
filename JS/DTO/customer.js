@@ -8,3 +8,12 @@ class customer{
         this.idAcc = idAcc;
     }
 }
+
+function getCustomerByIdAccount(idAcc){
+    lsCustomer = JSON.parse(data.getItem("listCustomer"));
+    for(i = 0; i < lsCustomer.length; i++){
+        if(lsCustomer[i].idAcc == idAcc){
+            return lsCustomer[i];
+        }
+    }
+}

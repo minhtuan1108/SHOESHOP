@@ -262,10 +262,11 @@ function openProductCard(view_button){
     var container = document.querySelector('.container-popUp');
     var id_pr = view_button.querySelector('.id-product').textContent;
     lsProduct = JSON.parse(data.getItem("listProduct"));
+    lsProductDetail = JSON.parse(data.getItem("listProductDetail"));
     for(i = 0; i < lsProduct.length; i++){
         if(lsProduct[i].id == id_pr){
             container.innerHTML = showProductInForm(lsProduct[i]);
-            innerOptionSize(lsProduct[i].min_size, lsProduct[i].max_size, "chosen-size");
+            innerOptionSize(id_pr, lsProductDetail, "chosen-size");
         }     
     }
     

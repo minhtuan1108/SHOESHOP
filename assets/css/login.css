@@ -1,7 +1,7 @@
 .container-login{
     position: relative;
     width: 100%;
-    height: 100vh;
+    min-height: 800px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,7 +9,7 @@
 }
 
 .container-login .container-form{
-    /* position: absolute; */
+    position: relative;
     width: 400px;
     padding: 10px 15px;
     margin: 0;
@@ -20,11 +20,19 @@
     transition: 3s ease-in-out;
 }
 
-.container-login .container-signUp{
-    
+.container-form .clear-button{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    transition: 0.3s ease-in;
 }
 
-.container-login .container-signIn{
+.container-form .clear-button:hover{
+    cursor: pointer;
+    background-color: red;
 }
 
 @keyframes rightToLeft{

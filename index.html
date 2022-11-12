@@ -14,130 +14,35 @@
         <link rel="stylesheet" href="./assets/css/content/contact.css">
         <link rel="stylesheet" href="./assets/css/content/product.css">
         <link rel="stylesheet" href="./assets/css/content/cart.css">
+        <link rel="stylesheet" href="./assets/css/login.css">
         <link rel="stylesheet" href="./assets/css/footer.css">
         <link rel="stylesheet" href="./assets/font/themify-icons/themify-icons.css">
         <link rel="stylesheet" href="./assets/font/fontawesome-free-6.2.0-web/css/all.css">
     </head>
     <body>
         <div id="main">
-            <div id="header">
-                <div id="container">
-                    <div id="logo"></div>
-                    <div id="nav">
-                        <ul id="nav-list">
-                            <li onclick="innerLandingPage();" id="home">Home
-                                <div class="animate"></div>
-                            </li>
-                            <li onclick="innerProductPage();" id="pr-page-nav">Products
-                                <div class="animate"></div>
-                            </li>
-                            <li>Favourite
-                                <div class="animate"></div>
-                            </li>
-                            <li>Discount
-                                <div class="animate"></div>
-                            </li>
-                            <li onclick="innerContact();">About us
-                                <div class="animate"></div>
-                            </li>
-                            <!-- <li>Giới thiệu
-                                <div class="animate"></div>
-                            </li> -->
-                        </ul>
-                    </div>
-                    <div id="group-account">
-                        <div class="search-icon icon">
-                            <i class="ti-search"></i>
-                        </div>
-                        
-                        <div class="cart-icon icon" onclick="innerCartPage();">
-                            <i class="ti-shopping-cart"></i>
-                            <div class="notify" data_count_pr="0"></div>
-                        </div>
-
-                        <div class="account-icon icon">
-                            <i class="ti-user"></i>
-                        </div>
-                        
-                        <div class="login icon">
-                            <i class="ti-shift-right"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="content">   
-                
-            </div>
-
-            <div class="footer">
-                <div class="top-footer">
-                    <div class="email">
-                        <div class="logo">
-                            <p>V-Shoes.</p>
-                        </div>
-                        <form action="" method="get">
-                            <label for="email">Subscribe & get 10% off your next order</label>
-                            <input type="email" name="txtemail" id="email" placeholder="Enter your email...">
-                            <input type="submit" value="Subscribe" id="button">
-                            <div class="icon-contact">
-                                <i class="icon-tw fa-brands fa-twitter"></i>
-                                <i class="icon-fb fa-brands fa-facebook"></i>
-                                <i class="icon-ig fa-brands fa-square-instagram"></i>
-                                <i class="icon-yt fa-brands fa-youtube"></i>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="relate">
-                        <div class="info">
-                            <h3>Customer care</h3>
-                            <p>Contact us</p>
-                            <p>FAQs</p>
-                            <p>Returns & Exchanges</p>
-                            <p>Tearms of service</p>
-                            <p>Privacy Policy</p>
-                        </div>
-                        <div class="info">
-                            <h3>Shop</h3>
-                            <p>Hot</p>
-                            <p>Favourite</p>
-                            <p>Discount</p>
-                            <p>Voucher</p>
-                            <p>Sale</p>
-                        </div>
-                        <div class="info">
-                            <h3>My Account</h3>
-                            <p>Sign in/Register</p>
-                            <p>My Wishlist</p>
-                            <p>My Cart</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="payment-card">
-                    <p><i class="fa-regular fa-copyright"></i> 2022 V-shoes, Inc.</p>
-                    <div class="icon-card">
-                        <img src="./assets/img/footer/payment-removeb.png" alt="">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Popup items -->
-            <div class="container-popUp">
-                
-            </div>
-            <!-- End popup items --> 
+             
         </div>
 
         
         <script src="./JS/DTO/member.js"></script>
         <script src="./JS/DTO/product.js"></script>
+        <script src="./JS/DTO/customer.js"></script>
+        <script src="./JS/DTO/account.js"></script>
+        <script src="./JS/DTO/bill.js"></script>
+        <script src="./JS/DTO/billDetail.js"></script>
+        <script src="./JS/DTO/cart.js"></script>
+        <script src="./JS/DTO/cartDetail.js"></script>
+        <script src="./JS/DTO/position.js"></script>
+        <script src="./JS/DTO/productDetail.js"></script>
+        <script src="./JS/DTO/size.js"></script>
         <script src="./JS/main.js"></script>
         <script src="./JS/DATA/CreateProductData.js"></script>
         <script src="./JS/LOADPAGE/loadhomepage.js"></script>
         <script src="./JS/LOADPAGE/loadproductpage.js"></script>
         <script src="./JS/LOADPAGE/loadcontactpage.js"></script>
         <script src="./JS/LOADPAGE/loadcartpage.js"></script>
+        <script src="./JS/LOADPAGE/loadLoginPage.js"></script>
         <script>
             function openBillDetail(bill){
                 var id = bill.querySelector('#billID').textContent;

@@ -1,6 +1,5 @@
-class billDetail{
-    constructor(idBill, idProduct, idSize, quantity){
-        this.idBill = idBill;
+class productDetail{
+    constructor(idProduct, idSize, quantity){
         this.idProduct = idProduct;
         this.idSize = idSize;
         this.quantity = quantity;

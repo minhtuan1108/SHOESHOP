@@ -111,19 +111,26 @@ function innerProductToCartPage(){
     var select = '';
     var prs = '';
     var total = 0;
-    let cartPrs = JSON.parse(data.getItem("cart"));
-    var len = cartPrs.length;
     var pr;
-    if(len == 0){
-        prs = 'Không có sản phẩm nào trong giỏ';
-    }else{
-        for (let i = 0; i < len; i++) {
-            pr = cartPrs[i];
-            total = calculateNewPrice(pr)*pr.quantity;
-            select = stringOptionSize(pr.min_size, pr.max_size, pr.size);
+
+    //Lấy id giỏ hàng của account đang hoạt động
+    var idCart = getCartIdByActiveAccount();
+    lsCartDetail = JSON.parse(data.getItem("listCartDetail"));
+    var productDetail;
+    var size;
+    //Vòng lặp lấy những sản phẩm trong card từ detail cart
+    for(let i = 0; i < lsCartDetail.length; i++){
+        if(idCart == lsCartDetail[i].idCart){
+            productDetail = lsCartDetail[i];
+            size = getSizeById(productDetail.idSize);
+            pr = getProductById(productDetail.idProduct);
+            console.log(size);
+            
+            total = calculateNewPrice(pr) * Number (productDetail.quantity);
+            select = stringOptionSize(pr.id, JSON.parse(data.getItem("listProductDetail")), size.value);
             prs += `
             <div class="pr">
-                <div class="delete" onclick="removeProductFromCart(this);" id=${pr.id} size="${pr.size}">
+                <div class="delete" onclick="removeProductFromCart(this);" id=${pr.id} size="${size.value}">
                     <i class="fa-solid fa-xmark"></i>
                 </div>
                 <div class="image">
@@ -141,72 +148,97 @@ function innerProductToCartPage(){
                         </div>
                         <div class="selection-quantity">
                             <p class="quantity">Quantity: </p>
-                            <input type="number" name="quantity" id="quantity" value="${pr.quantity}">
+                            <input type="number" name="quantity" id="quantity" value="${productDetail.quantity}">
                         </div>
                     </div>                                    
-                    <p class="price-cart">Price: ${total}</p>
+                    <p class="price-cart">Price: ${total}đ</p>
                 </div>
             </div>`;
-            
         }
     }
+    
     console.log(prs);
     container.innerHTML = prs;
 }
 
-function stringOptionSize(min, max, size){
+function stringOptionSize(idPr, listProductDetail, size){
     var options = '';
-    for(i = min; i <= max ; i++){
-        if(size == i){
-            options += `<option value="${i}" selected>${i}</option>`;
+    lsSize = JSON.parse(data.getItem("listSize"))
+    listProductDetail.forEach(element => {
+        if(element.idProduct == idPr){
+            lsSize.forEach(item => {
+                if(element.idSize == item.id){
+                    if(item.value == size)
+                        options += `<option value="${item.id}" selected>${size}</option>`;
+                    options += `<option value="${item.id}">${item.value}</option>`;
+                }
+                
+            });
         }
-        options += `<option value="${i}">${i}</option>`;
-    }
+    });
+        
     return options;
 }
 
 function addProductToCart(inp){
     var id_pr = inp.id;
-    var size = inp.form.querySelector("#chosen-size").value;
+    var idCart;
+    var idSize = inp.form.querySelector("#chosen-size").value;
     var quantity = Number(inp.form.querySelector("#quantity").value);
-    var prCart;
-    lsProduct = JSON.parse(data.getItem("listProduct"));
-    cart = JSON.parse(data.getItem("cart"));
-    for(i = 0; i < lsProduct.length; i++){
-        if(id_pr == lsProduct[i].id){
-            prCart = lsProduct[i];
-            prCart.quantity = quantity;
-            prCart.size = size;
-            cart = checkAndAddToCart(prCart, cart);
-            break;
-        }
+
+    //Kiểm tra xem account nào đang hoạt động và lấy id cart của account đó
+    idCart = getCartIdByActiveAccount();
+    console.log(idCart);
+    if(idCart == null){
+        alert("Please login to continue.");
+        innerLoginPage();
+    }else{
+        checkAndAddToCartDetail(idCart, id_pr, idSize, quantity);
+        setNotify();
     }
-    data.setItem("cart", JSON.stringify(cart));
-    setNotify();
 }
 
-function checkAndAddToCart(pr, cart){
-    console.log(cart);
-    for(i = 0; i < cart.length; i++) {
-        if(pr.id == cart[i].id && pr.size == cart[i].size){
-            cart[i].quantity += Number(pr.quantity);
-            return cart;
+function getCartIdByActiveAccount(){
+    lsCart = JSON.parse(data.getItem("listCart"));
+
+    if(lsCart.length == 0) return null;
+
+    for(let i = 0; i < lsCart.length; i++){
+        if(lsCart[i].idAccount == activeAccount.idAcc){
+            return lsCart[i].id;
         }
     }
-    return cart.concat(pr);
+}
+
+function checkAndAddToCartDetail(idCart, idPr, idSize, quantity){
+
+    lsCartDetail = JSON.parse(data.getItem("listCartDetail"));
+
+    for(let i = 0; i < lsCartDetail.length; i++) {
+
+        if(idCart == lsCartDetail[i].idCart && idPr == lsCartDetail[i].idProduct && idSize == lsCartDetail[i].idSize){
+            lsCartDetail[i].quantity += quantity;
+            data.setItem("listCartDetail", JSON.stringify(lsCartDetail));
+            return;
+        }
+    }
+
+    lsCartDetail = lsCartDetail.concat(new cartDetail(idCart, idPr, idSize, quantity));
+    data.setItem("listCartDetail", JSON.stringify(lsCartDetail));
 }
 
 function removeProductFromCart(tagDel){
     var id_pr = tagDel.id;
     var size = tagDel.getAttribute('size');
-    cart = JSON.parse(data.getItem('cart'));
-    for(i = 0; i < cart.length; i++){
-        if(id_pr == cart[i].id && size == cart[i].size){
-            cart.splice(i,1);
-            console.log(cart);
+    lsCartDetail = JSON.parse(data.getItem('listCartDetail'));
+    var idCart = getCartIdByActiveAccount();
+    for(let i = 0; i < lsCartDetail.length; i++){
+        if(idCart == lsCartDetail[i].idCart && id_pr == lsCartDetail[i].idProduct && size == getSizeById(lsCartDetail[i].idSize)){
+            lsCartDetail.splice(i,1);
+            console.log(lsCartDetail);
         }
     }
-    data.setItem("cart", JSON.stringify(cart));
+    data.setItem("listCartDetail", JSON.stringify(lsCartDetail));
     innerProductToCartPage();
     setNotify();
     setTotalPrice();
@@ -215,19 +247,40 @@ function removeProductFromCart(tagDel){
 function setTotalPrice(){
     var tagTotal = document.querySelector('.container-cart').querySelector('.price-total');
     var total = 0;
-    var cart = JSON.parse(data.getItem('cart'));
+
+    //Lấy idCart hiện tại thông qua acccountActive
+    var idCart = getCartIdByActiveAccount();
+    lsCartDetail = JSON.parse(data.getItem('listCartDetail'));
+
     var pr;
-    for(i = 0; i < cart.length; i++){
-        pr = cart[i];
-        total += calculateNewPrice(pr) * pr.quantity;
+    for(let i = 0; i < lsCartDetail.length; i++){
+        pr = getProductById(lsCartDetail[i].idProduct);
+        console.log(pr);
+        if(lsCartDetail[i].idCart == idCart){
+            console.log(lsCartDetail[i]);
+            console.log(lsCartDetail[i].idCart);
+            console.log(idCart);
+            total += calculateNewPrice(pr) * lsCartDetail[i].quantity;
+        }
     }
 
     tagTotal.innerHTML = `${total}đ`;
 }
 
 function setNotify(){
-    var cart = JSON.parse(data.getItem('cart'));
-    var l = cart.length;
+    //Lấy id của cart tương ứng với tài khoản đang sử dụng
+    var idCart = getCartIdByActiveAccount();
+    var lsCartDetail = JSON.parse(data.getItem('listCartDetail'));
+    
+    var l = 0;
+    let i = 0;
+    //Lấy sản phẩm bên trong listCartDetail
+    while(i < lsCartDetail.length){
+
+        if(idCart == lsCartDetail[l].idCart)
+            l++;
+        i++;
+    }
     var notify = document.querySelector('#header').querySelector('.notify');
 
     if(l == 0){
