@@ -2,6 +2,7 @@
 lsSize = JSON.parse(data.getItem("listSize"));
 for(i = 0; i < 8; i++){
     lsSize = lsSize.concat(new size(`S${i+38}` , (38 + i)));
+    lsSize = lsSize.concat(new size(`S${i + parseFloat(38.5)}` , (parseFloat(38.5) + i)));
 }
 
 data.setItem("listSize", JSON.stringify(lsSize));

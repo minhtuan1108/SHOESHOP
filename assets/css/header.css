@@ -83,6 +83,12 @@
     font-size: 22px;
 }
 
+#header .icon img{
+    width: 80%;
+    border: 1px solid #aaa;
+    border-radius: 50%;
+}
+
 #header .cart-icon{
     position: relative;
 }

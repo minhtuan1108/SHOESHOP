@@ -216,14 +216,13 @@
     width: 400px;
     position: relative;
     background-color: #fff;
-    padding: 5px;
     border: 1px solid var(--main-border-color);
 }
 
 .container-popUp .bill-detail .top{
     max-height: 50px;
-    position: fixed;
     padding: 5px 10px;
+    margin-top: 10px;
     background-color: #fff;
 }
 
@@ -241,12 +240,19 @@
     transition: 0.2s ease-in-out;
 }
 
+.container-popUp .bill-detail .bill-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px dotted #000;
+}
+
 .container-popUp .bill-detail .top p{
     color: #888;
 }
 
 .container-popUp .bill-detail .main-content-bill{
-    margin-top: 50px;
+    margin-top: 10px;
     border-top: 1px solid #000;
     max-height: 400px;
     overflow-x: hidden;
@@ -296,6 +302,7 @@
 .container-popUp .bill-detail .total{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     background-color: #fff;
     padding: 10px 5px;
     border-top: 1px solid var(--main-border-color);
@@ -314,6 +321,14 @@
 .container-popUp .bill-detail .total .total-money{
     font-weight: bold;
     color: red;
+}
+
+.container-popUp .bill-detail .total #checkOut-button{
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid #000;
+    background-color: green;
+    color: #fff;
 }
 
 /* Pop up  */

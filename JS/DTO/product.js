@@ -77,7 +77,7 @@ function showDetailProduct(pr) {
 
 function calculateNewPrice(pr){
     var new_price = (pr.price*(100 - pr.discount))/100;
-    // Làm trong giá tiền sau khi discount
+    // Làm tròn giá tiền sau khi discount
     if(new_price%1000 != 0){
         new_price += 1000 - (new_price%1000);
     }

@@ -1,10 +1,11 @@
 class customer{
-    constructor(id, name, phoneNumber, email, address, idAcc){
+    constructor(id, name, phoneNumber, email, address, avatar, idAcc){
         this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.address = address;
+        this.avatar = avatar;
         this.idAcc = idAcc;
     }
 }

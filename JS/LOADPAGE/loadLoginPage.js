@@ -9,8 +9,8 @@ function innerLoginPage(){
         activeAccount = null;
         data.setItem("activeAccount", JSON.stringify(activeAccount));
         changeButtonLogin("Login");
+        loadAvatar();
         setNotify();
-        innerProductPage();
     }
     
 }
@@ -194,12 +194,11 @@ function addCustomer(button){
         if(formContent.querySelector('#re-pass').value == pass.value){
             announce.style.display = 'none';
             if(isInitCustomer(email.value, phone.value,user.value)){
-                wait(5);
                 alert("Sign in successfully! Welcom to become our member.");
                 saveDataCustomer(name.value, addr.value, phone.value, email.value, user.value, pass.value);
                 innerLandingPage();
                 changeButtonLogin("Logout");
-                setAutoAvaterForCustomer();
+                loadAvatar();
                 setNotify();
                 check = false;
             }
@@ -240,8 +239,8 @@ function saveDataCustomer(name, addr, phone, email, username, pass){
     lsCustomer = JSON.parse(data.getItem("listCustomer"));
     var id = createGeneralID(lsCustomer);
     var idAcc = createGeneralID(JSON.parse(data.getItem("listAccount")));
-    var custom = new customer(id, name, phone, email, addr, idAcc);
-
+    var custom = new customer(id, name, phone, email, addr, '',idAcc);
+    setAutoAvatarForCustomer(custom);
 
     lsCustomer = lsCustomer.concat(custom);
     saveAccount(idAcc, username, pass, 1);
@@ -251,6 +250,22 @@ function saveDataCustomer(name, addr, phone, email, username, pass){
 
     //Sau khi đăng ký sẽ tạo cho khách hàng một giỏ hàng
     createCart(idAcc);
+}
+
+function setAutoAvatarForCustomer(customer){
+    var fullName = customer.name;
+    var firstName = fullName.split(' ');
+    var firstCharacter = firstName[firstName.length - 1].split('')[0];
+    customer.avatar = `./assets/img/avatar/auto/${firstCharacter}.jpg`;
+}
+
+function loadAvatar(){
+    var acc = document.querySelector('#header').querySelector('#group-account').querySelector('.account-icon');
+    var avatar ='';
+    if(activeAccount == null){
+        avatar = '<i class="ti-user"></i>';
+    }else avatar = `<img src="${activeAccount.avatar}">`;
+    acc.innerHTML = avatar
 }
 
 function isValidPhoneNumber(phone){
@@ -412,6 +427,7 @@ function signIn(button){
             alert("Sign in successfully! Welcom to V-shoe");
             innerLandingPage();
             changeButtonLogin("Logout");
+            loadAvatar();
             setNotify();
         }
     }else{
@@ -447,13 +463,13 @@ function signInRightAccount(username, password){
                 check = true;
                 return false;
             }
-        }else{
-            announceUsername.style.display = 'block';
-            announceUsername.innerHTML = 'Account is not exist';
-            check = true;
-            return false;
-        }
+        }        
     }
+
+    announceUsername.style.display = 'block';
+    announceUsername.innerHTML = 'Account is not exist';
+    check = true;
+    return false;
 }
 
 function changeButtonLogin(value){

@@ -46,6 +46,10 @@
     cursor: pointer;
 }
 
+.product-page .brands .active{
+    background-color: #ccc;
+}
+
 .product-page .brands #Adidas{
     border-bottom: 1px solid var(--main-border-color);
 }
@@ -180,7 +184,7 @@
 }
 
 .product-page .container .product-content{
-    max-width: calc(100% - 240px);
+    width: calc(100% - 240px);
     padding: 20px;
     padding-right: 0;
 }
@@ -190,6 +194,10 @@
 }
 
 .product-page .product-content img{
+    width: 100%;
+}
+
+.product-page .product-content video{
     width: 100%;
 }
 
@@ -350,6 +358,10 @@
     justify-content: center;
     height: var(--pagination-heigth);
     
+}
+
+.product-page .pagination .active{
+    background-color: var(--main-color);
 }
 
 .product-page .pagination .page-number{
