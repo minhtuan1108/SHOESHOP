@@ -7,7 +7,7 @@
 
 :root{
     --height-header:80px;
-    --main-color:#C503EC;
+    --main-color:#2ac304f0;
     --main-border-color: #999;
 }
 
@@ -50,10 +50,15 @@
     transition: 0.4s ease-out;
 }
 
+#header #nav-list li i{
+    font-size: 32px;
+}
+
 #header li .animate{
     width: 0%;
     height: 4px;
-    background: linear-gradient(90deg, rgb(7, 233, 11) 0%, rgb(34, 5, 249) 65%, rgb(213, 8, 90) 100%);
+    /* background: linear-gradient(90deg, rgb(7, 233, 11) 0%, rgb(34, 5, 249) 65%, rgb(213, 8, 90) 100%); */
+    background-color: var(--main-color);
     border-radius: 2px;
     margin: -20px 0;
     transition: 0.4s ease-out;
@@ -70,6 +75,7 @@
 }
 
 #header #group-account .icon{
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -79,13 +85,86 @@
     border-radius: 50%;
 }
 
+#header #group-account .popUp-card{
+    position: absolute;
+    top: 4rem;
+    right: 0;
+    width: max-content;
+    padding: 5px 0;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 5px 5px 20px;    
+    display: none;
+}
+
+#header .popUp-card p{
+    padding: 10px 15px;
+    border-radius: 10px;
+}
+
+#header .popUp-card p:hover{
+    background-color: #eee;
+}
+
+#header .account-info{
+    min-width: 200px!important;  
+    min-height: 100px;
+    /* display: flex; */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#header .account-info .avt-container{
+    width: 300px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#header .avt-container .avt{
+    display: flex;
+    justify-content: center;
+    width: 30%;
+}
+
+#header .avt-container .change-avt{
+    margin: 10px;
+    padding: 5px;
+    border: 1px solid var(--main-border-color);
+    border-radius: 15px;
+    transition: 0.3s ease-in-out;
+}
+
+#header .avt-container .change-avt:hover{
+    background-color: var(--main-color);
+}
+
+#header .account-info .customer-info{
+    width: 100%;
+    padding: 0 10px;
+}
+
+#header .account-info .customer-info > div{
+    display: flex;
+}
+
+#header .account-info .customer-info p{
+    padding: 5px;
+}
+
+#header .account-info .customer-info .content{
+    color: #555;
+}
+
 #header .icon i{
     font-size: 22px;
+    transition: 0.3s ease-in-out;
 }
 
 #header .icon img{
     width: 80%;
-    border: 1px solid #aaa;
     border-radius: 50%;
 }
 
@@ -120,6 +199,7 @@
 #header .login{
     width: inherit;
     padding: 0px 20px;
+    margin-left: 10px;
     color: #fff!important;
     box-sizing: unset;
     background-color: var(--main-color);
@@ -128,6 +208,7 @@
 
 #header .login:hover{
     color: #000!important;
+    background-color: var(--main-color)!important;
     box-shadow: 5px 5px 10px #000;
 }
 
@@ -139,7 +220,7 @@
 /* Hover */
 #header #nav li:hover{
     transform: translateY(-5px);
-    color: black;
+    color: var(--main-color);
     font-weight: 500;
     cursor: pointer;
     /* transition: 0.3s ease-in; */

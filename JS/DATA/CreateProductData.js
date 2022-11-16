@@ -29,15 +29,15 @@ var pr2 = new product(id, "Asics Sky Elite 2 - Trắng Đen 2022", 3699000, 15, 
 lsProduct = lsProduct.concat(pr2);
 
 id = createGeneralID(lsProduct);
-var pr3 = new product(id, "Asics Sky Elite 2 - Trắng Đen 2022", 3699000, 15, "Mesh, da tổng hợp, lưỡi gà rời. Có Gel, SpEVA, RUBBER ,AHARPLUS, cực ôm chân thoải mái. Bật nhảy êm, nhẹ, cực êm, thích hợp chơi sân indoor.","./assets/img/product/Asics/2/","Asics");
+var pr3 = new product(id, "Asics Sky Elite 2 - Trắng Đen 2022", 4050000, 15, "Mesh, da tổng hợp, lưỡi gà rời. Có Gel, SpEVA, RUBBER ,AHARPLUS, cực ôm chân thoải mái. Bật nhảy êm, nhẹ, cực êm, thích hợp chơi sân indoor.","./assets/img/product/Asics/2/","Asics");
 lsProduct = lsProduct.concat(pr3);
 
 id = createGeneralID(lsProduct);
-var pr4 = new product(id, "Asics Sky Elite 2 - Trắng Đen 2022", 3699000, 15, "Mesh, da tổng hợp, lưỡi gà rời. Có Gel, SpEVA, RUBBER ,AHARPLUS, cực ôm chân thoải mái. Bật nhảy êm, nhẹ, cực êm, thích hợp chơi sân indoor.","./assets/img/product/Asics/2/","Asics");
+var pr4 = new product(id, "Asics Sky Elite 2 - Trắng Đen 2022", 1999000, 15, "Mesh, da tổng hợp, lưỡi gà rời. Có Gel, SpEVA, RUBBER ,AHARPLUS, cực ôm chân thoải mái. Bật nhảy êm, nhẹ, cực êm, thích hợp chơi sân indoor.","./assets/img/product/Asics/2/","Asics");
 lsProduct = lsProduct.concat(pr4);
 
 id = createGeneralID(lsProduct);
-var pr5 = new product(id, "Asics Sky Elite 2 - Trắng Đen 2022", 3699000, 15, "Mesh, da tổng hợp, lưỡi gà rời. Có Gel, SpEVA, RUBBER ,AHARPLUS, cực ôm chân thoải mái. Bật nhảy êm, nhẹ, cực êm, thích hợp chơi sân indoor.","./assets/img/product/Asics/2/","Asics");
+var pr5 = new product(id, "Asics Sky Elite 2 - Trắng Đen 2022", 2699000, 15, "Mesh, da tổng hợp, lưỡi gà rời. Có Gel, SpEVA, RUBBER ,AHARPLUS, cực ôm chân thoải mái. Bật nhảy êm, nhẹ, cực êm, thích hợp chơi sân indoor.","./assets/img/product/Asics/2/","Asics");
 lsProduct = lsProduct.concat(pr5);
 
 id = createGeneralID(lsProduct);
@@ -55,3 +55,12 @@ lsProduct = lsProduct.concat(pr8);
 //Bà có thể console.log như sau để xem mảng bà đã nhập
 data.setItem("listProduct", JSON.stringify(lsProduct));
 
+
+//Tạo thông tin khách hàng, tài khoản admin
+lsCustomer = JSON.parse(data.getItem("listCustomer"));
+lsAccount = JSON.parse(data.getItem("listAccount"));
+var idAccAdmin = createGeneralID(lsAccount);
+lsCustomer = lsCustomer.concat(new customer(createGeneralID(lsCustomer), "Admin", "", "", "", "", "", "./assets/img/avatar/auto/A.jpg", idAccAdmin));
+lsAccount = lsAccount.concat(new account(idAccAdmin,"admin","110802",new Date(),2));
+data.setItem("listCustomer", JSON.stringify(lsCustomer));
+data.setItem("listAccount", JSON.stringify(lsAccount));

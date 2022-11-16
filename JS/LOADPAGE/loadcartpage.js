@@ -6,7 +6,7 @@ function innerCartPage(){
     }
 
     var cartPage = `
-    <div class="container">
+    <div class="main-container">
         <div class="container-cart">
             <div class="container-pr">
                 <h2>Cart</h2>

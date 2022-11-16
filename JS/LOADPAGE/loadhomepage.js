@@ -8,27 +8,30 @@ function innerLandingPage(){
             <div id="logo"></div>
             <div id="nav">
                 <ul id="nav-list">
-                    <li onclick="innerLandingPage();" id="home">Home
+                    <li onclick="innerLandingPage();" id="home">
+                        <i class="fa-solid fa-house"></i>
+                        Home
                         <div class="animate"></div>
                     </li>
-                    <li onclick="innerProductPage();" id="pr-page-nav">Products
+                    <li onclick="innerProductPage();" id="pr-page-nav">
+                        <i class="fa-brands fa-shopify"></i>
+                        Products
                         <div class="animate"></div>
                     </li>
-                    <li>Favourite
+                    <li onclick="innerLocationPage();">
+                        <i class="fa-sharp fa-solid fa-location-dot"></i>
+                        Location
                         <div class="animate"></div>
                     </li>
-                    <li>Discount
+                    <li onclick="innerContact();">
+                        <i class="fa-solid fa-barcode"></i>
+                        About us
                         <div class="animate"></div>
                     </li>
-                    <li onclick="innerContact();">About us
-                        <div class="animate"></div>
-                    </li>
-                    <!-- <li>Giới thiệu
-                        <div class="animate"></div>
-                    </li> -->
                 </ul>
             </div>
             <div id="group-account">
+
                 <div class="search-icon icon">
                     <i class="ti-search"></i>
                 </div>
@@ -38,7 +41,15 @@ function innerLandingPage(){
                     <div class="notify" data_count_pr="0"></div>
                 </div>
 
-                <div class="account-icon icon">
+                <div class="setting-icon icon" title="Change mode" style="display:none" onclick="changeMode(this)">
+                    <i class="fa-sharp fa-solid fa-gear"></i>
+                    <div class="option-mode popUp-card" style="display:none">
+                        <p>Customer mode</p>
+                        <p>Manager mode</p>
+                    </div>
+                </div>
+
+                <div class="account-icon icon" onclick="containerInfoCustomer(this);">
                     <i class="ti-user"></i>
                 </div>
                 
@@ -56,7 +67,7 @@ function innerLandingPage(){
                 <!--First background-->
                 <input type="radio" name="radio-buttons" id="first" checked>
                 <div class="slide-image image-3">
-                    <img src="./assets/img/slider/First.png" alt="">
+                    <img src="./assets/img/home/slider/First.png" alt="">
                     <div class="slide-prepare">
                         <!--left-->
                         <div class="left-bar">
@@ -77,7 +88,7 @@ function innerLandingPage(){
                 <!--Second background-->
                 <input type="radio" name="radio-buttons" id="second">
                 <div class="slide-image image-2">
-                    <img src="./assets/img/slider/Second.png" alt="">
+                    <img src="./assets/img/home/slider/Second.png" alt="">
                     <div class="slide-prepare">
                         <!--left-->
                         <div class="left-bar">
@@ -98,7 +109,7 @@ function innerLandingPage(){
                 <!--Third background-->
                 <input type="radio" name="radio-buttons" id="third">
                 <div class="slide-image image-3">
-                    <img src="./assets/img/slider/Third.png" alt="">
+                    <img src="./assets/img/home/slider/Third.png" alt="">
                     <div class="slide-prepare">
                         <!--left-->
                         <div class="left-bar">
@@ -127,108 +138,115 @@ function innerLandingPage(){
 
 
         <div class="demo-products">
-
+            <h1 class="title-shopping">
+                <i class="fa-solid fa-bag-shopping"></i>
+                V-shoe Shopping
+            </h1>
             <div class="products hot">
-                <h1><i class="fa-sharp fa-solid fa-fire-flame-curved"></i>Hot</h1>
+                <div class="banner-products">
+                    <div class="container">
 
-                <div class="container">
-                    <div class="product">
-                        <img src="./assets/img/product/demo.jpg" alt="">
-                        <p class="name">METASPEED SKY</p>
+                        <h1><i class="fa-sharp fa-solid fa-fire-flame-curved"></i>Hot</h1>
+
+                        <div class="product">
+                            <img src="./assets/img/product/demo.jpg" alt="">
+                        </div>
+                        <div class="product">
+                            <img src="./assets/img/product/demo.jpg" alt="">
+                        </div>
+                        <div class="product">
+                            <img src="./assets/img/product/demo.jpg" alt="">
+                        </div>
+                        <div class="product">
+                            <img src="./assets/img/product/demo.jpg" alt="">
+                        </div>
                     </div>
-                    <div class="product">
-                        <img src="./assets/img/product/demo.jpg" alt="">
-                        <p class="name">METASPEED SKY</p>
-                    </div>
-                    <div class="product">
-                        <img src="./assets/img/product/demo.jpg" alt="">
-                        <p class="name">METASPEED SKY</p>
-                    </div>
-                    <div class="product">
-                        <img src="./assets/img/product/demo.jpg" alt="">
-                        <p class="name">METASPEED SKY</p>
+
+                    <div class="banner">
+                        <img src="./assets/img/home/banner/hot.png" alt="">
                     </div>
                 </div>
+                
             </div>
 
             <div class="products sport">
-                <h1><i class="fa-sharp fa-solid fa-volleyball"></i>Sport</h1>
-                <div class="container">
-                    <div class="product">
-                        <img src="./assets/img/product/demo.jpg" alt="">
-                        <p class="name">METASPEED SKY</p>
+                <div class="banner-products">
+
+                    <div class="banner">
+                        <img src="./assets/img/home/banner/sport.png" alt="">
                     </div>
-                    <div class="product">
-                        <img src="./assets/img/product/demo.jpg" alt="">
-                        <p class="name">METASPEED SKY</p>
-                    </div>
-                    <div class="product">
-                        <img src="./assets/img/product/demo.jpg" alt="">
-                        <p class="name">METASPEED SKY</p>
-                    </div>
-                    <div class="product">
-                        <img src="./assets/img/product/demo.jpg" alt="">
-                        <p class="name">METASPEED SKY</p>
+
+                    <div class="container">
+                        <h1><i class="fa-sharp fa-solid fa-volleyball"></i>Sport</h1>
+
+                        <div class="product">
+                            <img src="./assets/img/product/demo.jpg" alt="">
+                        </div>
+                        <div class="product">
+                            <img src="./assets/img/product/demo.jpg" alt="">
+                        </div>
+                        <div class="product">
+                            <img src="./assets/img/product/demo.jpg" alt="">
+                        </div>
+                        <div class="product">
+                            <img src="./assets/img/product/demo.jpg" alt="">
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="products affordable">
-                <h1><i class="fa-sharp fa-solid fa-hand-holding-dollar"></i>Affordable</h1>
-                <div class="container">
-                    <div class="product">
-                        <img src="./assets/img/product/demo.jpg" alt="">
-                        <p class="name">METASPEED SKY</p>
+                <div class="banner-products">
+                    <div class="container">
+                        <h1><i class="fa-sharp fa-solid fa-hand-holding-dollar"></i>Affordable</h1>
+
+                        <div class="product">
+                            <img src="./assets/img/product/demo.jpg" alt="">
+                        </div>
+                        <div class="product">
+                            <img src="./assets/img/product/demo.jpg" alt="">
+                        </div>
+                        <div class="product">
+                            <img src="./assets/img/product/demo.jpg" alt="">
+                        </div>
+                        <div class="product">
+                            <img src="./assets/img/product/demo.jpg" alt="">
+                        </div>
                     </div>
-                    <div class="product">
-                        <img src="./assets/img/product/demo.jpg" alt="">
-                        <p class="name">METASPEED SKY</p>
-                    </div>
-                    <div class="product">
-                        <img src="./assets/img/product/demo.jpg" alt="">
-                        <p class="name">METASPEED SKY</p>
-                    </div>
-                    <div class="product">
-                        <img src="./assets/img/product/demo.jpg" alt="">
-                        <p class="name">METASPEED SKY</p>
+
+                    <div class="banner">
+                        <img src="./assets/img/home/banner/affordable.png" alt="">
                     </div>
                 </div>
             </div>
 
             <div class="products luxury">
-                <h1><i class="fa-solid fa-star"></i>Luxury</h1>
-                <div class="container">
-                    <div class="product">
-                        <img src="./assets/img/product/demo.jpg" alt="">
-                        <p class="name">METASPEED SKY</p>
+                <div class="banner-products">
+
+                    <div class="banner">
+                        <img src="./assets/img/home/banner/luxury.png" alt="">
                     </div>
-                    <div class="product">
-                        <img src="./assets/img/product/demo.jpg" alt="">
-                        <p class="name">METASPEED SKY</p>
+
+                    <div class="container">
+
+                        <h1><i class="fa-solid fa-star"></i>Luxury</h1>
+
+                        <div class="product">
+                            <img src="./assets/img/product/demo.jpg" alt="">
+                        </div>
+                        <div class="product">
+                            <img src="./assets/img/product/demo.jpg" alt="">
+                        </div>
+                        <div class="product">
+                            <img src="./assets/img/product/demo.jpg" alt="">
+                        </div>
+                        <div class="product">
+                            <img src="./assets/img/product/demo.jpg" alt="">
+                        </div>
                     </div>
-                    <div class="product">
-                        <img src="./assets/img/product/demo.jpg" alt="">
-                        <p class="name">METASPEED SKY</p>
-                    </div>
-                    <div class="product">
-                        <img src="./assets/img/product/demo.jpg" alt="">
-                        <p class="name">METASPEED SKY</p>
-                    </div>
+
                 </div>
             </div>
-
-        </div>
-
-        <div class="map">
-            <h1><i class="fa-solid fa-map"></i>Address</h1>
-            <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3920.273207875388!2d106.61676371460538!3d10.713397992364312!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752d5b6dd8ea7f%3A0x31d22e7d4e84c046!2zOTkgQW4gRC4gVsawxqFuZywgUGjGsOG7nW5nIDE2LCBRdeG6rW4gOCwgVGjDoG5oIHBo4buRIEjhu5MgQ2jDrSBNaW5oLCBWaWV0bmFt!5e0!3m2!1sen!2s!4v1666253890040!5m2!1sen!2s" 
-                allowfullscreen=""
-                loading="lazy" 
-                referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
-            </div>
-            
         </div>
     </div>
 
@@ -313,3 +331,53 @@ function slide(){
     
 }
 
+function changeMode(modeBtn){
+    var settingBtn = modeBtn.querySelector('.option-mode');
+    var settingIcon = modeBtn.querySelector('i');
+    if(settingBtn.style.display == 'none'){
+        settingIcon.style = `transform: rotate(90deg);`
+        settingBtn.style.display = 'block';
+    }else{
+        settingIcon.style = `transform: rotate(0deg);`
+        settingBtn.style.display = 'none';
+    }
+}
+
+function containerInfoCustomer(tag){
+    var accoutInfo = tag.querySelector('.account-info');
+    if(accoutInfo.style.display == 'none'){
+
+        if(activeAccount == null){
+            accoutInfo.innerHTML = "Nothing here";
+        }else{
+            accoutInfo.innerHTML = `
+            <div class="avt-container">
+                <div class="avt">
+                    <img src="${activeAccount.avatar}" alt="">
+                </div>
+                <button class="change-avt" onclick="changeAvatar();">Change avatar</button>
+            </div>
+            <div class="customer-info">
+                <div class="custom-name">
+                    <p class="title">Name: </p>
+                    <p class="content">${activeAccount.name}</p>
+                </div>
+                <div class="custom-dob">
+                    <p class="title">DoB: </p>
+                    <p class="content">${activeAccount.dob}</p>
+                </div>
+                <div class="custom-pnum">
+                    <p class="title">Phone: </p>
+                    <p class="content">${activeAccount.phoneNumber}</p>
+                </div>
+                <div class="custom-email">
+                    <p class="title">Email: </p>
+                    <p class="content">${activeAccount.email}</p>
+                </div>
+            </div>`;
+        }
+        accoutInfo.style.display = 'flex';
+    }else{
+        accoutInfo.style.display = 'none';
+    }
+}

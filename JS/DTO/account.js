@@ -7,3 +7,12 @@ class account{
         this.positionID = positionID;
     }
 }
+
+function getAccountByID(idAccount){
+    lsAccount = JSON.parse(data.getItem("listAccount"));
+    for(let i = 0; i< lsAccount.length; i++){
+        if(lsAccount[i].id == idAccount){
+            return lsAccount[i];
+        }
+    }
+}

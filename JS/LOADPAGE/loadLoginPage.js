@@ -11,6 +11,7 @@ function innerLoginPage(){
         changeButtonLogin("Login");
         loadAvatar();
         setNotify();
+        innerLandingPage();
     }
     
 }
@@ -89,6 +90,23 @@ function goToSignUpForm(){
                         <input type="text" name="name" id="name" placeholder="Enter full name">
                     </div>
 
+                    <!-- Customer day of birth -->
+                    <div class="customer-dob">
+                        <label for="birthday">
+                            <i class="fa-regular fa-calendar-days"></i>
+                        </label>
+                        <input type="date" name="birthday" id="birthday" placeholder="Birthday">
+
+                        <label for="gender">
+                            <i class="fa-solid fa-venus-mars"></i>
+                        </label>
+                        <select name="gender" id="gender">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="none">No chosen</option>
+                        </select>
+                    </div>
+
                     <!-- Address -->
                     <div class="address">
                         <label for="addr">
@@ -161,6 +179,8 @@ function goToSignUpForm(){
 function addCustomer(button){
     var formContent = button.form.querySelector('.content-form');
     var name = formContent.querySelector("#name");
+    var dob = formContent.querySelector("#birthday");
+    var gender = formContent.querySelector('#gender');
     var addr = formContent.querySelector("#addr");
     var email = formContent.querySelector("#email");
     var phone = formContent.querySelector("#phone");
@@ -195,7 +215,7 @@ function addCustomer(button){
             announce.style.display = 'none';
             if(isInitCustomer(email.value, phone.value,user.value)){
                 alert("Sign in successfully! Welcom to become our member.");
-                saveDataCustomer(name.value, addr.value, phone.value, email.value, user.value, pass.value);
+                saveDataCustomer(name.value, dob.value, gender.value, addr.value, phone.value, email.value, user.value, pass.value);
                 innerLandingPage();
                 changeButtonLogin("Logout");
                 loadAvatar();
@@ -235,11 +255,11 @@ function saveAccount(id, username, pass, position){
     data.setItem("listAccount", JSON.stringify(lsAccount));
 }
 
-function saveDataCustomer(name, addr, phone, email, username, pass){
+function saveDataCustomer(name, dob, gender, addr, phone, email, username, pass){
     lsCustomer = JSON.parse(data.getItem("listCustomer"));
     var id = createGeneralID(lsCustomer);
     var idAcc = createGeneralID(JSON.parse(data.getItem("listAccount")));
-    var custom = new customer(id, name, phone, email, addr, '',idAcc);
+    var custom = new customer(id, name, dob, gender, phone, email, addr, '',idAcc);
     setAutoAvatarForCustomer(custom);
 
     lsCustomer = lsCustomer.concat(custom);
@@ -263,8 +283,10 @@ function loadAvatar(){
     var acc = document.querySelector('#header').querySelector('#group-account').querySelector('.account-icon');
     var avatar ='';
     if(activeAccount == null){
-        avatar = '<i class="ti-user"></i>';
-    }else avatar = `<img src="${activeAccount.avatar}">`;
+        avatar = `<i class="ti-user"></i>
+                    <div class="account-info popUp-card" style="display:none"></div>`;
+    }else avatar = `<img src="${activeAccount.avatar}">
+                     <div class="account-info popUp-card" style="display:none"></div>`;
     acc.innerHTML = avatar
 }
 
@@ -427,6 +449,7 @@ function signIn(button){
             alert("Sign in successfully! Welcom to V-shoe");
             innerLandingPage();
             changeButtonLogin("Logout");
+            displayAdminAccount();
             loadAvatar();
             setNotify();
         }
@@ -474,4 +497,11 @@ function signInRightAccount(username, password){
 
 function changeButtonLogin(value){
     document.querySelector('#header').querySelector('.login').setAttribute("data-before", value);
+}
+
+function displayAdminAccount(){
+    
+    if(getAccountByID(activeAccount.idAcc).positionID == 2){
+        document.querySelector('#group-account').querySelector('.setting-icon').style.display = 'flex';
+    }
 }

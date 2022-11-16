@@ -622,6 +622,8 @@ function checkDefaultInput(){
         }
         
     }
+
+    renderPriceScope();
 }
 
 function renderCheckInput(inpContainer){

@@ -1,7 +1,9 @@
 class customer{
-    constructor(id, name, phoneNumber, email, address, avatar, idAcc){
+    constructor(id, name, dob, gender, phoneNumber, email, address, avatar, idAcc){
         this.id = id;
         this.name = name;
+        this.dob = dob;
+        this.gender = gender;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.address = address;

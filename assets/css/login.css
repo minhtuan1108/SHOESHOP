@@ -77,6 +77,10 @@
     border-bottom: 1px solid var(--main-border-color);
 }
 
+.container-form .content-form #gender{
+    padding: 5px;
+}
+
 .container-form .content-form .announce{
     margin-left: 45px;
     font-size: 12px;

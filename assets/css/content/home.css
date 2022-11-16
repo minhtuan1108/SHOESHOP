@@ -2,6 +2,12 @@
     margin-top:var(--height-header);
     z-index: 0;
 }
+
+#content .title-shopping{
+    margin: 40px 0;
+    color: var(--main-color);
+}
+
 .demo-products{
     width: 100%;
     display: flex;
@@ -10,19 +16,38 @@
     flex-direction: column;
 }
 
-.products{
+#content .banner-products{
+    display: flex;
+}
+
+.banner-products .banner{
     width: 80%;
+}
+
+.products{
+    width: 100%;
+    height: fit-content;
+}
+
+.products:nth-child(even){
+    background-color: #ccc;
+}
+
+.products:nth-child(odd) h1{
+    display: flex;
+    justify-content: flex-end;
 }
 
 .products h1{
     width: 100%;
-    border-bottom: 1px solid black;
-    border-left: 1px solid black;
+    /* border-bottom: 1px solid black; */
+    /* border-left: 1px solid black; */
     padding:5px 10px;
+    
 }
 
 .hot i {
-    color: rgb(247, 86, 6);
+    color: rgb(247, 58, 6);
 }
 
 .sport i{
@@ -37,20 +62,27 @@
     color: rgb(236, 40, 69);
 }
 
-.products .container{
-    width: 100%;
+.products .banner-products .container{
+    width: 20%;
     display: flex;
     align-items: center;
-    flex-direction: row;
-    margin-bottom: 50px;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .products .container .product{
-    width: 25%;
+    width: 50%;
     display: block;
 }
 
-.products .container .product img{
+.products .container .product:hover{
+    width: 60%;
+    cursor: pointer;
+    transform: translateY(10px);
+    transition: 0.3s ease-in-out;
+}
+
+.products img{
     width: 100%;
 }
 
@@ -58,43 +90,4 @@
     font-weight: bold;
     font-family: 'Lato', sans-serif;
     text-align: center;
-}
-
-.map{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.map h1{
-    width: 80%;
-    border-bottom: 1px solid black;
-    border-left: 1px solid black;
-    padding:5px 10px;
-}
-
-.map .map-container{
-    width: 80%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.map .map-container iframe{
-    width: 800px;
-    height: 600px; 
-    border: 0;
-    box-shadow: 5px 5px 30px #ccc;
-}
-
-.map i, .demo-products i{
-    margin: 0px 5px;
-}
-
-.map i{
-    color: rgb(57, 66, 242);
 }
