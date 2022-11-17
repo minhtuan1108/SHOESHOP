@@ -24,21 +24,21 @@
     width: 80%;
 }
 
-.products{
+.demo-products .products{
     width: 100%;
     height: fit-content;
 }
 
-.products:nth-child(even){
+.demo-products .products:nth-child(even){
     background-color: #ccc;
 }
 
-.products:nth-child(odd) h1{
+.demo-products .products:nth-child(odd) h1{
     display: flex;
     justify-content: flex-end;
 }
 
-.products h1{
+.demo-products .products h1{
     width: 100%;
     /* border-bottom: 1px solid black; */
     /* border-left: 1px solid black; */
@@ -62,7 +62,7 @@
     color: rgb(236, 40, 69);
 }
 
-.products .banner-products .container{
+.demo-products .products .banner-products .container{
     width: 20%;
     display: flex;
     align-items: center;

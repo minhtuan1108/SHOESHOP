@@ -56,6 +56,7 @@ function innerProductToCartPage(){
     lsCartDetail = JSON.parse(data.getItem("listCartDetail"));
     var productDetail;
     var size;
+    var count = 0;
 
     if(lsCartDetail.length == 0){
         prs = 'Cart is empty';
@@ -95,8 +96,13 @@ function innerProductToCartPage(){
                         <p class="price-cart">Price: ${total}đ</p>
                     </div>
                 </div>`;
+                count++;
             }
         }
+    }
+
+    if(count == 0){
+        prs = 'Cart is empty';
     }
     
     container.innerHTML = prs;
@@ -402,6 +408,7 @@ function innerProductToBillDetail(listProducts){
 function innerBillPaid(){
     lsBill = JSON.parse(data.getItem("listBill"));
     var bills = '';
+    var count = 0;
     var status;
 
     if(lsBill.length == 0){
@@ -409,25 +416,32 @@ function innerBillPaid(){
     }else{
 
         for(let i = 0; i < lsBill.length; i++){
-            status = returnHtmlStatus(lsBill[i].id);
 
-            bills +=`
-            <div class="bill" onclick="openBillDetail(this)">
-                <div class="image">
-                    <img src="./assets/img/logo/V-Shoes-logo.png" alt="">
-                </div>
-                <div class="info">
-                    <div class="main-content">
-                        <p>Bill ID: <span id="billID">${lsBill[i].id}</span></p>
-                        <p>Date create: <span>${lsBill[i].date}</span></p>
-                        <p>Total: <span  class="total-price">${lsBill[i].total}</span>đ</p>
+            if(lsBill[i].idKH == activeAccount.id){
+                count++;
+                status = returnHtmlStatus(lsBill[i].id);
+                bills +=`
+                <div class="bill" onclick="openBillDetail(this)">
+                    <div class="image">
+                        <img src="./assets/img/logo/V-Shoes-logo.png" alt="">
                     </div>
-                    <div class="status">
-                        <p>Status: ${status}</p>
+                    <div class="info">
+                        <div class="main-content">
+                            <p>Bill ID: <span id="billID">${lsBill[i].id}</span></p>
+                            <p>Date create: <span>${lsBill[i].date}</span></p>
+                            <p>Total: <span  class="total-price">${lsBill[i].total}</span>đ</p>
+                        </div>
+                        <div class="status">
+                            <p>Status: ${status}</p>
+                        </div>
                     </div>
-                </div>
-            </div>`;
+                </div>`;
+            }
         }
+    }
+
+    if(count == 0){
+        bills = 'There is not any bill was checked out';
     }
 
     document.querySelector('.container-bill').querySelector('.main-container').innerHTML = bills;

@@ -51,6 +51,9 @@ function innerLandingPage(){
 
                 <div class="account-icon icon" onclick="containerInfoCustomer(this);">
                     <i class="ti-user"></i>
+                    <div class="account-info popUp-card" style="display:none">
+        
+                    </div>
                 </div>
                 
                 <div class="login icon" data-before="Login" onclick="innerLoginPage();">

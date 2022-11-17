@@ -59,8 +59,12 @@ data.setItem("listProduct", JSON.stringify(lsProduct));
 //Tạo thông tin khách hàng, tài khoản admin
 lsCustomer = JSON.parse(data.getItem("listCustomer"));
 lsAccount = JSON.parse(data.getItem("listAccount"));
+lsCart = JSON.parse(data.getItem("listCart"));
 var idAccAdmin = createGeneralID(lsAccount);
 lsCustomer = lsCustomer.concat(new customer(createGeneralID(lsCustomer), "Admin", "", "", "", "", "", "./assets/img/avatar/auto/A.jpg", idAccAdmin));
 lsAccount = lsAccount.concat(new account(idAccAdmin,"admin","110802",new Date(),2));
+lsCart = lsCart.concat(new cart(createGeneralID(lsCart),idAccAdmin));
+
+data.setItem("listCart", JSON.stringify(lsCart));
 data.setItem("listCustomer", JSON.stringify(lsCustomer));
 data.setItem("listAccount", JSON.stringify(lsAccount));
