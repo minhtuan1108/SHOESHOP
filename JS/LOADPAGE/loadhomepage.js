@@ -348,6 +348,7 @@ function changeMode(modeBtn){
 
 function containerInfoCustomer(tag){
     var accoutInfo = tag.querySelector('.account-info');
+    var selection = tag.querySelector('#selection-file');
     if(accoutInfo.style.display == 'none'){
 
         if(activeAccount == null){
@@ -358,7 +359,7 @@ function containerInfoCustomer(tag){
                 <div class="avt">
                     <img src="${activeAccount.avatar}" alt="">
                 </div>
-                <button class="change-avt" onclick="changeAvatar();">Change avatar</button>
+                <input type="file" name="selection-file" id="selection-file" class="change-avt" onchange="chooseFile(this);">
             </div>
             <div class="customer-info">
                 <div class="custom-name">
@@ -381,6 +382,11 @@ function containerInfoCustomer(tag){
         }
         accoutInfo.style.display = 'flex';
     }else{
-        accoutInfo.style.display = 'none';
+        console.log(accoutInfo.textContent == 'Nothing here');
+        console.log(selection.checked == false);
+        if(accoutInfo.textContent == 'Nothing here' || selection.checked){
+            accoutInfo.style.display = 'none';
+        }
+        
     }
 }

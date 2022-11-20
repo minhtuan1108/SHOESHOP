@@ -64,3 +64,47 @@ function createGeneralID(list){
 
     return id;
 }
+
+// function uploadImage(){
+
+//     const img_input = document.querySelector("#selection-file");
+//     var upload_image = "";
+//     img_input.addEventListener("change", function() {
+//         console.log(img_input.value);
+//         const reader = new FileReader();
+//         reader.addEventListener("load", () => {
+//             localStorage.setItem("chooseimage", reader.result);
+//             upload_image = reader.result;
+//         });
+//         reader.readAsDataURL(this.files[0]);
+//     });
+// }
+
+
+//Hàm đọc ảnh từ file chooser
+function chooseFile(fileInput){
+    var sourceAvt ='';
+    if(fileInput.files && fileInput.files[0]){
+        var reader = new FileReader;
+        reader.onload = function(e){
+            sourceAvt = e.target.result;
+            setAvatarSourceCustomer(sourceAvt);
+            loadAvatar();
+        }
+        reader.readAsDataURL(fileInput.files[0]);
+    }
+}
+
+function setAvatarSourceCustomer(sourceAvatar){
+    activeAccount.avatar = sourceAvatar;
+    lsCustomer = JSON.parse(data.getItem("listCustomer"));
+
+    for(let i = 0; i < lsCustomer.length; i++){
+        if(lsCustomer[i].id == activeAccount.id){
+            lsCustomer[i].avatar = sourceAvatar;
+        }
+    }
+
+    data.setItem("activeAccount", JSON.stringify(activeAccount));
+    data.setItem("listCustomer", JSON.stringify(lsCustomer));
+}

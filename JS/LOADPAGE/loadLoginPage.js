@@ -287,7 +287,7 @@ function loadAvatar(){
                     <div class="account-info popUp-card" style="display:none"></div>`;
     }else avatar = `<img src="${activeAccount.avatar}">
                      <div class="account-info popUp-card" style="display:none"></div>`;
-    acc.innerHTML = avatar
+    acc.innerHTML = avatar;
 }
 
 function isValidPhoneNumber(phone){

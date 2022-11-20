@@ -312,7 +312,7 @@ function filterList(){
             filtedList.forEach(item =>{
                 pr = getProductDetailByIdProductAndIdSize(item.id, size);
                 if(pr != null) {
-                    if(pr.gender == gender){
+                    if(pr.type == gender){
                         lastList = lastList.concat(pr);
                     }
                 }
