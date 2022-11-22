@@ -45,7 +45,7 @@ function showDetailProduct(pr) {
                     <div class="product-brand">${pr.brand}</div>
                     <div class="product-name">${pr.name}</div>
                     <div class="product-price">
-                        <div class="new-price">${new_price}</div>
+                        <div class="new-price">${new_price}đ</div>
                     </div>
 
                 </div>
@@ -68,8 +68,8 @@ function showDetailProduct(pr) {
                     <div class="product-brand">${pr.brand}</div>
                     <div class="product-name">${pr.name}</div>
                     <div class="product-price">
-                        <div class="new-price">${new_price}</div>
-                        <div class="old-price">${pr.price}</div>
+                        <div class="new-price">${new_price}đ</div>
+                        <div class="old-price">${pr.price}đ</div>
                     </div>
 
                 </div>
@@ -105,8 +105,8 @@ function showProductInForm(pr){
                                     </div>
                                 </div>
                                 <div class="size">
-                                    <div class="label-size title">Current size: </div>
-                                    <p>${pr.min_size}-${pr.max_size}</p>
+                                    <div class="label-size title">Quantity: </div>
+                                    <p id="quantity-text"></p>
                                 </div>
                                 <div class="desc">
                                     <p class="label-desc title" title="${pr.disc}">Description: 
@@ -117,17 +117,17 @@ function showProductInForm(pr){
                             <div class="chosen">
                                 <div class="size-option">
                                     <p>Size</p>
-                                    <select name="chosen-size" id="chosen-size">
+                                    <select name="chosen-size" id="chosen-size" onchange="calcQuantity(this);">
                                         
                                     </select>
                                 </div>
                                 <div class="quantity-option">
                                     <p>Quantity</p>
-                                    <input type="number" name="quantity" id="quantity" value="1">
+                                    <input type="number" name="quantity" id="quantity" value="1" onchange="checkValidQuantity(this, '${pr.id}');">
                                 </div>
                             </div>
                             <div class="add-cart">
-                                <input type="button" value="Add to cart" onclick="addProductToCart(this);" id="${pr.id}">
+                                <input type="button" value="Add to cart" onclick="addProductToCart(this);" class="button-add" id="${pr.id}">
                                 <input type="button" value="Cancel" onclick="closeChooseSizeGuide();">
                             </div>
                         </div>
@@ -154,8 +154,8 @@ function showProductInForm(pr){
                                 </div>
                             </div>
                             <div class="size">
-                                <div class="label-size title">Current size: </div>
-                                <p>${pr.min_size}-${pr.max_size}</p>
+                                <div class="label-size title">Quantity: </div>
+                                <p id="quantity-text"></p>
                             </div>
                             <div class="desc">
                                 <p class="label-desc title" title="${pr.disc}">Description: 
@@ -166,17 +166,17 @@ function showProductInForm(pr){
                         <div class="chosen">
                             <div class="size-option">
                                 <p>Size</p>
-                                <select name="chosen-size" id="chosen-size">
+                                <select name="chosen-size" id="chosen-size" onchange="calcQuantity(this);">
                                     
                                 </select>
                             </div>
                             <div class="quantity-option">
                                 <p>Quantity</p>
-                                <input type="number" name="quantity" id="quantity" value="1">
+                                <input type="number" name="quantity" id="quantity" value="1" onchange="checkValidQuantity(this, '${pr.id}');">
                             </div>
                         </div>
                         <div class="add-cart">
-                            <input type="button" value="Add to cart" onclick="addProductToCart(this);"  id="${pr.id}">
+                            <input type="button" value="Add to cart" onclick="addProductToCart(this);" class="button-add" id="${pr.id}">
                             <input type="button" value="Cancel" onclick="closeChooseSizeGuide();">
                         </div>
                     </div>
@@ -198,11 +198,41 @@ function innerOptionSize(idPr, listProductDetail, idSelect){
         
     });
     
-    console.log("Xuất options size: " + options);
     select.innerHTML = options;
+    innerDefaultQuantity(idPr, select.value);
 }
 
 function closeProductCard(){
     document.querySelector('.container-popUp').style.display = 'none';
 }
 
+function calcQuantity(select){
+    var idPr = document.querySelector(".button-add").id;
+    var idSize = select.value;
+    
+    innerDefaultQuantity(idPr, idSize);
+}
+
+function innerDefaultQuantity(idPr, idSize){
+    var quantity = document.querySelector('#quantity-text');
+    lsProductDetail = JSON.parse(data.getItem('listProductDetail'));
+    for(let i = 0; i < lsProductDetail.length; i++){
+        if(lsProductDetail[i].idProduct == idPr && lsProductDetail[i].idSize == idSize){
+            quantity.innerHTML = lsProductDetail[i].quantity;
+        }
+    }
+}
+
+function checkValidQuantity(spinner, idPr){
+    var select = document.querySelector(`#chosen-size`);
+    var prDetail = getProductDetailByIdProductAndIdSize(idPr,select.value);
+    console.log(idPr);
+    console.log(select.value);
+    if(spinner.value <= 0){
+        spinner.value = 1;
+    }else{
+        if(spinner.value > prDetail.quantity){
+            spinner.value = prDetail.quantity;
+        }
+    }
+}

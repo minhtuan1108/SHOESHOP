@@ -69,7 +69,7 @@ function innerProductToCartPage(){
                 pr = getProductById(productDetail.idProduct);
                 
                 total = calculateNewPrice(pr) * Number (productDetail.quantity);
-                select = stringOptionSize(pr.id, JSON.parse(data.getItem("listProductDetail")), size.value);
+                // select = stringOptionSize(pr.id, JSON.parse(data.getItem("listProductDetail")), size.value);
                 prs += `
                 <div class="pr">
                     <div class="delete" onclick="removeProductFromCart(this);" id=${pr.id} size=${size.value}>
@@ -84,9 +84,7 @@ function innerProductToCartPage(){
                         <div class="group-selection">
                             <div class="slection-size">
                                 <p class="size">Size:</p>
-                                <select name="size" id="size-cart">
-                                    ${select}
-                                </select>
+                                <p> ${size.value} </p>
                             </div>
                             <div class="selection-quantity">
                                 <p class="quantity">Quantity: </p>
@@ -242,7 +240,7 @@ function checkOut2(){
     var idBill = createGeneralID(lsBill);
     var idCustomer = activeAccount.id;
     var total = calculateTotalPriceOfCurrentCart();
-    var dateCreate = new Date().toLocaleDateString();
+    var dateCreate = new Date().toLocaleString();
     var status = false;
 
     lsBill = lsBill.concat(new bill(idBill,idCustomer, total, dateCreate, status));
@@ -251,7 +249,6 @@ function checkOut2(){
     innerBillPaid();
     closeProductCard();
     clearCart();
-    innerProductToCartPage();
     setNotify();
     setTotalPrice();
 }
@@ -260,10 +257,21 @@ function storeBillDetail(idBill){
     lsBillDetail = JSON.parse(data.getItem("listBillDetail"));
     var productsInCart = getProductInCurrentCart();
     for(let i = 0; i < productsInCart.length; i++){
+        setDataProductQuantity(productsInCart[i].idProduct, productsInCart[i].idSize, productsInCart[i].quantity);
         lsBillDetail = lsBillDetail.concat(new billDetail(idBill, productsInCart[i].idProduct, productsInCart[i].idSize, productsInCart[i].quantity, productsInCart[i].Subprice));
     }
 
     data.setItem("listBillDetail", JSON.stringify(lsBillDetail));
+}
+
+function setDataProductQuantity(idPr, idSize, quantity){
+    lsProductDetail = JSON.parse(data.getItem("listProductDetail"));
+    for(let i = 0; i < lsProductDetail.length; i++){
+        if(idPr == lsProductDetail[i].idProduct && idSize == lsProductDetail[i].idSize){
+            lsProductDetail[i].quantity -= quantity;
+        }
+    }
+    data.setItem("listProductDetail", JSON.stringify(lsProductDetail));
 }
 
 //Lấy những sản phẩm trong cart của tài khoản đang onl
@@ -410,6 +418,7 @@ function innerBillPaid(){
     var bills = '';
     var count = 0;
     var status;
+    var dateString = '';
 
     if(lsBill.length == 0){
         bills = 'There is not any bill was checked out';
@@ -420,6 +429,7 @@ function innerBillPaid(){
             if(lsBill[i].idKH == activeAccount.id){
                 count++;
                 status = returnHtmlStatus(lsBill[i].id);
+                dateString = lsBill[i].date;
                 bills +=`
                 <div class="bill" onclick="openBillDetail(this)">
                     <div class="image">
@@ -428,7 +438,7 @@ function innerBillPaid(){
                     <div class="info">
                         <div class="main-content">
                             <p>Bill ID: <span id="billID">${lsBill[i].id}</span></p>
-                            <p>Date create: <span>${lsBill[i].date}</span></p>
+                            <p>Date create: <span>${dateString}</span></p>
                             <p>Total: <span  class="total-price">${lsBill[i].total}</span>đ</p>
                         </div>
                         <div class="status">
@@ -458,4 +468,5 @@ function clearCart(){
     }
 
     data.setItem("listCartDetail", JSON.stringify(lsCartDetail));
+    innerProductToCartPage();
 }

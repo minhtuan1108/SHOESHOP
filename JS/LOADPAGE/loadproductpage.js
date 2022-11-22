@@ -10,7 +10,7 @@ function innerProductPage(){
                     <div class="brand" id="Asics" onclick="setActiveAndBanner(this)">Asics</div>
                     <div class="brand" id="Mizuno" onclick="setActiveAndBanner(this)">Mizuno</div>
                     <div class="brand" id="Beyono" onclick="setActiveAndBanner(this)">Beyono</div>
-                    <div class="brand" id="Nike" onclick="setActiveAndBanner(this)">Nike</div>
+                    <div class="brand" id="Kawasaki" onclick="setActiveAndBanner(this)">Kawasaki</div>
                     <div class="brand" id="Adidas" onclick="setActiveAndBanner(this)">Adidas</div>
                 </div>
                 <div class="option-filter">
@@ -70,7 +70,7 @@ function innerProductPage(){
                                 </div>  
                                 <div class="container-radio" onclick="renderCheckInput(this);">
                                     <input type="checkbox" name="price" id="mock6" value="5000000">
-                                    <label for="mock6">5000000₫</label>
+                                    <label for="mock6">8000000₫</label>
                                 </div> 
                                 <div class="container-radio" onclick="renderCheckInput(this);">
                                     <input type="checkbox" name="price" id="none-price" class="none" value="0">
@@ -83,7 +83,7 @@ function innerProductPage(){
                                     </div>
                                     
                                     <div>
-                                        <input type="number" class="filter-max" value="5000000">
+                                        <input type="number" class="filter-max" value="8000000">
                                         <span>₫</span>
                                     </div>
                                 </div>                                                    
@@ -164,16 +164,24 @@ function innerProductPage(){
                 <div class="banner">
                     
                 </div>
-                <div class="amount-product">
-                    <div class="label-amount">Amount of product per page:</div>
-                    <select name="product-on-page" id="amount" class="amount" onchange="filterList();">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="6">6</option>
-                        <option value="8">8</option>
-                        <option value="10">10</option>
-                        <option value="12">12</option>
-                    </select>
+                <div class="amount-search-container">
+                    <div class="search-container">
+                        <div class="label-search">
+                            <p>Search</p>
+                        </div>
+                        <input type="text" name="search" id="search-input" oninput="filterList();">
+                    </div>
+
+                    <div class="amount-product">
+                        <div class="label-amount">Amount of product per page:</div>
+                        <select name="product-on-page" id="amount" class="amount" onchange="filterList();">
+                            <option value="6">6</option>
+                            <option value="8">8</option>
+                            <option value="10">10</option>
+                            <option value="12">12</option>
+                        </select>
+                    </div>
+                    
                 </div>
                 <div class="container-products">
                     
@@ -217,7 +225,7 @@ function setActiveAndBanner(brand){
             banner.innerHTML = `<img src="./assets/img/product/banner/giay-asics-chinh-hang.jpg" alt="">`;
             break;
 
-        case "Nike":
+        case "Kawasaki":
             title.innerHTML = 'Giày Nike chính hãng';
             banner.innerHTML = `<img src="./assets/img/product/banner/giay-asics-chinh-hang.jpg" alt="">`;
             break;
@@ -244,10 +252,12 @@ function filterList(){
     var minPrice = groupPanels.querySelector('.price').querySelector('.scope-price').querySelector('.filter-min').value;
     var maxPrice = groupPanels.querySelector('.price').querySelector('.scope-price').querySelector('.filter-max').value;
     var panelSize = groupPanels.querySelector('.size').querySelectorAll('input');
+    var searchInput = productPage.querySelector('#search-input');
     var size;
     var gender;
     var brand;
     var price;
+    var searchList = searchInput.value.split(" ");
     amountProduct = productContent.querySelector('#amount').value;
     
     //Lấy brand đang được chọn
@@ -277,23 +287,23 @@ function filterList(){
     }
 
     if(maxPrice == ''){
-        maxPrice = 5000000;
+        maxPrice = 8000000;
     }
 
     //Lọc listProduct
     var filtedList = [];
     lsProduct = JSON.parse(data.getItem("listProduct"));
     lsProductDetail = JSON.parse(data.getItem("listProductDetail"));
-
-
     
+
+
     lsProduct.forEach(item => {
         price = calculateNewPrice(item);
         if(price >= minPrice && price <= maxPrice){
             filtedList = filtedList.concat(item);
         }
     });
-
+    
 
     var lastList = [];
     var pr;
@@ -310,12 +320,11 @@ function filterList(){
     if(size != 'none-size'){
         if(gender != 'none-gender'){
             filtedList.forEach(item =>{
-                pr = getProductDetailByIdProductAndIdSize(item.id, size);
-                if(pr != null) {
-                    if(pr.type == gender){
-                        lastList = lastList.concat(pr);
-                    }
+                
+                if(item.type.toString() == gender){
+                    lastList = lastList.concat(pr);
                 }
+                
             });
         }else{
             filtedList.forEach(item =>{
@@ -328,20 +337,37 @@ function filterList(){
     }else{
         if(gender != 'none-gender'){
             filtedList.forEach(item =>{
-                if(item.gender == gender){
+                if(item.type.toString() == gender){
                     lastList = lastList.concat(item);
                 }
             });
         }else lastList = lastList.concat(filtedList);
     }
+
     g_lastList = [];
-    g_lastList = g_lastList.concat(lastList);
-    console.log("Global list filter: ");
+    if(searchInput.value != ''){
+        console.log("Vào đây k z?");
+        console.log(lastList);
+        lastList.forEach(item =>{
+            for(let i = 0; i < searchList.length; i++){
+                if(searchList[i] != ''){
+                    if(item.name.toLowerCase().includes(searchList[i].toLowerCase())){
+                        g_lastList = g_lastList.concat(item);
+                        break;
+                    }
+                }
+                
+            }     
+        });
+    }else g_lastList = g_lastList.concat(lastList);
     console.log(g_lastList);
+
+    
+    
     //Gọi phân trang
-    pagination(lastList, amountProduct);
+    pagination(g_lastList, amountProduct);
     //Đẩy sản phẩm vào khung chứa
-    innerProducts(lastList, amountProduct, 1);
+    innerProducts(g_lastList, amountProduct, 1);
     setActiveForFirstPage();
 }
 
@@ -518,14 +544,20 @@ function innerProducts(filtedList, amount, pagenumber){
     var startIndex = (parseInt(pagenumber) - 1)*amount;
     var endIndex;
     
-    if(pagenumber*amount >= filtedList.length){
-        endIndex = parseInt(filtedList.length);
-    }else endIndex = parseInt(pagenumber)*amount;
+    if(filtedList.length == 0){
+        listProduct = 'There is not any product in your option ^^\'';
+    }else{
+        if(pagenumber*amount >= filtedList.length){
+            endIndex = parseInt(filtedList.length);
+        }else endIndex = parseInt(pagenumber)*amount;
 
-    for(let i = startIndex; i < endIndex; i++){
-        listProduct += showDetailProduct(filtedList[i]);
+        for(let i = startIndex; i < endIndex; i++){
+            listProduct += showDetailProduct(filtedList[i]);
+        }
+    
     }
 
+    
     document.querySelector('.product-page').querySelector('.container-products').innerHTML = listProduct;
     
 }
@@ -622,8 +654,8 @@ function checkDefaultInput(){
         }
         
     }
-
     renderPriceScope();
+    filterList();
 }
 
 function renderCheckInput(inpContainer){
@@ -663,7 +695,7 @@ function renderPriceScope(){
 
     if(panelPrice.querySelector('#none-price').checked || checkedInput.length == 0){
         min.value = 300000;
-        max.value = 5000000;
+        max.value = 8000000;
         filterList();
         return;
     }
@@ -677,11 +709,8 @@ function renderPriceScope(){
     }
 
     min.value = checkedInput[0].value;
-    if(checkedInput.length == 2){
-        max.value = checkedInput[1].value;
-    }else{
-        max.value = checkedInput[checkedInput.length-1].value;
-    }
+    max.value = checkedInput[checkedInput.length-1].value;
+    
     
     filterList();
 }

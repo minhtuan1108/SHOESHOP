@@ -32,7 +32,7 @@ function innerLandingPage(){
             </div>
             <div id="group-account">
 
-                <div class="search-icon icon">
+                <div class="search-icon icon" onclick="searchEvent();">
                     <i class="ti-search"></i>
                 </div>
                 
@@ -152,16 +152,16 @@ function innerLandingPage(){
                         <h1><i class="fa-sharp fa-solid fa-fire-flame-curved"></i>Hot</h1>
 
                         <div class="product">
-                            <img src="./assets/img/product/demo.jpg" alt="">
+                            <img src="./assets/img/product/Mizuno/1/1.png" alt="">
                         </div>
                         <div class="product">
-                            <img src="./assets/img/product/demo.jpg" alt="">
+                            <img src="./assets/img/product/Mizuno/2/1.png" alt="">
                         </div>
                         <div class="product">
-                            <img src="./assets/img/product/demo.jpg" alt="">
+                            <img src="./assets/img/product/Mizuno/3/1.png" alt="">
                         </div>
                         <div class="product">
-                            <img src="./assets/img/product/demo.jpg" alt="">
+                            <img src="./assets/img/product/Mizuno/4/1.png" alt="">
                         </div>
                     </div>
 
@@ -183,16 +183,16 @@ function innerLandingPage(){
                         <h1><i class="fa-sharp fa-solid fa-volleyball"></i>Sport</h1>
 
                         <div class="product">
-                            <img src="./assets/img/product/demo.jpg" alt="">
+                            <img src="./assets/img/product/Asics/1/1.png" alt="">
                         </div>
                         <div class="product">
-                            <img src="./assets/img/product/demo.jpg" alt="">
+                            <img src="./assets/img/product/Asics/2/1.png" alt="">
                         </div>
                         <div class="product">
-                            <img src="./assets/img/product/demo.jpg" alt="">
+                            <img src="./assets/img/product/Asics/3/1.png" alt="">
                         </div>
                         <div class="product">
-                            <img src="./assets/img/product/demo.jpg" alt="">
+                            <img src="./assets/img/product/Asics/4/1.png" alt="">
                         </div>
                     </div>
                 </div>
@@ -204,16 +204,16 @@ function innerLandingPage(){
                         <h1><i class="fa-sharp fa-solid fa-hand-holding-dollar"></i>Affordable</h1>
 
                         <div class="product">
-                            <img src="./assets/img/product/demo.jpg" alt="">
+                            <img src="./assets/img/product/Adidas/1/1.png" alt="">
                         </div>
                         <div class="product">
-                            <img src="./assets/img/product/demo.jpg" alt="">
+                            <img src="./assets/img/product/Adidas/2/1.png" alt="">
                         </div>
                         <div class="product">
-                            <img src="./assets/img/product/demo.jpg" alt="">
+                            <img src="./assets/img/product/Adidas/3/1.png" alt="">
                         </div>
                         <div class="product">
-                            <img src="./assets/img/product/demo.jpg" alt="">
+                            <img src="./assets/img/product/Adidas/4/1.png" alt="">
                         </div>
                     </div>
 
@@ -235,16 +235,16 @@ function innerLandingPage(){
                         <h1><i class="fa-solid fa-star"></i>Luxury</h1>
 
                         <div class="product">
-                            <img src="./assets/img/product/demo.jpg" alt="">
+                            <img src="./assets/img/product/Kawasaki/1/1.png" alt="">
                         </div>
                         <div class="product">
-                            <img src="./assets/img/product/demo.jpg" alt="">
+                            <img src="./assets/img/product/Kawasaki/2/1.png" alt="">
                         </div>
                         <div class="product">
-                            <img src="./assets/img/product/demo.jpg" alt="">
+                            <img src="./assets/img/product/Kawasaki/3/1.png" alt="">
                         </div>
                         <div class="product">
-                            <img src="./assets/img/product/demo.jpg" alt="">
+                            <img src="./assets/img/product/Kawasaki/4/1.png" alt="">
                         </div>
                     </div>
 
@@ -334,6 +334,16 @@ function slide(){
     
 }
 
+function innerProductDemo(){
+    var hot = document.querySelector('.hot').querySelector('.container');
+    var sport = document.querySelector('.hot').querySelector('.container');
+    var luxury = document.querySelector('.hot').querySelector('.container');
+    var affordable = document.querySelector('.hot').querySelector('.container');
+
+    var text;
+    
+}
+
 function changeMode(modeBtn){
     var settingBtn = modeBtn.querySelector('.option-mode');
     var settingIcon = modeBtn.querySelector('i');
@@ -382,11 +392,15 @@ function containerInfoCustomer(tag){
         }
         accoutInfo.style.display = 'flex';
     }else{
-        console.log(accoutInfo.textContent == 'Nothing here');
-        console.log(selection.checked == false);
-        if(accoutInfo.textContent == 'Nothing here' || selection.checked){
-            accoutInfo.style.display = 'none';
-        }
-        
+        accoutInfo.style.display = 'none';
     }
+}
+
+function searchEvent(){
+    var productPage = document.querySelector('.product-page');
+
+    if(productPage == null){
+        innerProductPage();
+    }
+    document.querySelector('#search-input').focus();
 }
