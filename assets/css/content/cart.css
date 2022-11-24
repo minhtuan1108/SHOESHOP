@@ -78,12 +78,14 @@
     color: #888;
 }
 
-.container-cart .group-selection select{
+.container-cart .group-selection .select-size{
+    color: #000;
     border: unset;
     margin: 0 5px;
 }
 
-.container-cart .group-selection input{
+.container-cart .group-selection #quantity{
+    color: #000;
     border: unset;
     width: 40px;
     margin: 0 5px;
@@ -91,7 +93,7 @@
 
 .container-cart .pr .price-cart{
     font-weight: bold;
-    color: #000;
+    color: var(--main-color);
     margin-top: 10px;
 }
 
@@ -289,6 +291,11 @@
 
 .container-popUp .pr .info p{
     color: #888;
+}
+
+.container-popUp .pr .info > p{
+    color: var(--main-color);
+    font-weight: bold;
 }
 
 .container-popUp .pr .info .size-quantity{

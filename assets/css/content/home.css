@@ -71,7 +71,8 @@
 }
 
 .products .container .product{
-    width: 50%;
+    width: 40%;
+    border-radius: 20px;
     display: block;
 }
 
@@ -84,6 +85,7 @@
 
 .products img{
     width: 100%;
+    border-radius: 20px;
 }
 
 .products .product .name{

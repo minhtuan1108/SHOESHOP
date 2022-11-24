@@ -83,15 +83,15 @@ function innerProductToCartPage(){
                         <h5 class="brand">Brand: ${pr.brand}</h5>
                         <div class="group-selection">
                             <div class="slection-size">
-                                <p class="size">Size:</p>
-                                <p> ${size.value} </p>
+                                <p class="size">Size: </p>
+                                <p class="select-size"> ${size.value} </p>
                             </div>
                             <div class="selection-quantity">
                                 <p class="quantity">Quantity: </p>
-                                <input type="number" name="quantity" id="quantity" value="${productDetail.quantity}">
+                                <p id="quantity">${productDetail.quantity}</p>
                             </div>
                         </div>                                    
-                        <p class="price-cart">Price: ${total}đ</p>
+                        <p class="price-cart">Price: ${formatNumberToMoney(total)}đ</p>
                     </div>
                 </div>`;
                 count++;
@@ -195,7 +195,7 @@ function removeProductFromCart(tagDel){
 function setTotalPrice(){
     var tagTotal = document.querySelector('.container-cart').querySelector('.price-total');
     var total = calculateTotalPriceOfCurrentCart();
-    tagTotal.innerHTML = `${total}đ`;
+    tagTotal.innerHTML = `${formatNumberToMoney(total)}đ`;
 }
 
 function calculateTotalPriceOfCurrentCart(){
@@ -257,7 +257,7 @@ function storeBillDetail(idBill){
     lsBillDetail = JSON.parse(data.getItem("listBillDetail"));
     var productsInCart = getProductInCurrentCart();
     for(let i = 0; i < productsInCart.length; i++){
-        setDataProductQuantity(productsInCart[i].idProduct, productsInCart[i].idSize, productsInCart[i].quantity);
+        // setDataProductQuantity(productsInCart[i].idProduct, productsInCart[i].idSize, productsInCart[i].quantity);
         lsBillDetail = lsBillDetail.concat(new billDetail(idBill, productsInCart[i].idProduct, productsInCart[i].idSize, productsInCart[i].quantity, productsInCart[i].Subprice));
     }
 
@@ -309,7 +309,7 @@ function showBillCheckOut(total){
                 
             </div>
             <div class="total">
-                <p>Total: <span class="total-money">${total}đ</span></p>
+                <p>Total: <span class="total-money">${formatNumberToMoney(total)}đ</span></p>
                 <div class="button">
                     <input type="button" id="checkOut-button" value="Check out" onclick="checkOut2();">
                 </div>
@@ -350,7 +350,7 @@ function openBillDetail(bill){
                 
             </div>
             <div class="total">
-                <p>Total: <span class="total-money">${bill.total}đ</span></p>
+                <p>Total: <span class="total-money">${formatNumberToMoney(bill.total)}đ</span></p>
                 <p>Status: 
                     ${status}
                 </p>
@@ -404,7 +404,7 @@ function innerProductToBillDetail(listProducts){
                         <p class="size">Size: <span>${getSizeById(prInCart.idSize).value}</span></p>
                         <p class="quantity">Quantity: <span>${prInCart.quantity}</span></p>
                     </div>                                    
-                    <p class="price-cart">Price: ${prInCart.Subprice}đ</p>
+                    <p class="price-cart">Price: ${formatNumberToMoney(prInCart.Subprice)}đ</p>
                 </div>
             </div>`;
         }
@@ -439,7 +439,7 @@ function innerBillPaid(){
                         <div class="main-content">
                             <p>Bill ID: <span id="billID">${lsBill[i].id}</span></p>
                             <p>Date create: <span>${dateString}</span></p>
-                            <p>Total: <span  class="total-price">${lsBill[i].total}</span>đ</p>
+                            <p>Total: <span  class="total-price">${formatNumberToMoney(lsBill[i].total)}</span>đ</p>
                         </div>
                         <div class="status">
                             <p>Status: ${status}</p>

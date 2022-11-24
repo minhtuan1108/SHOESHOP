@@ -207,32 +207,32 @@ function setActiveAndBanner(brand){
     switch (brand.id) {
         case "All":
             title.innerHTML = 'V-Shoe shopping';
-            banner.innerHTML = `<video autoplay loop> <source src="./assets/video/V-shoes.mp4" type="video/mp4"></video>`;
+            banner.innerHTML = `<video autoplay loop> <source src="./assets/video/All.mp4" type="video/mp4"></video>`;
             break;
     
         case "Asics":
             title.innerHTML = 'Giày Asics chính hãng';
-            banner.innerHTML = `<img src="./assets/img/product/banner/giay-asics-chinh-hang.jpg" alt="">`;
+            banner.innerHTML = `<img src="./assets/img/product/banner/Asics.jpg" alt="">`;
             break;
 
         case "Mizuno":
             title.innerHTML = 'Giày Mizuno chính hãng';
-            banner.innerHTML = `<img src="./assets/img/product/banner/giay-asics-chinh-hang.jpg" alt="">`;
+            banner.innerHTML = `<img src="./assets/img/product/banner/Mizuno.png" alt="">`;
             break;
         
         case "Beyono":
             title.innerHTML = 'Giày Beyono chính hãng';
-            banner.innerHTML = `<img src="./assets/img/product/banner/giay-asics-chinh-hang.jpg" alt="">`;
+            banner.innerHTML = `<img src="./assets/img/product/banner/Beyono.png" alt="">`;
             break;
 
         case "Kawasaki":
             title.innerHTML = 'Giày Nike chính hãng';
-            banner.innerHTML = `<img src="./assets/img/product/banner/giay-asics-chinh-hang.jpg" alt="">`;
+            banner.innerHTML = `<img src="./assets/img/product/banner/Kawasaki.png" alt="">`;
             break;
 
         case "Adidas":
             title.innerHTML = 'Giày Adidas chính hãng';
-            banner.innerHTML = `<img src="./assets/img/product/banner/giay-asics-chinh-hang.jpg" alt="">`;
+            banner.innerHTML = `<img src="./assets/img/product/banner/Adidas.png" alt="">`;
             break;
 
         default:
@@ -319,12 +319,11 @@ function filterList(){
 
     if(size != 'none-size'){
         if(gender != 'none-gender'){
-            filtedList.forEach(item =>{
-                
-                if(item.type.toString() == gender){
-                    lastList = lastList.concat(pr);
+            filtedList.forEach(item =>{  
+                pr = getProductDetailByIdProductAndIdSize(item.id, size);
+                if(item.type.toString() == gender && pr != null){
+                    lastList = lastList.concat(item);
                 }
-                
             });
         }else{
             filtedList.forEach(item =>{

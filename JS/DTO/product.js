@@ -45,7 +45,7 @@ function showDetailProduct(pr) {
                     <div class="product-brand">${pr.brand}</div>
                     <div class="product-name">${pr.name}</div>
                     <div class="product-price">
-                        <div class="new-price">${new_price}đ</div>
+                        <div class="new-price">${formatNumberToMoney(new_price)}đ</div>
                     </div>
 
                 </div>
@@ -68,8 +68,8 @@ function showDetailProduct(pr) {
                     <div class="product-brand">${pr.brand}</div>
                     <div class="product-name">${pr.name}</div>
                     <div class="product-price">
-                        <div class="new-price">${new_price}đ</div>
-                        <div class="old-price">${pr.price}đ</div>
+                        <div class="new-price">${formatNumberToMoney(new_price)}đ</div>
+                        <div class="old-price">${formatNumberToMoney(pr.price)}đ</div>
                     </div>
 
                 </div>
@@ -83,7 +83,7 @@ function calculateNewPrice(pr){
         new_price += 1000 - (new_price%1000);
     }
 
-    return new_price
+    return new_price;
 }
 
 function showProductInForm(pr){
@@ -100,7 +100,7 @@ function showProductInForm(pr){
                                 <div class="price">
                                     <p class="label-price title">Price: </p>
                                     <div class="new-price">
-                                        <p>${new_price}</p>
+                                        <p>${formatNumberToMoney(new_price)}</p>
                                         <span>đ</span>
                                     </div>
                                 </div>
@@ -145,11 +145,11 @@ function showProductInForm(pr){
                             <div class="price">
                                 <p class="label-price title">Price: </p>
                                 <div class="new-price">
-                                    <p>${new_price}</p>
+                                    <p>${formatNumberToMoney(new_price)}</p>
                                     <span>đ</span>
                                 </div>
                                 <div class="old-price">
-                                    <p>${pr.price}</p>
+                                    <p>${formatNumberToMoney(pr.price)}</p>
                                     <span>đ</span>
                                 </div>
                             </div>

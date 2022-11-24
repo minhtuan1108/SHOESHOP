@@ -65,22 +65,6 @@ function createGeneralID(list){
     return id;
 }
 
-// function uploadImage(){
-
-//     const img_input = document.querySelector("#selection-file");
-//     var upload_image = "";
-//     img_input.addEventListener("change", function() {
-//         console.log(img_input.value);
-//         const reader = new FileReader();
-//         reader.addEventListener("load", () => {
-//             localStorage.setItem("chooseimage", reader.result);
-//             upload_image = reader.result;
-//         });
-//         reader.readAsDataURL(this.files[0]);
-//     });
-// }
-
-
 //Hàm đọc ảnh từ file chooser
 function chooseFile(fileInput){
     var sourceAvt ='';
@@ -107,4 +91,18 @@ function setAvatarSourceCustomer(sourceAvatar){
 
     data.setItem("activeAccount", JSON.stringify(activeAccount));
     data.setItem("listCustomer", JSON.stringify(lsCustomer));
+}
+
+//Hàm chuyển dạng số thành dạng tiền
+function formatNumberToMoney(number){
+    var money = number.toString().split('');
+    var count = 0;
+    for(let i = (money.length - 1); i > 0 ; i--){
+        count++;
+        if(count == 3){
+            money.splice(i, 0, ',');
+            count = 0;
+        }
+    }
+    return money.join('');
 }
