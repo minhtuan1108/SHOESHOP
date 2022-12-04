@@ -6,31 +6,30 @@ var lsProductDetail = [];
 var lsCart = [];
 var lsCartDetail = [];
 var lsBill = [];
-var lsProduct = [];
+var lsCustomer = [];
 var lsMember = [];
 var lsBillDetail = [];
 var lsPosition = [];
 var lsAccount = [];
-var tempSizeList = [];
-var lsCustomer = [];
 var listStatistic = [];
+var tempSizeList = [];
+
 var activeAccount = null;
 
 data.setItem("listProduct",JSON.stringify(lsProduct));
 data.setItem("listSize", JSON.stringify(lsSize));
-data.setItem("tempList", JSON.stringify(tempSizeList));
 data.setItem("listProductDetail", JSON.stringify(lsProductDetail));
 data.setItem("listBill", JSON.stringify(lsBill));
 data.setItem("listCartDetail", JSON.stringify(lsCartDetail));
-data.setItem("listProduct", JSON.stringify(lsProduct));
+data.setItem("listCustomer", JSON.stringify(lsCustomer));
 data.setItem("listMember", JSON.stringify(lsMember));
 data.setItem("listBillDetail",JSON.stringify(lsBillDetail));
 data.setItem("listPosition", JSON.stringify(lsPosition));
 data.setItem("listAccount", JSON.stringify(lsAccount));
 data.setItem("listCart", JSON.stringify(lsCart));
-data.setItem("listCustomer", JSON.stringify(lsCustomer));
 data.setItem("activeAccount", JSON.stringify(activeAccount));
-
+data.setItem("listSize", JSON.stringify(lsSize));
+data.setItem("tempList", JSON.stringify(tempSizeList));
 
 
 //Hàm ngưng động thời gian:)))
@@ -52,7 +51,6 @@ function randonID(){
 
     return id;
 }
-
 
 // Hàm này để tại ID không trùng lặp
 function createGeneralID(list){
@@ -77,20 +75,45 @@ function LogOut()
     activeAccount = null
 }
 
-// function chooseFileImg(fileInput, i){
-//     var sourceProd ='';
-//     if(fileInput.files && fileInput.files[0]){
-//         var reader = new FileReader;
-//         reader.onload = function(e){
-//             sourceProd = e.target.result;
-//             setImgSourceProduct(sourceProd, i);
-//         }
-//         reader.readAsDataURL(fileInput.files[0]);
-//     }
-//     return sourceProd;
-// }
-// function setImgSourceProduct(sourceImg, i){
-//     lsProduct = JSON.parse(data.getItem("listProduct"));
-//     lsProduct[i].image = sourceImg;
-//     data.setItem("listProduct", JSON.stringify(lsProduct));
-// }
+
+//Hàm đọc ảnh từ file chooser
+function chooseFile(fileInput){
+    var sourceAvt ='';
+    if(fileInput.files && fileInput.files[0]){
+        var reader = new FileReader;
+        reader.onload = function(e){
+            sourceAvt = e.target.result;
+            setAvatarSourceCustomer(sourceAvt);
+            loadAvatar();
+        }
+        reader.readAsDataURL(fileInput.files[0]);
+    }
+}
+
+function setAvatarSourceCustomer(sourceAvatar){
+    activeAccount.avatar = sourceAvatar;
+    lsCustomer = JSON.parse(data.getItem("listCustomer"));
+
+    for(let i = 0; i < lsCustomer.length; i++){
+        if(lsCustomer[i].id == activeAccount.id){
+            lsCustomer[i].avatar = sourceAvatar;
+        }
+    }
+
+    data.setItem("activeAccount", JSON.stringify(activeAccount));
+    data.setItem("listCustomer", JSON.stringify(lsCustomer));
+}
+
+//Hàm chuyển dạng số thành dạng tiền
+function formatNumberToMoney(number){
+    var money = number.toString().split('');
+    var count = 0;
+for(let i = (money.length - 1); i > 0 ; i--){
+        count++;
+        if(count == 3){
+            money.splice(i, 0, ',');
+            count = 0;
+        }
+    }
+    return money.join('');
+}
