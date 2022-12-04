@@ -4,63 +4,108 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="shortcut icon" href="./assets/img/logo/iconTitleWeb-removebg-preview.png">
+    <title>Shoe Shop</title>
     <script src="https://kit.fontawesome.com/3d21054bc7.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
     <link rel="stylesheet" href="/assets/css/danhsachsp.css">
     <link rel="stylesheet" href="/assets/css/suasp.css">
+    <link rel="stylesheet" href="/assets/css/dh.css">
+    <link rel="stylesheet" href="/assets/css/nd.css">
+    <link rel="stylesheet" href="/assets/css/thongke.css">
     <link rel="stylesheet" href="/themify-icons/themify-icons.css">
 </head>
-<body onload="displayAllProduct(), showFormAdd(), displayAllwithEdit(), checkProduct()">
-    <div id="top"></div>
+<body onload="renderClient(), displayAllProduct(), showFormAdd(), displayAllwithEdit(), clientForm(), displayAllOrder(), displayAllStatistic()">
+    <div>
+        <a href="#"><i class="fas fa-arrow-up gototop"></i></a>   
+    </div>
+    
     <div id="main">
 
         <div id="header">
             <!-- LOGO -->
-                <div class="logo_box weight_550">
-                    <a href="admin.html" class="a_style" class="a_style">VSHOE</a>                
+                <div class="logo_box">
+                    <a href="admin.html" class="a_style" class="a_style"></a>                
+                </div>
+                
+                <div class="logout_btn icon">
+                    <a class="a_style" style="color: #333" href="/index.html" onclick="LogOut();"><i class="fa-solid fa-right-from-bracket"></i></a>
+                </div>
+                <div class="account-icon icon" onclick="InforUser();">
+                    <i class="ti-user"></i>
+                    <div id="account-info" style="display: none;"></div>
                 </div>
 
-            <!-- lOGIN INFOR -->
-                <div class="login_infor">
-                    <div class="login_name weight_550">
-                        <a href="" class="a_style">An Nguyễn</a> 
-                    </div>
+                <div class="mobile-menu-btn padding_0_16">
+                    <a href="#" class="a_style" style="color: #333" onclick="displaySubMenu();"><i class="menu-icon ti-menu"></i></a>
                 </div>
+                
+        </div>
+        <div id="medium_small_menu">
+            <ul id="medium_small_nav">
+                <li>
+                    <a href="#DanhSachSanPham" class="a_style" onclick="displayDSSP(), displaySubMenu();"><i class="padding_0_8 icon fa-solid fa-list"></i>
+                        <span> Product List </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#SuaSanPham" class="a_style" onclick="displaySSP(), displaySubMenu();"><i class="padding_0_8 icon fa-solid fa-pen"></i>
+                        <span> Edit product </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#DonHang" class="a_style" onclick="displayDH(), displaySubMenu();"><i class="padding_0_8 icon fa-solid fa-clipboard"></i>
+                        <span>  Order List </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#ThongKe" class="a_style" onclick="displayTK(), displaySubMenu();"><i class="padding_0_8 icon fa-solid fa-chart-simple"></i>
+                        <span>  Statistical  </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#DanhSachNguoiDung" onclick="displayND(), displaySubMenu();" class="a_style"><i class="padding_0_8 icon fa-solid fa-address-book"></i>
+                        <span> User list </span>
+                    </a>
+                </li>
+                <li>                   
+                    <div class="logout_btn">
+                        <a class="a_style" style="color: #333" href="/index.html" onclick="LogOut();"><i class="padding_0_8 fa-solid fa-right-from-bracket"></i>Log out</a>
+                    </div>
+                </li>
+            </ul>
         </div>
     <div class="flex_layout">
         <div class="left_slider column_item slidebar_one">
             <ul id="nav">
                 <li>
-                    <div class="login_name weight_550">
-                        <a href="/admin.html" class="a_style">An Nguyễn</a> 
-                    </div>
-                </li>
-                <li>
-                    <a href="#DanhSachSanPham" class="a_style" onclick="displayDSSP()"><i class="icon fa-solid fa-list"></i>
-                        <span> Danh sách sản phẩm </span>
+                    <a href="#DanhSachSanPham" class="a_style" style="margin-top: 8px;" onclick="displayDSSP()"><i class="icon fa-solid fa-list"></i>
+                        <span> Product List </span>
                     </a>
                 </li>
                 <li>
                     <a href="#SuaSanPham" class="a_style" onclick="displaySSP();"><i class="icon fa-solid fa-pen"></i>
-                        <span> Sửa sản phẩm </span>
+                        <span> Edit product </span>
                     </a>
                 </li>
                 <li>
-                    <a href="/donhang.html" class="a_style"><i class="icon fa-solid fa-clipboard"></i>
-                        <span>  Đơn hàng </span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="/thongke.html" class="a_style"><i class="icon fa-solid fa-chart-simple"></i>
-                        <span>  Thống kê  </span>
+                    <a href="#DonHang" class="a_style" onclick="displayDH();"><i class="icon fa-solid fa-clipboard"></i>
+                        <span>  Order List </span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="/dsnguoidung.html" class="a_style"><i class="icon fa-solid fa-address-book"></i>
-                        <span> Danh sách người dùng </span>
+                    <a href="#ThongKe" class="a_style" onclick="displayTK();"><i class="icon fa-solid fa-chart-simple"></i>
+                        <span>  Statistical  </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#DanhSachNguoiDung" onclick="displayND();" class="a_style"><i class="icon fa-solid fa-address-book"></i>
+                        <span> User list </span>
                     </a>
                 </li>
             </ul>
@@ -68,31 +113,78 @@
 
         <div class="content column_item main_column ">
  
-
             <!-- DSSP -->
             <div id="DSSP">
                 <div id="productListArea">
                     <!-- Danh sách sản phẩm -->           
                     <div class="header_content">
-                        <h3>Danh sách sản phẩm</h3>
+                        <h3>Product List</h3>
                         <br><hr><br>
                     </div>
+                    <div id="FilterProduct">
+                        <div id="ProductName">
+                            <label for="Filter_name_product" class="form_label">Name: </label>
+                            <input class="form_input" type="text" id="Filter_name_product">
+                        </div>
+                        <div id="ProductBrand">
+                            <label for="Filter_brand_product" class="form_label">Brand: </label>
+                            <select id="Filter_brand_product">
+                                <option value="0">All</option>
+                                <option value="Asics">Asics</option>
+                                <option value="Mizuno">Mizuno</option>
+                                <option value="Beyono">Beyono</option>
+                                <option value="Nike">Nike</option>
+                                <option value="Adidas">Adidas</option>
+                            </select>  
+                        </div>
+        
+                        <div id="ProductType">
+                            <label for="Filter_type_product" class="form_label">Type: </label>
+                            <select id="Filter_type_product">
+                                <option value="0">All</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Children">Children</option>
+                            </select> 
+                        </div>
+
+                        <div id="ProductPrice">
+                            <label for="Filter_price_product" class="form_label">Price: </label>
+                            <select id="Filter_price_product">
+                                <option value="0">All</option>
+                                <option value="300000">From 300000 or less</option>
+                                <option value="1000000">From 1000000 or less</option>
+                                <option value="2000000">From 2000000 or less</option>
+                                <option value="3000000">From 3000000 or less</option>
+                                <option value="4000000">From 4000000 or less</option>
+                                <option value="5000000">From 5000000 or less</option>
+                                <option value="5000001">More than 5000000</option>
+                            </select> 
+                        </div>
+                        <div class="Filter_btn">
+                            <button class="btn FilterProduct_btn" onclick="displayAllFilteredProduct()">Filter</button>
+                        </div>
+                    </div>
+                    <br>
                     <!-- Table Product -->
                     <table id="displayListProduct"> </table>
 
                     <br><br>  
-
+                   
                 </div>
                 
                 <div id="addProductArea">                   
                     <!-- Thêm sản phẩm -->           
                     <div class="header_content ">
-                        <h3>Thêm sản phẩm</h3>
+                        <h3>Add Product</h3>
                         <br><hr><br>
                     </div>
                     <!-- add form -->
                     <div id="addField"></div>
+                    <div id="addQuantityField"></div>
                 </div>
+                
+                  
             </div>
             <!-- END DSSP -->
 
@@ -100,9 +192,58 @@
             <div id="SSP">
                 <!-- Danh sách sản phẩm -->           
                 <div class="header_content">
-                    <h3>Sửa sản phẩm</h3>
+                    <h3>Edit Product</h3>
                     <br><hr><br>
                 </div>
+                <div id="FilterProductEdit">
+                    <div id="ProductEditName">
+                        <label for="Filter_edit_name_product" class="form_label">Name: </label>
+                        <input class="form_input" type="text" id="Filter_edit_name_product">
+                    </div>
+                    <div id="ProductEditSize">
+                        <label for="Filter_edit_size_product" class="form_label">Size: </label>
+                        <input class="form_input" type="number" id="Filter_edit_size_product">
+                    </div>
+                    <div id="ProductEditBrand">
+                        <label for="Filter_edit_brand_product" class="form_label">Brand: </label>
+                        <select id="Filter_edit_brand_product">
+                            <option value="0">All</option>
+                            <option value="Asics">Asics</option>
+                            <option value="Mizuno">Mizuno</option>
+                            <option value="Beyono">Beyono</option>
+                            <option value="Nike">Nike</option>
+                            <option value="Adidas">Adidas</option>
+                        </select>  
+                    </div>
+    
+                    <div id="ProductEditType">
+                        <label for="Filter_edit_type_product" class="form_label">Type: </label>
+                        <select id="Filter_edit_type_product">
+                            <option value="0">All</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Children">Children</option>
+                        </select> 
+                    </div>
+
+                    <div id="ProductEditPrice">
+                        <label for="Filter_edit_price_product" class="form_label">Price: </label>
+                        <select id="Filter_edit_price_product">
+                            <option value="0">All</option>
+                            <option value="300000">From 300000 or less</option>
+                            <option value="1000000">From 1000000 or less</option>
+                            <option value="2000000">From 2000000 or less</option>
+                            <option value="3000000">From 3000000 or less</option>
+                            <option value="4000000">From 4000000 or less</option>
+                            <option value="5000000">From 5000000 or less</option>
+                            <option value="5000001">More than 5000000</option>
+                        </select> 
+                    </div>
+                    <div class="Filter_btn">
+                        <button class="btn FilterProduct_btn" onclick="displayAllFilteredProductEdit()">Filter</button>
+                    </div>
+                </div>
+                <br>
                 <!-- Table Product -->
                 <table id="displayEditArea"> </table>
 
@@ -111,7 +252,7 @@
                 <!-- Sửa thông tin sản phẩm -->           
                 <div id="editArea">
                     <div id="edit_header" class="header_content">
-                        <h3>Sửa thông tin sản phẩm</h3>
+                        <h3>Edit product information</h3>
                         <br><hr><br>
                     </div>
                     <!-- edit form -->
@@ -120,15 +261,178 @@
                     </div>
                 </div>
             </div>
+            <!-- END SSP -->
 
+            <!-- ND -->
+            <div id="ND">
+                <!-- Danh sách người dùng -->           
+                <div class="header_content">
+                    <h3>User list</h3>
+                    <br><hr><br>
+                </div>
+                <!-- Table Product -->
+                <table id="tableContent"> </table>
+                    <div id="showDetail"></div>
+                <br><br>  
 
+                <!-- Thêm người dùng -->           
+                <div id="addClientArea">
+                    <div id="add_header" class="header_content">
+                        <h3>Add users</h3>
+                        <br><hr><br>
+                    </div>
+                    <div id="editHeader" style="display: none;" class="header_content">
+                        <h3>Edit user information</h3>
+                        <br><hr><br>
+                    </div>
+                    <!-- add form -->
+                    <div id="addClientField"></div>
+                </div>
 
+            </div>
+            <!-- DH -->
+            <div id="DH">
+                <!-- Danh sách đơn hàng -->           
+                <div class="header_content">
+                    <h3>Order List</h3>
+                    <br><hr><br>
+                </div>
+                <!-- Date time -->             
+                <div id="FilterbyDate">
+                    <div id="dateStart">
+                        <label for="name" class="form_label">From date: </label>
+                        <input class="form_input" type="date" id="dateStartInput">
+                    </div>
+    
+                    <div id="dateEnd">
+                        <label for="name" class="form_label">To date: </label>
+                        <input class="form_input" type="date" id="dateEndInput">
+                    </div>
+                    <div>
+                        <button class="btn FilterbyDate_btn" onclick="displayAllOrder()">Filter</button>
+                    </div>
+                </div>
+                
+                <br>
+                <!-- Table Product -->
+                <table id="displayListOrder"> </table>
+    
+            </div>
+
+            <!-- END DH -->
+
+            <!-- TK-->
+            <div id="TK">
+                <!-- Thống kê đơn hàng -->           
+                <div class="header_content">
+                    <h3>Statistical</h3>
+                    <br><hr><br>
+                </div>
+                
+                <!-- Date time -->             
+                <div id="FilterbyDate">
+                    <div id="dateStart">
+                        <label for="name" class="form_label">From date: </label>
+                        <input class="form_input" type="date" id="start">
+                    </div>
+    
+                    <div id="dateEnd">
+                        <label for="name" class="form_label">To date: </label>
+                        <input class="form_input" type="date" id="end">
+                    </div>
+                    <div>
+                        <label for="name" class="form_label">Brand: </label>
+                        <select name="chonthuonghieu" id="brands"><option value="0">All</option><option value="1">ASICS</option><option value="2">MIZUNO</option><option value="3">BEYONO</option><option value="4">NIKE</option><option value="5">ADIDAS</option></select>  
+                    </div>
+                    <div>
+                        <button class="btn FilterbyDate_btn" onclick="displayAll()">Filter</button>
+                    </div>
+                </div>
+                <br>
+                <h3>Revenue by product</h3>
+                <table id="ByProduct">
+                </table>
+                <br>
+                <h3>Revenue by day</h3>
+                <br>
+                <table id="ByTime"> 
+                </table>
+            </div>
+           
         </div>
-    </div>
+        <!-- END MAIN -->
         <div id="footer">
-
+            <img src="" id="aaa" alt="">
         </div>
     </div>
-    <script src="/assets/js/sp.js"></script>
+    <!-- Modal layout-->
+    <div id="modal" style="display: none;">
+        <div class="modal_overlay"></div>
+
+        <div class="modal_body">
+            <div class="modal_inner">
+                <div class="header_content">
+                    <h3>Order details</h3>
+                    <div class="close-btn close_Order" style="z-index: 3;" onclick="close_OrderDetail();"><i class="icon fa-solid fa-xmark"></i></div>
+                    
+                </div>
+                <div id="ClientInforArea"></div>
+                <table id="DetailOrderArea"> </table>
+
+        </div>
+        </div>
+    </div>
+<!-- Modal layout customer -->
+    <div id="modalcustomer" style="display: none;">
+        <div class="modal_overlay"></div>
+        <div class="modal_body">
+            <div class="modal_inner">
+                <div class="header_content">
+                    <h3>Customer details</h3>
+                    <div class="close-btn close_Order" style="z-index: 3;" onclick="closeDetail();"><i class="icon fa-solid fa-xmark"></i></div>
+                    
+                </div>
+                <div id="showDetail"></div>
+
+        </div>
+        </div>
+    </div>
+    <!-- Modal layout by product -->
+    <div id="modalproduct" style="display: none;">
+        <div class="modal_overlay"></div>
+        <div class="modal_body">
+            <div class="modal_inner">
+                <div class="header_content">
+                    <h3>Product details</h3>
+                    <div class="close-btn close_Order" style="z-index: 3;" onclick="closeDetailProduct();"><i class="icon fa-solid fa-xmark"></i></div>
+                    
+                </div>
+                <div id="showDetail"></div>
+
+        </div>
+        </div>
+    </div>
+    <!-- Modal layout by day -->
+    <div id="modalday" style="display: none;">
+        <div class="modal_overlay"></div>
+        <div class="modal_body">
+            <div class="modal_inner">
+                <div class="header_content">
+                    <h3>Customer details</h3>
+                    <div class="close-btn close_Order" style="z-index: 3;" onclick="closeDetailDay();"><i class="icon fa-solid fa-xmark"></i></div>
+                    
+                </div>
+                <table id="showDetailByDay"></table>
+
+        </div>
+        </div>
+    </div>
+    <script src="/JS/sp.js"></script>
+    <script src="/JS/ssp.js"></script>
+    <script src="/JS/dh.js"></script>
+    <script src="/JS/nd.js"></script>
+    <script src="/JS/thongke.js"></script>
+    <script src="/JS/admin.js"></script>
+    <script src="/JS/responsive.js"></script>
 </body>
 </html>
