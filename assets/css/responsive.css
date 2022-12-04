@@ -1,0 +1,316 @@
+@media (min-width: 1024px) {
+    .flex_layout .left_slider{
+        display: block;
+    }
+    #medium_small_menu{
+        display: none;
+    }
+
+    #header .mobile-menu-btn{
+        display: none;
+    }
+}
+/* Tablet */
+@media (min-width: 740px) and (max-width: 1023px) {
+    #medium_small_menu{
+        overflow: hidden;
+        width: 100%;
+        z-index: 1;
+        position: absolute;
+        left: 0;
+        right: 0;
+        background-color: #e5e5e5;
+        display: none;
+        animation: slideInTop .4s ease;
+    }
+    @keyframes slideInTop{
+        from {
+            opacity: 0;
+            transform: translateY(calc(-100% + 46px));
+        }
+        to{
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    #medium_small_nav a{
+        color: rgba(0, 0, 0, 0.76);
+        font-size: 18px;
+    }
+    #medium_small_menu span{
+        font-weight: 200;
+    }
+    .flex_layout .left_slider{
+        display: none;
+    }
+    #header .account-icon,
+    #header .logout_btn,
+    #header .login_infor{
+        display: none;
+    }
+    .content{
+        margin-left: 0px;
+    }
+    .mobile-menu-btn:hover a{ 
+        color: #fff !important;
+    }
+    .mobile-menu-btn:hover{
+        background-color: rgba(0, 0, 0, 0.708);
+    }
+
+
+    #DetailOrderArea td, 
+    #displayListOrder td,
+    #displayEditArea td,
+    #tableContent td, 
+    #displayListProduct td, 
+    #ByProduct td, 
+    #ByTime td {
+        padding: 4px !important;
+    }
+
+    .modal_body {
+        height: fit-content;
+        width: 80vw;
+    }
+}
+/*-Mobile */
+@media (max-width: 740px)
+{
+    .btn {
+        padding: 2px;
+        border: 1px solid;
+    }
+
+    #medium_small_menu{
+        overflow: hidden;
+        width: 100%;
+        z-index: 1;
+        position: absolute;
+        left: 0;
+        right: 0;
+        background-color: #e5e5e5;
+        display: none;
+        animation: slideInTop .4s ease;
+    }
+
+    #medium_small_nav li a{
+        font-size: 13.2px;
+        padding: 6px 2px;
+    }
+
+    @keyframes slideInTop{
+        from {
+            opacity: 0;
+            transform: translateY(calc(-100% + 46px));
+        }
+        to{
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+
+    #header{
+        height: 36px;
+        padding-bottom: 36px;
+    }
+
+    #header .mobile-menu-btn a, #header .logo_box a {
+        line-height: 36px;
+    }
+
+    #header .mobile-menu-btn{
+        line-height: 3px;
+    }
+
+    #header .logo_box {
+        height: 36px;
+        margin-left: 5px;
+    }
+
+    #main{
+        margin-top: 36px;
+    }
+
+    #medium_small_nav a{
+        color: rgba(0, 0, 0, 0.76);
+        font-size: 18px;
+    }
+    #medium_small_menu span{
+        font-weight: 200;
+    }
+    .flex_layout .left_slider{
+        display: none;
+    }
+    #header .account-icon,
+    #header .logout_btn,
+    #header .login_infor{
+        display: none;
+    }
+
+
+    .content{
+        margin-left: 0px;
+    }
+    .mobile-menu-btn:hover a{ 
+        color: #fff !important;
+    }
+    .mobile-menu-btn:hover{
+        background-color: rgba(0, 0, 0, 0.708);
+    }
+    #FilterProductEdit, #FilterProduct, #FilterbyDate {
+        display: flex;
+        text-align: left;
+        padding: 0 0px 10px 10px;
+        flex-direction: column;
+    }
+    #FilterProductEdit .form_label, #FilterProduct .form_label, #FilterbyDate .form_label{
+        min-width: 50px !important;
+        display: inline-block;
+    }
+    #DetailOrderArea td, 
+    #displayListOrder td,
+    #displayEditArea td,
+    #tableContent td, 
+    #displayListProduct td, 
+    #ByProduct td, 
+    #ByTime td {
+        padding: 0px !important;
+        font-size: 13.2px;
+    }
+
+    .size_img
+    {
+        height:45px; 
+        width: 45px;
+    }
+    .content{
+        margin-left: 0px;
+    }
+
+    .content .header_content h3 {
+        font-size: 19px;
+        padding-left: 10px;
+    }
+
+    .content{
+        padding: 10px 0px;
+    }
+
+    .btn{
+        font-size: 13.2px;
+    }
+    
+    #displayListProduct td:first-child{
+        width: 10%;
+    }
+    #displayListProduct td:last-child{
+        width: 5%;
+    }
+    #displayListProduct td:nth-child(2){
+        width: 15%;
+    }
+    #DetailOrderArea, #displayListOrder, #tableContent, #displayListProduct, #ByProduct, #ByTime {
+        width: 100vw !important;
+    }
+    #displayListProduct td:nth-child(4),
+    #displayListProduct td:nth-child(7),
+    #displayListProduct td:nth-child(8){
+        display: none;
+    }
+
+    #displayEditArea  td:nth-child(4){
+        display: none;
+    }
+    
+    .client_form, .product_form {
+        width: 100vw;
+        font-size: 13.2px;
+    }
+    .client_form .form_label, .product_form .form_label {
+        min-width: 80px;
+        line-height: 25px;
+    }
+    .product_form .product_name {
+        margin-top: 0px !important;
+    }
+    .product_form .form_label_img{
+        line-height: 45px;
+    }
+    .product_form #imgProductAddQuantity, .product_form #edit-img, .product_form #add-img {
+        left: 70px !important;
+        padding: 0px 20px 0 !important;
+    }
+    #editField .preview, #addField .preview {
+        left: 225px !important;
+        top: 0;
+    }
+    #editField .current_img {
+        left: 310px !important;
+        top: 0;
+    }
+    #listTempSizeArea1, #listTempSizeArea2 {
+        left: -40% !important;
+        top: 40px;
+    }
+
+    #displayEditArea td
+    {
+        
+        padding: 8px;
+    }
+    #displayEditArea tr:nth-child(2) td
+    {
+        border-top: #333 solid 1px;
+        border-bottom: #333 solid 1px;
+    }
+
+    #displayEditArea tr:first-child td
+    {
+        border: none;
+    }
+
+    .switch {
+        width: 24px !important;
+        height: 16px !important;
+    }
+
+    .slider:before {
+        height: 13px !important;
+        width: 13px !important;
+        left: 1px !important;
+        bottom: 1px !important;
+    }
+
+    input:checked + .slider:before {
+        transform: translateX(8px) !important;
+    }
+    #displayListOrder td:nth-child(6){
+        width: 60px;
+    }
+    .modal_body {
+        height: fit-content;
+        width: 100vw;
+    }
+    #DetailOrderArea td:nth-child(3),
+    #DetailOrderArea td:nth-child(8){
+        display: none;
+    }
+    #ClientInfor-Order .ClientInfor {
+        font-size: 13px;
+    }
+
+
+    .TempList {
+        padding: 5px;
+    }
+    .gototop{
+        height: 30px;
+        width: 30px;
+        right: 20px;
+        line-height: 30px;
+        font-size: 12px;
+    }
+}

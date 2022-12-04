@@ -1,40 +1,75 @@
 
 /* Product Table */
 
-#displayListProduct
+.product_form .add_size_product
 {
-    width: 100%;
+    border: #333 solid 1px;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+}
+.TempList,
+.quantityProduct
+{
+    position: relative;
+}
+#listTempSizeArea1,
+#listTempSizeArea2{
+    position: absolute;
+    left: 40%;
+    background-color: #fff;
     box-shadow: 0 0 10px  rgba(0, 0, 0, 0.2);
+    z-index: 3;
+    padding: 10px;
+    height: fit-content;
+    width: fit-content;
+    display: block;
 }
-
-#displayListProduct td
+.SizeArea
 {
-    border-bottom: #333 solid 1px;
-    padding: 8px;
+    position: absolute;
+    right: 0;
+    padding: 10px;
+    height: fit-content;
+    width: fit-content;
+    display: block;
+    background-color: #fff;
+    box-shadow: 0 0 10px  rgba(0, 0, 0, 0.2);
+    z-index: 3;
 }
-#displayListProduct tr:last-child td
-{
-    border: none;
-    
-}
-
-#displayListProduct .table_pd_first_column
-{
-    width: 20%;
-}
-
-#displayListProduct .table_pd_second_column
-{
-    width: 20%;
+.product_form .product_img{
+    position: relative;
 }
 
-#displayListProduct .table_pd_fourth_column
-{
-
-
+.product_form #imgProductAddQuantity,
+.product_form #edit-img,
+.product_form #add-img{
+    position: absolute;
+    left: 160px;
+    padding: 33px 20px;
 }
 
-#footer
-{
-
+.product_form #imgProductAddQuantity::-webkit-file-upload-button,
+.product_form #edit-img::-webkit-file-upload-button,
+.product_form #add-img::-webkit-file-upload-button{
+    visibility: hidden;
 }
+
+.product_form #imgProductAddQuantity::before,
+.product_form #edit-img::before,
+.product_form #add-img::before{
+  content: 'Select image';
+  color: black;
+  display: inline-block;
+  background: #81f8cebf;
+  border: 1px solid rgba(199, 199, 199, 0.404);
+  border-radius: 3px;
+  padding: 5px 8px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 10pt;
+}
+
+input[type='file'] {
+    color: transparent;
+}  

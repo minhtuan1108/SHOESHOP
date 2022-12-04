@@ -16,6 +16,11 @@ body
 
 }
 
+.flex_1
+{
+    flex: 1;
+}
+
 .weight_550
 {
     font-weight: 550;
@@ -24,6 +29,18 @@ body
 .text_center
 {
     text-align: center;
+}
+.text_left
+{
+    text-align: left;
+}
+.text_justify
+{
+    text-align: justify;
+}
+
+.padding_top_8px{
+    padding-top: 8px !important;
 }
 
 .padding_8_0
@@ -36,26 +53,49 @@ body
     padding: 0 16px;
 }
 
+.padding_0_8
+{
+    padding: 0 8px;
+}
+
 .a_style
 {
     text-decoration: none;  
     color: #626773;
 }
 
-.line_height
+.line_height_100
 {
     line-height: 100px;
 }
 
+.line_height_30{
+    line-height: 30px;
+}
+
+.right_border{
+   border-right: 1px #333 solid;
+}
+
+.border_top_1px_black{
+    border-top: #333 solid 1px;
+}
+
+
 .size_img
 {
-    max-height:100px; 
+    height:100px; 
+    width: 100px;
     overflow:hidden;
 }
 
-#top
+.list_style
 {
-    top: 46px;
+    list-style: none;
+}
+
+.border_radius_5px{
+    border-radius: 5px;
 }
 
 .flex_layout
@@ -66,8 +106,9 @@ body
 #main
 {
     background-color: #f5f5f5;
-    height: 5000px;
+    height: fit-content;
     position: relative;
+    margin-top: 46px;
 }
 
 #header
@@ -75,42 +116,80 @@ body
     height: 46px;
     background-color: #f5f5f5;
     position: fixed;
-    z-index: 1;
+    z-index: 2;
     top: 0;
     left: 0;
     right: 0;
+    padding-bottom: 46px;
+}
+
+#header .icon{
+    background-color:cornflowerblue;
+    border-radius: 50px;
+    cursor: pointer;
+}
+#header .icon:hover{
+    background-color: aquamarine;
 }
 
 #header .logo_box
 {
-    width: 20%;
-    padding: 0 16px;
     display: inline-block;
+    height: 46px;
+    width: 300px;
+    margin-left: 20px;
+    background: url(../img/logo/logo3-edited-removebg-preview.png) left no-repeat;
 }
-
-#header .logo_box a
+#header .mobile-menu-btn a
 {
     text-decoration: none;
     color: #626773;
     line-height: 46px;
 }
-
-#header .login_infor
+#header .mobile-menu-btn
 {
     display: inline-block;
     float: right;
-}
-
-#header .login_infor
-{
-    line-height: 46px;
+    line-height: 46px;  
     padding: 0 16px;
 }
 
+#header .account-icon,
+#header .logout_btn {
+    display: inline-block;
+    float: right;
+    height: 36px;
+    width: 36px;
+    line-height: 36px;
+    position: relative;
+    margin: 5px;
+    padding-left: 10px;
+}
+
+
+#header  #account-info{
+    position: absolute;
+    background-color: rgb(238, 238, 238);
+    height: fit-content;
+    min-width: 150px;
+    right: 0;
+    padding: 0 10px 10px 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px  rgba(0, 0, 0, 0.2);
+}
+
+#header  #account-info .avt-container{
+    text-align: center;
+    border-radius: 50px;
+}
+
+#header  #account-info .avt-container img{
+    border-radius: 50px;
+    margin-top: 5px;
+}
 
 .flex_layout
 {
-    margin-top: 46px;
     height: 100%;
 }
 
@@ -125,6 +204,7 @@ body
 .left_slider
 {
     width: 240px;
+    margin-bottom: 5px;
     height: fit-content;
     display: inline-block;
     flex: 1;
@@ -142,25 +222,18 @@ body
 {
     background-color: #fff;
 }
-#nav .login_name
-{
-    text-align: center;
-}
 
 #nav .icon
 {
     padding-right: 4px;
 }
-
-#nav .login_name
-{
-    margin-top: 8px;
-}
+#medium_small_nav li:hover a,
 #nav li:hover a
 {
     background-color: #626773;
     color: #fff !important;
 }
+#medium_small_nav li a,
 #nav li a
 {
     padding: 12px 20px;
@@ -171,6 +244,8 @@ body
 {
     margin-left: 5px;
     padding: 20px 15px;
+    margin-bottom: 20px;
+    min-height: 90vh;
 }
 
 .content .header_content h3
@@ -195,7 +270,7 @@ body
     color: #fff !important;
 }
 /* product form */
-
+.client_form,
 .product_form
 {
     border: #333 1px solid;
@@ -204,36 +279,48 @@ body
     box-shadow: 0 0 10px  rgba(0, 0, 0, 0.2);
 
 }
-
+.client_form .form_label,
 .product_form .form_label
 {
     min-width: 160px;
 }
 
+.client_form .form_input,
 .product_form .form_input
 {
     flex: 1;
 }
 
+.product_row .product_img
+{
+    position: relative;
+}
 
+.product_form .preview
+{
+    position: absolute;
+}
+#addField .preview{
+    right: 300px;
+}
+#editField .preview{
+    left: 320px;
+}
+#editField .current_img{
+    left: 360px;   
+}
+
+.product_form .preview image
+{
+}
+
+.client_row,
 .product_row
 {
     display: flex;
     padding: 8px 0;
     justify-content: center;
 }
-
-
-.product_form .product_name
-{
-    padding-top: 32px;
-}
-
-.product_form .close-btn:hover
-{
-    background-color: crimson;
-}
-
 .product_form .close-btn
 {
     float: right;   
@@ -247,9 +334,115 @@ body
 {
     display: none;
 }
-
 /* DANH SÁCH SẢN PHẨM */
 #SSP
 {
     display: none;
+}
+/* DANH SÁCH NGUOI DUNG */
+#ND
+{
+    display: none;
+}
+#DH
+{
+    display: none;
+}
+#TK
+{
+    display: none;
+}
+#FilterProductEdit,
+#FilterProduct,
+#FilterbyDate
+{
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  line-height: 27px;
+  text-align: center;
+}
+#DetailOrderArea,
+#displayListOrder,
+#tableContent,
+#displayListProduct,
+#ByProduct,
+#ByTime
+{
+    width: 100%;
+    box-shadow: 0 0 10px  rgba(0, 0, 0, 0.2);
+}
+#DetailOrderArea td,
+#displayListOrder td,
+#tableContent td,
+#displayListProduct td,
+#ByProduct td,
+#ByTime td
+{
+    border-bottom: #333 solid 1px;
+    padding: 8px;
+}
+#DetailOrderArea tr:last-child td,
+#displayListOrder tr:last-child td,
+#tableContent tr:last-child td,
+#displayListProduct tr:last-child td
+{
+    border: none;
+    
+}
+
+    
+#displayListOrder td:nth-child(6){
+    width: 98px;
+}
+
+/* MODAL */
+#modal
+{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+}
+.modal_overlay
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.modal_body
+{
+    height: fit-content;
+    width: 60vw;
+    background-color: #fff;
+    margin: auto;
+    position: relative;
+    z-index: 3;
+    border-radius: 3px;
+}
+
+
+.gototop{
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    opacity: 0.4;
+    background-color: aquamarine;
+    bottom: 40px;
+    right: 50px;
+    text-decoration: none;
+    text-align: center;
+    line-height: 50px;
+    font-size: 22px;
+    color: white;
+    cursor: pointer;
+    z-index: 5;
+}
+
+.gototop:hover{
+    opacity: 1;
 }
