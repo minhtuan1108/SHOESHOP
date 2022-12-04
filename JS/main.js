@@ -11,6 +11,9 @@ var lsMember = [];
 var lsBillDetail = [];
 var lsPosition = [];
 var lsAccount = [];
+var listStatistic = [];
+var tempSizeList = [];
+
 var activeAccount = null;
 
 data.setItem("listProduct",JSON.stringify(lsProduct));
@@ -25,6 +28,8 @@ data.setItem("listPosition", JSON.stringify(lsPosition));
 data.setItem("listAccount", JSON.stringify(lsAccount));
 data.setItem("listCart", JSON.stringify(lsCart));
 data.setItem("activeAccount", JSON.stringify(activeAccount));
+data.setItem("listSize", JSON.stringify(lsSize));
+data.setItem("tempList", JSON.stringify(tempSizeList));
 
 
 //Hàm ngưng động thời gian:)))
@@ -64,6 +69,12 @@ function createGeneralID(list){
 
     return id;
 }
+
+function LogOut()
+{
+    activeAccount = null
+}
+
 
 //Hàm đọc ảnh từ file chooser
 function chooseFile(fileInput){

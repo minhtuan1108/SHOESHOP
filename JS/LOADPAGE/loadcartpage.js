@@ -439,7 +439,7 @@ function innerBillPaid(){
                         <div class="main-content">
                             <p>Bill ID: <span id="billID">${lsBill[i].id}</span></p>
                             <p>Date create: <span>${dateString}</span></p>
-                            <p>Total: <span  class="total-price">${formatNumberToMoney(lsBill[i].total)}</span>đ</p>
+                            <p>Total: <span  class="total-price">${formatNumberToMoney(lsBill[i].total)}đ</span></p>
                         </div>
                         <div class="status">
                             <p>Status: ${status}</p>
