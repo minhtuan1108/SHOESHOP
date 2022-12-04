@@ -108,7 +108,7 @@ function setAvatarSourceCustomer(sourceAvatar){
 function formatNumberToMoney(number){
     var money = number.toString().split('');
     var count = 0;
-for(let i = (money.length - 1); i > 0 ; i--){
+    for(let i = (money.length - 1); i > 0 ; i--){
         count++;
         if(count == 3){
             money.splice(i, 0, ',');
