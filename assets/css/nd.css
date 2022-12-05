@@ -1,0 +1,49 @@
+/* .error-message{
+    width: 100%;
+    display: none;
+} */
+#tableContent{
+    position: relative;
+}
+
+#showDetail li{
+    list-style: none;
+    line-height: 1.8;
+}
+#left{
+    float: left;
+    padding-left: 50px;
+    list-style: none;
+    width: 45%;
+}
+#right{
+    float: left;
+    text-align: center;
+    padding: 5px;
+    list-style: none;
+    width: 50%;
+}
+.showDetail
+#tableContent:hover #showDetail{
+    cursor:pointer;
+    opaticy: 0.5;
+}
+#showDetail li img{
+    width: 100px;
+    height: 100px;
+}
+#showDetailByProduct li{
+    list-style: none;
+    line-height: 1.8;
+}
+#shơ#showDetailByDay td{
+    width: 30%;
+}
+#modalcustomer,#modalproduct,#modalday{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+}
