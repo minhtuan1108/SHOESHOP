@@ -219,7 +219,7 @@ function addNew() {
             email: email,
             dob: birthday,
             idAcc: idAccount,
-            avatar: avatar
+            avatar: ""
         })
         if(listCustomer[listCustomer.length-1].avatar=="")
          setAutoAvatarForCustomer(listCustomer[listCustomer.length-1])

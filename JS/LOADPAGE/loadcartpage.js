@@ -248,7 +248,7 @@ function checkOut1(){
 
                             <div class="container-address">
                                 <label for="address">Enter delivery address</label>
-                                <input type="text" name="address" id="address" placeholder="*address">
+                                <input type="text" name="address" id="address" placeholder="*Address">
                             </div>
 
                             <div class="to-checkOut" onclick="checkAndCallDemoBill();">Next</div>
@@ -276,7 +276,7 @@ function checkAndCallDemoBill(){
         if(inValidAddress){
             alert("Address delivery is invalid!");
             inpAddr.value='';
-            inpAddr.focus;
+            inpAddr.focus();
         }else{
             showBillCheckOut(calculateTotalPriceOfCurrentCart(), phoneNumber, addr);   
         }

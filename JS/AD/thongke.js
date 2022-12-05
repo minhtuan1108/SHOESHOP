@@ -16,9 +16,9 @@ function displayAllStatistic(){
     let listOrder =JSON.parse(localStorage.getItem("listBill"))
     let listOrderDetail =JSON.parse(localStorage.getItem("listBillDetail"))
     let lsbrands = []
-    // console.log(listOrder)
-    // console.log(listOrderDetail)
-    // console.log(lsProduct)
+    let dateStart = new Date(start);
+    let dateEnd = new Date(end);
+    console.log(start);
 
     //THỐNG KÊ THEO SẢN PHẨM
     let str1='  <tr>\n '+
@@ -80,50 +80,60 @@ function displayAllStatistic(){
                     lsbrands.push(lsProduct[i])
         }
         // Lọc theo ngày
+        var d;
         if(start != '' && end != '' && start > end)
-            alert('Date eror');
+            alert('Date error');
         else{
-            if(start == '' && end == '')
+            if(start == '' && end == ''){
+                console.log("Bắt đầu: rỗng. Kết thúc: rỗng");
                 list=listOrderDetail;           
-            else if(start == '' && end != ''){
-                for (let i = 0; i < listOrder.length; i++) 
-                    if(listOrder[i].date < end)
+            }else if(start == '' && end != ''){
+                console.log("Bắt đầu: rỗng. Kết thúc: !rỗng");
+                
+                for (let i = 0; i < listOrder.length; i++){
+                    d = new Date(listOrder[i].date);
+                    if(d < dateEnd)
                     {
-                        console.log(listOrder[i].orderID)
+                        console.log(listOrder[i].id)
                         for(let j=0;j<listOrderDetail.length;j++)
-                            if(listOrder[i].orderID==listOrderDetail[j].orderID)
+                            if(listOrder[i].id==listOrderDetail[j].idBill)
                             {
                                 list[a]=listOrderDetail[j];
                                 a++;
                             }
                     }
-            }
-            else if(start != '' && end == ''){
-                for (let i = 0; i < listOrder.length; i++) 
+                }
+            }else if(start != '' && end == ''){
+                console.log("Bắt đầu: !rỗng. Kết thúc: rỗng");
+                for (let i = 0; i < listOrder.length; i++){
+                    d = new Date(listOrder[i].date)
                     if(listOrder[i].date > start)
                     {
-                        console.log(listOrder[i].orderID)
+                        console.log(listOrder[i].id)
                         for(let j=0;j<listOrderDetail.length;j++)
-                            if(listOrder[i].orderID==listOrderDetail[j].orderID)
+                            if(listOrder[i].id==listOrderDetail[j].idBill)
                             {
                                 list[a]=listOrderDetail[j];
                                 a++;
                             }
                     }
+                }
             }
             else{
-                for (let i = 0; i < listOrder.length; i++) 
-                    if(listOrder[i].date > start && listOrder[i].date < end)
-                    {
-                        console.log(listOrder[i].orderID)
+                for (let i = 0; i < listOrder.length; i++){
+                    d = new Date(listOrder[i].date);
+                    if( d > dateStart && d < dateEnd){
+                        
+                        console.log(listOrder[i].id)
                         for(let j=0;j<listOrderDetail.length;j++)
-                            if(listOrder[i].orderID==listOrderDetail[j].orderID)
+                            if(listOrder[i].id==listOrderDetail[j].idBill)
                             {
                                 list[a]=listOrderDetail[j];
                                 a++;
                             }    
                     }
                 }
+            }
         }
         // Tính toán số liệu
         for(let j=0;j < lsbrands.length;j++)
@@ -296,7 +306,7 @@ function displayAllStatistic(){
                                 }
                                 for(let k = 0;k<listOrderDetail.length;k++)
                                 {
-                                    if(listOrder[i].orderID==listOrderDetail[k].orderID)
+                                    if(listOrder[i].id==listOrderDetail[k].id)
                                      {    
                                         
                                         for(let z=0;z < lsbrands.length;z++)
