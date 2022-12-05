@@ -383,7 +383,7 @@ function openDetailProduct(id){
             '<ul>'+
             '<li class="text_center">'+lsProduct[i].id+'</li>'+
             '<li class="text_center">'+lsProduct[i].name+'</li>'
-            if(tempListProduct[i].image.length < 100)
+            if(lsProduct[i].image.length < 100)
             chitiet +='<li class="text_center"><img class="size_img" src="'+lsProduct[i].image+'/1.jpg"></li>'
             else
             chitiet +='<li class="text_center"><img class="size_img" src="'+lsProduct[i].image+'"></li>'
