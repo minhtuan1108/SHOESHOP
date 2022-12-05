@@ -18,8 +18,8 @@ function showOrderDetail(x)
         if(lsBill[x].idKH == lsCustomer[i].id)
             str1 =  '<ul id="ClientInfor-Order">'+
                         '<li class="ClientInfor ClientInfor-Name list_style">   <p>User name: ' + lsCustomer[i].name + '</p></li>'+
-                        '<li class="ClientInfor ClientInfor-Phone list_style">  <p>Phone number  : ' + lsCustomer[i].phoneNumber + '</p></li>'+
-                        '<li class="ClientInfor ClientInfor-Address list_style"><p>Address :       ' + lsCustomer[i].address + '</p></li>'+
+                        '<li class="ClientInfor ClientInfor-Phone list_style">  <p>Phone number  : ' + lsBill[i].phoneNumber + '</p></li>'+
+                        '<li class="ClientInfor ClientInfor-Address list_style"><p>Address :       ' + lsBill[i].address + '</p></li>'+
                     '</ul>';
     }
 
@@ -36,15 +36,22 @@ function showOrderDetail(x)
     for (let i = 0; i < lsBillDetail.length; i++) 
         if(lsBillDetail[i].idBill == lsBill[x].id)
             for (let j = 0; j < lsProduct.length; j++) 
-                if(lsBillDetail[i].idProduct == lsProduct[j].id)
-                    str2 +=  '<tr><td class="text_center" style="width: 20%">' + lsProduct[j].name + '</td>' +
-                            '<td class="text_center"><img class="size_img" src="'+lsProduct[j].image +'" alt=""></td>' +
-                            '<td class="text_center">' + lsProduct[j].brand + '</td>' +
+                if(lsBillDetail[i].idProduct == lsProduct[j].id){
+                    str2 +=  '<tr><td class="text_center" style="width: 20%">' + lsProduct[j].name + '</td>' 
+                    if(lsProduct[j].image.includes("./assets"))
+                        str2 +=  '<td class="text_center"><img class="size_img" src="'+lsProduct[j].image +'/1.jpg " alt=""></td>' 
+                    else
+                        str2 +=  '<td class="text_center"><img class="size_img" src="'+lsProduct[j].image +'" alt=""></td>' 
+                    str2 += '<td class="text_center">' + lsProduct[j].brand + '</td>' +
                             '<td class="text_center">' + lsBillDetail[i].idSize + '</td>' +
                             '<td class="text_center">' + lsBillDetail[i].quantity + '</td>' +
-                            '<td class="text_center">' + lsProduct[j].price + '</td>' +
-                            '<td class="text_center">' + lsProduct[j].price*lsBillDetail[i].quantity + '</td>' +
-                            '<td class="text_center">' + lsProduct[j].type + '</td></tr>'
+                            '<td class="text_center">' + lsProduct[j].price*(100-parseFloat(lsProduct[j].discount))/100 + '</td>' +
+                            '<td class="text_center">' + lsProduct[j].price*(100-parseFloat(lsProduct[j].discount))*lsBillDetail[i].quantity/100 + '</td>' 
+                            if(lsProduct[j].type == true)
+                                str2 +='<td class="text_center">Male</td></tr>'
+                            else
+                                str2 +='<td class="text_center">Female</td></tr>'
+                }
     document.getElementById('modal').style.display = "flex";
     document.getElementById('ClientInforArea').innerHTML = str1; 
     document.getElementById('DetailOrderArea').innerHTML = str2; 
@@ -68,10 +75,13 @@ function displaylsBillDetail(i)
                     '<td class="text_center">' + lsBill[i].idKH + '</td>' +
                     '<td class="text_center">' + lsBill[i].date + '</td>' +
                     '<td class="text_center"><button class="btn" onclick="showOrderDetail('+i+')";>See detail</button></td>' +
-                    '<td class="text_center">' + lsBill[i].total + '</td>' +
-                    '<td class="text_center" id="message'+i+'"> ' + lsBill[i].status  +
-                    '</td>'+
-                    '<td class="text_center"><div id="toggle-btn"><label class="switch">'+
+                    '<td class="text_center">' + lsBill[i].total + '</td>' 
+                    if(lsBill[i].status == false)
+                        str +='<td class="text_center" id="message'+i+'"> Not delivery </td>'  
+                    else
+                        str +='<td class="text_center" id="message'+i+'"> Delivery </td>'
+                    
+                        str +='<td class="text_center"><div id="toggle-btn"><label class="switch">'+
                     '   <input type="checkbox" id="checkbox'+i+'" onclick="check('+i+')";>'+
                     '   <span class="slider round"></span>'+
                     '</label></div></td>'
@@ -125,13 +135,14 @@ function check(i) {
     lsBill= JSON.parse(localStorage.getItem('listBill'));
     if(document.getElementById('checkbox'+i+'').checked)
     {
-        lsBill[i].status = 'Delivered';
-        document.getElementById('message'+i+'').textContent = lsBill[i].status;
+        document.getElementById('checkbox'+i+'').checked
+        lsBill[i].status = Boolean(1);
+        document.getElementById('message'+i+'').textContent = 'Delivery';
     }
     else
     {
-        lsBill[i].status = 'Not delivery';
-        document.getElementById('message'+i+'').textContent = lsBill[i].status;
+        lsBill[i].status = Boolean(0);
+        document.getElementById('message'+i+'').textContent = 'Not delivery';
     }
     localStorage.setItem('listBill',JSON.stringify(lsBill));
   }

@@ -5,7 +5,6 @@ function resetInput(){
     document.getElementById("client-password").value= ""
     document.getElementById("client-access").value= ""
     document.getElementById("client-name").value= ""
-    document.getElementById("client-image").value= ""
     document.getElementById("client-address").value= ""
     document.getElementById("client-gender").value= ""
     document.getElementById("client-phone").value= ""
@@ -210,7 +209,6 @@ function addNew() {
         let gender = document.getElementById("client-gender").value
         let phone = document.getElementById("client-phone").value
         let email = document.getElementById("client-email").value
-        let avatar =document.getElementById("client-image").value
         let birthday = document.getElementById("client-birthday").value
         listCustomer.push({
             id: idCustomer,
@@ -245,7 +243,7 @@ function addNew() {
         resetInput()
     }
     else
-        alert("Thông tin khách hàng chưa đủ");
+        alert("Insufficient or incorrect input information");
 }
 
 //Hiển thị danh sách khách hàng
@@ -254,13 +252,13 @@ function renderClient(){
     let client = '   <tr>\n '+
                 '   <td class="table_pd_second_column text_center">STT</td>\n' +
                 '   <td class="table_pd_second_column text_center">IdAccount</td>\n' +
-                '   <td class="table_pd_second_column text_center">Tên tài khoản</td>\n' +
-                '   <td class="table_pd_second_column text_center">Mật khẩu</td>\n' +
-                '   <td class="table_pd_second_column text_center">Quyền truy cập</td>\n' +
-                '   <td class="table_pd_second_column text_center">Ngày khởi tạo</td>\n' +
-                '   <td class="table_pd_seventh_column text_center">Thông tin chi tiết</td>\n' +
-                '   <td class="table_pd_fifth_column text_center">Sửa</td>\n' +
-                '   <td class="table_pd_seventh_column text_center">Xóa</td>\n' +
+                '   <td class="table_pd_second_column text_center">Username</td>\n' +
+                '   <td class="table_pd_second_column text_center">Pasword</td>\n' +
+                '   <td class="table_pd_second_column text_center">Privilege</td>\n' +
+                '   <td class="table_pd_second_column text_center">Date created</td>\n' +
+                '   <td class="table_pd_seventh_column text_center">Detail Customer</td>\n' +
+                '   <td class="table_pd_fifth_column text_center">Edit</td>\n' +
+                '   <td class="table_pd_seventh_column text_center">Delete</td>\n' +
                 '   </tr>';
     if(lsAccount.length === 0)
         client += `<tr><td>Chưa có khách hàng nào cả</td></tr>`
@@ -278,9 +276,9 @@ function renderClient(){
         <td class="text_center">${value.password}</td>
         <td class="text_center">${access}</td>
         <td class="text_center">${value.dateCreate}</td>
-        <td class="text_center"><button class="btn" id="ct" onclick="openDetail(${index})" ="closeDetail">Chi tiết</button></td>
-        <td class="text_center"><button class="btn" onclick="editClient(${index})">Sửa</button></td>
-        <td class="text_center"><button class="btn" onclick="deleteClient(${index})">Xóa</button></td>
+        <td class="text_center"><button class="btn" id="ct" onclick="openDetail(${index})" ="closeDetail">See</button></td>
+        <td class="text_center"><button class="btn" onclick="editClient(${index})">Edit</button></td>
+        <td class="text_center"><button class="btn" onclick="deleteClient(${index})">Delete</button></td>
     </tr>`
     }
     )}
@@ -302,14 +300,14 @@ function openDetail(index) {
         let chitiet = `
         <div id="left">
                 <ul>
-                    <li>Mã khách hàng</li>
-                    <li>Tên</li>
+                    <li>ID Customer</li>
+                    <li>Name</li>
                     <li style="height: 110px">Avatar</li>
-                    <li>Địa chỉ</li>
-                    <li>Số điện thoại</li>
-                    <li>Giới tính</li>
+                    <li>Address</li>
+                    <li>NumberPhone</li>
+                    <li>Gender</li>
                     <li>Email</li>
-                    <li>Ngày sinh nhật</li>
+                    <li>BirthDay</li>
                 </ul>
             </div>
         <div id="right">
@@ -337,11 +335,10 @@ function editClient(index){
     document.getElementById("client-account").value = lsAccount[index].username
     document.getElementById("client-password").value = lsAccount[index].password
     if(lsAccount[index].positionID==1)
-    document.getElementById("client-access").value = "Khách hàng"
+    document.getElementById("client-access").value = "Customer"
     else
     document.getElementById("client-access").value = "Admin"
     document.getElementById("client-name").value = listCustomer[index].name
-    //document.getElementById("client-image").value = listCustomer[index].avatar
     document.getElementById("client-address").value = listCustomer[index].address
     document.getElementById("client-phone").value = listCustomer[index].phoneNumber
     document.getElementById("client-gender").value = listCustomer[index].gender
@@ -404,14 +401,14 @@ function changeClient(){
     resetInput()
     }
     else
-        alert("Thông tin khách hàng chưa đủ");
+        alert("Insufficient or incorrect input information");
 }
 //Xóa thông tin
 function deleteClient(index) {
     let listCustomer = localStorage.getItem("listCustomer") ? JSON.parse(localStorage.getItem("listCustomer")) : []
     let lsAccount = localStorage.getItem("listAccount") ? JSON.parse(localStorage.getItem("listAccount")) : []
     let lsCart = localStorage.getItem("listCart") ? JSON.parse(localStorage.getItem("listCart")) : []
-    if (confirm("Bạn có chắc muốn xóa thông tin khách hàng này?")){
+    if (confirm("Are you sure you want to delete?")){
         listCustomer.splice(index, 1)
         lsAccount.splice(index, 1)
         lsCart.splice(index, 1)
@@ -427,58 +424,50 @@ function clientForm()
     let str  =  
                 '       <div class="client_form" >                 ' +
                 '       <div class="client_row client_account">  ' +
-                '       <label for="name" class="form_label">Tên tài khoản*: </label>' +
+                '       <label for="name" class="form_label">Username*: </label>' +
                 '       <input placeholder= " Nhập tên tài khoản" class="form_input" type="text" id="client-account">  ' +
                 '       <div class="error-message"></div>'+
                 '       </div>'+
 
                 '       <div class="client_row client_password">  ' +
-                '       <label for="name" class="form_label">Mật khẩu*: </label>' +
+                '       <label for="name" class="form_label">Password*: </label>' +
                 '       <input placeholder= " Nhập mật khẩu" class="form_input" type="text" id="client-password">  ' +
                 '       <div class="error-message"></div>'+
                 '       </div>'+
 
                 '       <div class="client_row client_access">'+
-                '       <label for="name" class="form_label">Quyền truy cập: </label>' +
+                '       <label for="name" class="form_label">Privilege: </label>' +
                 '       <select class="form_input" name="" id="client-access">'+
-                    '       <option value="Khách hàng">Khách hàng</option>'+
+                    '       <option value="Khách hàng">Customer</option>'+
                     '       <option value="Admin">Admin</option>'+
                 '       </select>'+
                 '       <div class="error-message"></div>'+
                 '       </div>'+
 
                 '       <div class="client_row client_name">'+
-                '       <label for="name" class="form_label">Tên người dùng*: </label>' +
+                '       <label for="name" class="form_label">Name*: </label>' +
                 '       <input placeholder= " Nhập họ tên" class="form_input" type="text" id="client-name">  ' +
                 '       <div class="error-message"></div>'+
                 '       </div>'+
 
-                '       <div class="client_row product_img"">  '+
-                '       <label for="name" class="form_label line_height">Hình ảnh: </label>'+
-                '       <input class=" line_height padding_0_16" type="file" id="client-image" accept="image/*" onchange="showPreview(event)" id="client-image" style="flex:1">    '+
-                '       <div class="preview">'+
-                '           <img class="size_img" src=" " alt=""  id="file-preview">'+
-                '       </div>'+
-                '       <div class="error-message"></div>'+
-                '       </div>  '+ 
-                
+
                 '       <div class="client_row client_address">  '+
-                '       <label for="name" class="form_label">Địa chỉ*: </label>'+
+                '       <label for="name" class="form_label">Address*: </label>'+
                 '       <input placeholder=" Nhập địa chỉ" class="form_input" type="text" id="client-address">'+
                 '       <div class="error-message"></div>'+
                 '       </div>'+
         
                 '       <div class="client_row client_phone">'+
-                '       <label for="name" class="form_label">Số điện thoại*: </label>'+
+                '       <label for="name" class="form_label">Number Phone*: </label>'+
                 '       <input placeholder=" Nhập số điện thoại" class="form_input" type="text" id="client-phone">'+
                 '       <div class="error-message"></div>'+
                 '       </div>'+
                 
                 '       <div class="client_row client_gender">'+
-                '       <label for="name" class="form_label">Giới tính: </label>'+
+                '       <label for="name" class="form_label">Gender: </label>'+
                 '       <select class="form_input" name="" id="client-gender">'+
-                    '       <option value="Nam">Nam</option>'+
-                    '       <option value="Nữ">Nữ</option>'+
+                    '       <option value="Nam">Male</option>'+
+                    '       <option value="Nữ">Female</option>'+
                     '       <option value="No chossen">No choosen</option>'+
                 '       </select>'+
                 '       <div class="error-message"></div>'+
@@ -491,7 +480,7 @@ function clientForm()
                 '       </div>'+
                 
                 '       <div class="client_row client_birthday">'+
-                '       <label for="name" class="form_label">Ngày sinh: </label>'+
+                '       <label for="name" class="form_label">Birthday: </label>'+
                 '       <input placehover=" Nhập ngày sinh" class="form_input" type="date" id="client-birthday">'+
                 '       <div class="error-message"></div>'+
                 '       </div>'+

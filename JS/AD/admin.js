@@ -86,10 +86,29 @@ function createGeneralID(list){
     return id;
 }
 
-
-function chooseFileImg(event){
-    if(event.target.files.length > 0){
-        var src = URL.createObjectURL(event.target.files[0]);
-        tempImg = src;
-     }
+function chooseFileImg(){
+    fileInput = document.getElementById('add-img');
+    var sourceImg ='';
+    if(fileInput.files && fileInput.files[0]){
+        var reader = new FileReader;
+        reader.onload = function(e){
+            sourceImg = e.target.result;
+            tempImg = sourceImg;
+            console.log(tempImg);
+        }
+        reader.readAsDataURL(fileInput.files[0]);
+    }
+}
+function UpdateFileImg(){
+    fileInput = document.getElementById('edit-img');
+    var sourceImg ='';
+    if(fileInput.files && fileInput.files[0]){
+        var reader = new FileReader;
+        reader.onload = function(e){
+            sourceImg = e.target.result;
+            tempImg = sourceImg;
+            console.log(tempImg);
+        }
+        reader.readAsDataURL(fileInput.files[0]);
+    }
 }

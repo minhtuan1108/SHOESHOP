@@ -22,12 +22,12 @@ function displayAllStatistic(){
 
     //THỐNG KÊ THEO SẢN PHẨM
     let str1='  <tr>\n '+
-    '   <td class="table_pd_second_column text_center">Tên sản phẩm</td>\n' +
-    '   <td class="table_pd_second_column text_center">Số lượng bán được</td>\n' +
-    '   <td class="table_pd_second_column text_center">Chiếm tỉ lệ</td>\n' +
-    '   <td class="table_pd_second_column text_center">Doanh thu</td>\n' +
-    '   <td class="table_pd_second_column text_center">Chiếm tỉ lệ</td>\n' +
-    '   <td class="table_pd_second_column text_center">Chi tiết sản phẩm</td>\n' +
+    '   <td class="table_pd_second_column text_center">Name</td>\n' +
+    '   <td class="table_pd_second_column text_center">Quantity sold</td>\n' +
+    '   <td class="table_pd_second_column text_center">Proportion</td>\n' +
+    '   <td class="table_pd_second_column text_center">Revenue</td>\n' +
+    '   <td class="table_pd_second_column text_center">Proportion</td>\n' +
+    '   <td class="table_pd_second_column text_center">Detail</td>\n' +
     '   </tr>';
    
         var sl = []
@@ -81,7 +81,7 @@ function displayAllStatistic(){
         }
         // Lọc theo ngày
         if(start != '' && end != '' && start > end)
-            alert('Lỗi ngày');
+            alert('Date eror');
         else{
             if(start == '' && end == '')
                 list=listOrderDetail;           
@@ -133,20 +133,49 @@ function displayAllStatistic(){
                  if(lsbrands[j].id == list[i].idProduct)
                  {
                     tong += list[i].quantity
-                    tongdt += list[i].quantity * lsbrands[j].price
                     sl[j] += list[i].quantity //tính số lượng
-                    dt[j] += list[i].quantity * lsbrands[j].price//tính doanh thu
+                    dt[j] += list[i].quantity * lsbrands[j].price * (100-lsbrands[j].discount)/100//tính doanh thu
+                    if(dt[j]%1000 != 0){
+                        dt[j] += 1000 - (dt[j]%1000);
+                    }
                  }
             }
+            tongdt += dt[j]
         }
         for(let j=0;j < lsbrands.length;j++)
         {
            tile[j]= Math.round((sl[j]/tong)*10000)/100 //tính phần trăm
            tiledt[j]= Math.round((dt[j]/tongdt)*10000)/100
         }
+        //sắp xếp giảm dần
+        var temp = []
+        for(let i=0;i < lsbrands.length-1;i++)
+            for(let j=i+1;j < lsbrands.length;j++)
+                if(sl[i]<sl[j]){
+                    temp[0]=lsbrands[i]
+                    lsbrands[i]=lsbrands[j]
+                    lsbrands[j]=temp[0]
 
+                    temp[1]=sl[i]
+                    sl[i]=sl[j]
+                    sl[j]=temp[1]
+
+                    temp[2]=tile[i]
+                    tile[i]=tile[j]
+                    tile[j]=temp[2]
+
+                    temp[3]=dt[i]
+                    dt[i]=dt[j]
+                    dt[j]=temp[3]
+
+                    temp[4]=tiledt[i]
+                    tiledt[i]=tiledt[j]
+                    tiledt[j]=temp[4]
+            }
         for(let j=0;j < lsbrands.length;j++)
-        {         
+        {     
+            if(sl[j]>0)
+            {    
             var brands=lsbrands[j]
             str1 += '<tr class="a_client">'+
             '<td class="text_center">'+lsbrands[j].name +'</td>' +
@@ -154,12 +183,13 @@ function displayAllStatistic(){
             '<td class="text_center">'+ tile[j]+'%' +'</td>' +
             '<td class="text_center">'+ dt[j] +'</td>' +
             '<td class="text_center">'+ tiledt[j]+'%' +'</td>' +
-            `<td class="text_center"><button class="btn" id="ct" onclick="openDetailProduct('${brands.id}')">Xem</button></td>` +
+            `<td class="text_center"><button class="btn" id="ct" onclick="openDetailProduct('${brands.id}')">See detail</button></td>` +
             '</tr>'
+            }
         }
 
         str1 += '<tr class="a_client">'+
-            '<td class="text_center"><h4>Tổng</h4></td>' +
+            '<td class="text_center"><h4>Total</h4></td>' +
             '<td class="text_center"><h4>'+ tong +'</h4></td>' +
             '<td class="text_center"><h4>100%</h4></td>' +
             '<td class="text_center"><h4>'+ tongdt +'</h4></td>' +
@@ -169,14 +199,14 @@ function displayAllStatistic(){
     document.getElementById("ByProduct").innerHTML = str1;
     //THỐNG KÊ THEO NGÀY
     let str2='  <tr>\n '+
-    '   <td class="table_pd_second_column text_center">Ngày</td>\n' +
-    '   <td class="table_pd_second_column text_center">Số đơn hàng bán được</td>\n' +
-    '   <td class="table_pd_second_column text_center">Chiếm tỉ lệ</td>\n' +
-    '   <td class="table_pd_second_column text_center">Số sản phẩm bán được</td>\n' +
-    '   <td class="table_pd_second_column text_center">Chiếm tỉ lệ</td>\n' +
-    '   <td class="table_pd_second_column text_center">Doanh thu</td>\n' +
-    '   <td class="table_pd_second_column text_center">Chiếm tỉ lệ</td>\n' +
-    '   <td class="table_pd_second_column text_center">Chi tiết</td>\n' +
+    '   <td class="table_pd_second_column text_center">Date</td>\n' +
+    '   <td class="table_pd_second_column text_center">Order Number</td>\n' +
+    '   <td class="table_pd_second_column text_center">Proportion</td>\n' +
+    '   <td class="table_pd_second_column text_center">Product Number</td>\n' +
+    '   <td class="table_pd_second_column text_center">Proportion</td>\n' +
+    '   <td class="table_pd_second_column text_center">Revenue</td>\n' +
+    '   <td class="table_pd_second_column text_center">Proportion</td>\n' +
+    '   <td class="table_pd_second_column text_center">Detail</td>\n' +
     '   </tr>';
     
         var day = []
@@ -193,7 +223,7 @@ function displayAllStatistic(){
         let b=0;
         //Lọc theo ngày
         if(start != '' && end != '' && start > end)
-            alert('Lỗi ngày');
+            alert('Date error');
         else{
             for(let i=0;i<listOrder.length;i++)
         {
@@ -277,12 +307,18 @@ function displayAllStatistic(){
                                                 console.log(listOrderDetail[k].quantity) 
                                                 sp[j]+= listOrderDetail[k].quantity
                                                 tongspngay+= listOrderDetail[k].quantity
-                                                tongdtngay += listOrderDetail[k].quantity * lsbrands[z].price
-                                                dtday[j] += listOrderDetail[k].quantity * lsbrands[z].price//tính doanh thu 
+                                                dtday[j] += listOrderDetail[k].quantity * lsbrands[z].price *(100- lsbrands[j].discount)/100//tính doanh thu
+                                                if(dtday[j]%1000 != 0){
+                                                    dtday[j] += 1000 - (dtday[j]%1000);
+                                                } 
+                                                
                                             }
+                                            
                                         }
+                                        
                                     }
                                 }
+                                tongdtngay += dtday[j]
                             }
                         }
                     }
@@ -307,7 +343,7 @@ function displayAllStatistic(){
             '<td class="text_center">'+ tlsp[j] +'%</td>' +
             '<td class="text_center">'+ dtday[j] +'</td>' +
             '<td class="text_center">'+ tldt[j] +'%</td>' +
-            `<td class="text_center"><button class="btn" id="ct" onclick="openDetailDay(${day[j]})">Xem</button></td>` +
+            `<td class="text_center"><button class="btn" id="ct" onclick="openDetailDay(${day[j]})">See Detail</button></td>` +
             '</tr>'
         }
         str2 += '<tr class="a_client">'+
@@ -331,29 +367,33 @@ function openDetailProduct(id){
     for(let i=0;i<lsProduct.length;i++)
         if(lsProduct[i].id==id)
         {
-            chitiet = `
-            <div id="left">
-                    <ul>
-                        <li>Mã sản phẩm</li>
-                        <li>Tên sản phẩm</li>
-                        <li style="height: 110px">Hình ảnh</li>
-                        <li>Thương hiệu</li>
-                        <li>Số lượng</li>
-                        <li>Giá</li>
-                        <li>Loại</li>
-                    </ul>
-                </div>
-            <div id="right">
-            <ul>
-            <li class="text_center">${lsProduct[i].id}</li>
-            <li class="text_center">${lsProduct[i].name}</li>
-            <li class="text_center"><img class="size_img" src="${lsProduct[i].image}"></li>
-            <li class="text_center">${lsProduct[i].brand}</li>
-            <li class="text_center">${lsProductDetail[i].quantity}</li>
-            <li class="text_center">${lsProduct[i].price}</li>
-            <li class="text_center">${lsProduct[i].type}</li>
-            </ul>
-            </div>`
+            chitiet = 
+            '<div id="left">'+
+                    '<ul>'+
+                        '<li>Id Product</li>'+
+                        '<li>Name</li>'+
+                        '<li style="height: 110px">Image</li>'+
+                        '<li>Brand</li>'+
+                        '<li>Quantity</li>'+
+                        '<li>Price</li>'+
+                       ' <li>Type</li>'+
+                    '</ul>'+
+                '</div>'+
+            '<div id="right">'+
+            '<ul>'+
+            '<li class="text_center">'+lsProduct[i].id+'</li>'+
+            '<li class="text_center">'+lsProduct[i].name+'</li>'
+            if(tempListProduct[i].image.length < 100)
+            chitiet +='<li class="text_center"><img class="size_img" src="'+lsProduct[i].image+'/1.jpg"></li>'
+            else
+            chitiet +='<li class="text_center"><img class="size_img" src="'+lsProduct[i].image+'"></li>'
+
+            chitiet +='<li class="text_center">'+lsProduct[i].brand+'</li>'+
+            '<li class="text_center">'+lsProductDetail[i].quantity+'</li>'+
+            '<li class="text_center">'+lsProduct[i].price+'</li>'+
+            '<li class="text_center">'+lsProduct[i].type+'</li>'+
+            '</ul>'+
+            '</div>'
         }
     document.getElementById("showDetailByProduct").innerHTML = chitiet;
 }
@@ -365,15 +405,15 @@ function openDetailDay(day){
     document.getElementById("modalday").style.display = "flex";
     let listOrder =JSON.parse(localStorage.getItem("listBill"))
     let str =   '   <tr>\n '+
-    '   <td class="table_pd_first_column text_center">Mã đơn hàng</td>\n' +
-    '   <td class="table_pd_second_column text_center">Mã khách hàng</td>\n' +
-    '   <td class="table_pd_fouth_column text_center">Giá đơn hàng</td>\n' +
+    '   <td class="table_pd_first_column text_center">ID order</td>\n' +
+    '   <td class="table_pd_second_column text_center">ID Account</td>\n' +
+    '   <td class="table_pd_fouth_column text_center">Price</td>\n' +
     '   </tr>';
     for(let i=0;i<listOrder.length;i++)
     {
         var date = new Date(day)
         console.log(date)
-       // if(day== listOrder[i].date) //ngày tự tạo khi lấy giá trị bị sai (2022-12-10 =2000)
+        if(day== listOrder[i].date) //ngày tự tạo khi lấy giá trị bị sai (2022-12-10 =2000)
         {
             str +=  '<tr><td class="text_center">' + listOrder[i].id + '</td>' +
                     '<td class="text_center">' + listOrder[i].idKH + '</td>' +

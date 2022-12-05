@@ -1,5 +1,5 @@
 
-function displayAllwithEdit() {
+function displayAllwithEdit(i) {
 
     lsProductDetail = JSON.parse(localStorage.getItem('listProductDetail'));
     lsProduct = JSON.parse(localStorage.getItem('listProduct'));
@@ -9,7 +9,6 @@ function displayAllwithEdit() {
                     str += '<tr><td>Out of stock</td></tr>';
                     }
                 else{
-    for (let i = 0; i < lsProduct.length; i++) {
         str +=  '<tr class=""><td class="table_pd_first_column text_center border_top_1px_black " >Product ID</td>\n '+
                 '<td class="table_pd_second_column text_center border_top_1px_black">Name</td>\n' +
                 '<td class="table_pd_third_column text_center border_top_1px_black">Image</td>\n' +
@@ -20,13 +19,19 @@ function displayAllwithEdit() {
                 '<td class="table_pd_seventh_column text_center border_top_1px_black">Discount</td>\n' +
                 '</tr>'+
                 '<tr><td class="text_center">' + lsProduct[i].id + '</td>' +
-                '<td class="text_center">' + lsProduct[i].name + '</td>' +
-                '<td class="text_center"><img class="size_img" src="'+lsProduct[i].image+'" alt="" ></td>' +
-                '<td class="text_center">' + lsProduct[i].brand + '</td>' +
+                '<td class="text_center">' + lsProduct[i].name + '</td>' 
+                if(lsProduct[i].image.length < 100)
+                    str +=  '<td class="text_center"><img class="size_img" src="'+lsProduct[i].image +'/1.jpg " alt=""></td>' 
+                else
+                    str +=  '<td class="text_center"><img class="size_img" src="'+lsProduct[i].image +'" alt=""></td>' 
+                str +=  '<td class="text_center">' + lsProduct[i].brand + '</td>' +
                 '<td class="text_center">' + lsProduct[i].price + '</td>' +
-                '<td class="text_center">' + lsProduct[i].discount + '%</td>' +
-                '<td class="text_center">' + lsProduct[i].type + '</td>' +
-                '<td class="text_center">' + lsProduct[i].disc + '</td></tr>' +
+                '<td class="text_center">' + lsProduct[i].discount + '%</td>' 
+                if(lsProduct[i].type == true)
+                    str +='<td class="text_center">Male</td>'
+                else
+                    str +='<td class="text_center">Female</td>'
+        str+=   '<td class="text_center">' + lsProduct[i].disc + '</td></tr>' +
                 '<tr><td class="table_pd_seventh_column text_center line_height_30">Size</td>\n' +
                 '<td class="table_pd_eighth_column text_center">Quantity</td>\n' +
                 '<td class="table_pd_nineth_column text_center">Edit</td>\n' +
@@ -39,13 +44,13 @@ function displayAllwithEdit() {
                     else
             str +=        '<td class="text_center">Out of stock</td>'        
             str +=        '<td class="text_center"><button class="btn" onclick="display_form(),showFormEdit(' + i +','+ j + ')"><a class="a_style" style="color: #333" href="#editArea">Edit</a></button></td>' +
-                    '<td class="text_center right_border"><button  class="btn" onclick="deleteProduct('+ j + ')">Delete</button></td></tr>'
+                    '<td class="text_center right_border"><button  class="btn" onclick="deleteProduct(' + i +','+ j + ')">Delete</button></td></tr>'
             }
         }
 
             str +=  '<tr style="height: 20px"></tr>'
             
-    }
+    
 }
     document.getElementById('displayEditArea').innerHTML = str;
 }
@@ -93,13 +98,13 @@ function saveProduct(i, j) {
 
             tempImg = '';
             document.getElementById('editField').innerHTML = '';
-            displayAllwithEdit();
+            displayAllwithEdit(i);
             close_form();
         }
     }
 }
 
-function deleteProduct (j) {
+function deleteProduct (index, j) {
     lsProduct = JSON.parse(localStorage.getItem('listProduct'));
     lsProductDetail = JSON.parse(localStorage.getItem('listProductDetail'));
     if (confirm("Are you sure you want to delete this product?")){
@@ -110,7 +115,7 @@ function deleteProduct (j) {
             if(lsProduct[i].id == tempID && getQuantityOfProduct(tempID) == 'Out of stock')
                 lsProduct.splice(i, 1);
         localStorage.setItem('listProduct',JSON.stringify(lsProduct));
-        displayAllwithEdit();
+        displayAllwithEdit(index);
     }
     
 }
@@ -128,9 +133,12 @@ function showFormEdit(i, j) {
                 '       <input class="form_input"  value = "'+ lsProduct[i].name + '" type="text" id="edit-name">  ' +
                 '       </div>          ' +
 
-                '       <div class="product_row product_img">  '+
-                '       <label for="edit-img" class="form_label line_height_100"  style="flex: 1">Image: </label><img class="size_img border_radius_5px current_img" src="'+lsProduct[i].image+'" alt="" >'+
-                '       <input class="form_input padding_0_16" type="file" id="edit-img" accept="image/*" onchange="showPreviewEdit(event), chooseFileImg(event)">    '+
+                '       <div class="product_row product_img">  '
+                        if(lsProduct[i].image.length < 100)
+                            str  +=   '<label for="edit-img" class="form_label line_height_100"  style="flex: 1">Image: </label><img class="size_img border_radius_5px current_img" src="'+lsProduct[i].image+'/1.jpg" alt="" >'
+                        else
+                            str  +=   '<label for="edit-img" class="form_label line_height_100"  style="flex: 1">Image: </label><img class="size_img border_radius_5px current_img" src="'+lsProduct[i].image+'" alt="" >'
+        str  += '       <input class="form_input padding_0_16" type="file" id="edit-img" accept="image/*" onchange="showPreviewEdit(event), UpdateFileImg();">    '+
                 '       <div class="preview">'+
                 '           <img class="size_img border_radius_5px" src=" " alt=""  id="file-preview-edit">'+
                 '       </div>'+
@@ -165,11 +173,16 @@ function showFormEdit(i, j) {
 
                 '       <div class="product_row product_type">'+
                 '       <label for="edit-type" class="form_label">Type: </label>'+
-                '       <select class="form_input"  value = "'+ lsProduct[i].type + '" name="" id="edit-type">'+
-                    '       <option value="Male">Male</option>'+
-                    '       <option value="Female">Female</option>'+
-                    '       <option value="Children">Children</option>'+
-                '       </select>'+
+                '       <select class="form_input"  value = "'+ lsProduct[i].type + '" name="" id="edit-type">'
+                        if(lsProduct[i].type == true){
+                            str +=  '       <option value="Male" selected>Male</option>'+
+                                    '       <option value="Female">Female</option>'
+                        }
+                        else{
+                            str +=  '       <option value="Male">Male</option>'+
+                                    '       <option value="Female" selected>Female</option>'
+                        }
+                str +=      '       </select>'+
                 '       </div> ' +
                 
                 '       <div class="product_row product_detail">'+
@@ -183,129 +196,3 @@ function showFormEdit(i, j) {
     document.getElementById('editField').innerHTML = str;
 }
 
-function displayAllFilteredProductEdit()
-{
-    var tempListEdit = JSON.parse(localStorage.getItem("listProduct"));
-    lsProductDetail = JSON.parse(localStorage.getItem('listProductDetail'));
-    var name = document.getElementById('Filter_edit_name_product').value;   
-    var brand = document.getElementById('Filter_edit_brand_product').value;
-    var size = "S"+document.getElementById('Filter_edit_size_product').value;
-    var price = document.getElementById('Filter_edit_price_product').value;
-    var type = document.getElementById('Filter_edit_type_product').value;
-
-    document.getElementById('Filter_edit_name_product').value  = '';   
-    document.getElementById('Filter_edit_size_product').value  = '';   
-    document.getElementById('Filter_edit_brand_product').value  = '0';
-    document.getElementById('Filter_edit_price_product').value  = '0';
-    document.getElementById('Filter_edit_type_product').value  = '0';
-
-    if(name != "")
-        for(let i = 0; i < tempListEdit.length; i++)
-            if(!tempListEdit[i].name.includes(name))
-                {
-                    tempListEdit.splice(i, 1);
-                    i--;
-                }
-                
-    if(brand != "0") 
-        for(let i = 0; i < tempListEdit.length; i++)
-            if(!tempListEdit[i].brand.includes(brand))
-            {
-                tempListEdit.splice(i, 1);
-                i--;
-            }
-            
-    if(type != "0")
-        for(let i = 0; i < tempListEdit.length; i++)
-            if(tempListEdit[i].type != type)
-            {
-                tempListEdit.splice(i, 1);
-                i--;
-            }
-            
-    if(price != "0")
-        if(price != "5000001")
-            {
-                for(let i = 0; i < tempListEdit.length; i++)
-                if(tempListEdit[i].price > price)
-                {
-                    tempListEdit.splice(i, 1);
-                    i--;
-                }
-            }
-        else if(price === "5000001")
-            for(let i = 0; i < tempListEdit.length; i++)
-                if(tempListEdit[i].price < price)
-                {
-                    tempListEdit.splice(i, 1);
-                    i--;
-                }
-        
-    var tempListID = [];
-    if(size != "S"){
-        for(let i = 0; i < lsProductDetail.length; i++)        
-            if(lsProductDetail[i].idSize == size)
-            {
-                console.log(lsProductDetail[i].idSize)
-                tempListID.push(lsProductDetail[i].idProduct);
-            }  
-        for(let i = 0; i < tempListEdit.length; i++)        
-        {
-            var d = 0 ;
-            for(let j = 0; j < tempListID.length; j++)        
-            if(tempListID[j] == tempListEdit[i].id)
-            {
-                d++;
-            }
-            if(d==0)
-                {
-                    tempListEdit.splice(i, 1);
-                    i--;
-                }
-        }
-        }
-        let str =   ''
-                if(tempListEdit.length == 0){
-                    str += '<tr><td>Products do not exist</td></tr>';
-                    }
-                else{
-    for (let i = 0; i < tempListEdit.length; i++) {
-        str +=  '<tr class=""><td class="table_pd_first_column text_center border_top_1px_black " >Product ID</td>\n '+
-                '<td class="table_pd_second_column text_center border_top_1px_black">Name</td>\n' +
-                '<td class="table_pd_third_column text_center border_top_1px_black">Image</td>\n' +
-                '<td class="table_pd_fouth_column text_center border_top_1px_black">Brand</td>\n' +
-                '<td class="table_pd_fouth_column text_center border_top_1px_black">Price</td>\n' +
-                '<td class="table_pd_fifth_column text_center border_top_1px_black">Discount</td>\n' +
-                '<td class="table_pd_sixth_column text_center border_top_1px_black">Type</td>\n' +
-                '<td class="table_pd_seventh_column text_center border_top_1px_black">Discount</td>\n' +
-                '</tr>'+
-                '<tr><td class="text_center">' + tempListEdit[i].id + '</td>' +
-                '<td class="text_center">' + tempListEdit[i].name + '</td>' +
-                '<td class="text_center"><img class="size_img" src="'+tempListEdit[i].image+'" alt="" ></td>' +
-                '<td class="text_center">' + tempListEdit[i].brand + '</td>' +
-                '<td class="text_center">' + tempListEdit[i].price + '</td>' +
-                '<td class="text_center">' + tempListEdit[i].discount + '%</td>' +
-                '<td class="text_center">' + tempListEdit[i].type + '</td>' +
-                '<td class="text_center">' + tempListEdit[i].disc + '</td></tr>' +
-                '<tr><td class="table_pd_seventh_column text_center line_height_30">Size</td>\n' +
-                '<td class="table_pd_eighth_column text_center">Quantity</td>\n' +
-                '<td class="table_pd_nineth_column text_center">Edit</td>\n' +
-                '<td class="table_pd_tenth_column text_center right_border">Delete</td></tr>\n' 
-        for(let j = 0; j < lsProductDetail.length; j++){
-            if(lsProductDetail[j].idProduct == tempListEdit[i].id && lsProductDetail[j].idSize == size)
-            str +=  '<tr><td class="text_center line_height_30">' + lsProductDetail[j].idSize + '</td>' +
-                    '<td class="text_center">' + lsProductDetail[j].quantity + '</td>' +
-                    '<td class="text_center"><button class="btn" onclick="display_form(),showFormEdit(' + i +','+ j + ')"><a class="a_style" style="color: #333" href="#editArea">Edit</a></button></td>' +
-                    '<td class="text_center right_border"><button  class="btn" onclick="deleteProduct('+ j + ')">Delete</button></td></tr>'
-            else    if(lsProductDetail[j].idProduct == tempListEdit[i].id && size == "S")
-                str +=  '<tr><td class="text_center line_height_30">' + lsProductDetail[j].idSize + '</td>' +
-                        '<td class="text_center">' + lsProductDetail[j].quantity + '</td>' +
-                        '<td class="text_center"><button class="btn" onclick="display_form(),showFormEdit(' + i +','+ j + ')"><a class="a_style" style="color: #333" href="#editArea">Edit</a></button></td>' +
-                        '<td class="text_center right_border"><button  class="btn" onclick="deleteProduct('+ j + ')">Delete</button></td></tr>'
-                    }
-                }
-            str +=  '<tr style="height: 20px"></tr>'
-            
-    }
-    document.getElementById('displayEditArea').innerHTML = str;
-}

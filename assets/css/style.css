@@ -98,10 +98,6 @@ body
     border-radius: 5px;
 }
 
-.flex_layout
-{
-    display: flex;
-}
 
 #main
 {
@@ -124,20 +120,24 @@ body
 }
 
 #header .icon{
-    background-color:cornflowerblue;
+    background-color:#b6f9ff;
     border-radius: 50px;
     cursor: pointer;
 }
 #header .icon:hover{
-    background-color: aquamarine;
+    background-color: #b6ffcc;
 }
 
-#header .logo_box
+#header .logo_box 
+{
+    display: inline-block;
+}
+#header .logo_box  a
 {
     display: inline-block;
     height: 46px;
     width: 300px;
-    margin-left: 20px;
+    margin-left: 10px;
     background: url(../img/logo/logo3-edited-removebg-preview.png) left no-repeat;
 }
 #header .mobile-menu-btn a
@@ -207,7 +207,7 @@ body
     margin-bottom: 5px;
     height: fit-content;
     display: inline-block;
-    flex: 1;
+    position: fixed;
 }
 
 /* END LEFT MENU */
@@ -216,7 +216,7 @@ body
 
 .main_column
 {
-    flex: 4 ;
+
 }
 .column_item
 {
@@ -242,7 +242,7 @@ body
 
 .content
 {
-    margin-left: 5px;
+    margin-left: 245px;
     padding: 20px 15px;
     margin-bottom: 20px;
     min-height: 90vh;
@@ -251,6 +251,7 @@ body
 .content .header_content h3
 {
     color: #626773;
+    display: inline-block;
 }
 
 .btn
@@ -387,13 +388,12 @@ body
 #tableContent tr:last-child td,
 #displayListProduct tr:last-child td
 {
-    border: none;
-    
+    border: none;    
 }
 
     
 #displayListOrder td:nth-child(6){
-    width: 98px;
+    width: 110px;
 }
 
 /* MODAL */

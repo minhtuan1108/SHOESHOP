@@ -1,3 +1,11 @@
+#SSP .return-btn{
+    float: right;
+}
+
+#SSP .return-btn{
+    float: right;
+}
+
 
 /* Product Table */
 
@@ -5,6 +13,11 @@
 {
     width: 100%;
     box-shadow: 0 0 10px  rgba(0, 0, 0, 0.2);
+}
+
+#displayEditArea tr:first-child td
+{
+    border-top: none;
 }
 
 #displayEditArea td
@@ -25,12 +38,6 @@
 #displayEditArea .table_pd_second_column
 {
     width: 15%;
-
-}
-
-#displayEditArea .table_pd_fourth_column
-{
-
 
 }
 
@@ -55,8 +62,4 @@
     position: absolute;
     left: 480px;
     border: 1px solid #33333340;   
-}
-#footer
-{
-
 }
