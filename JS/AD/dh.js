@@ -18,8 +18,8 @@ function showOrderDetail(x)
         if(lsBill[x].idKH == lsCustomer[i].id)
             str1 =  '<ul id="ClientInfor-Order">'+
                         '<li class="ClientInfor ClientInfor-Name list_style">   <p>User name: ' + lsCustomer[i].name + '</p></li>'+
-                        '<li class="ClientInfor ClientInfor-Phone list_style">  <p>Phone number  : ' + lsCustomer[i].phoneNumber + '</p></li>'+
-                        '<li class="ClientInfor ClientInfor-Address list_style"><p>Address :       ' + lsCustomer[i].address + '</p></li>'+
+                        '<li class="ClientInfor ClientInfor-Phone list_style">  <p>Phone number  : ' + lsBill[i].phoneNumber + '</p></li>'+
+                        '<li class="ClientInfor ClientInfor-Address list_style"><p>Address :       ' + lsBill[i].address + '</p></li>'+
                     '</ul>';
     }
 
@@ -135,6 +135,7 @@ function check(i) {
     lsBill= JSON.parse(localStorage.getItem('listBill'));
     if(document.getElementById('checkbox'+i+'').checked)
     {
+        document.getElementById('checkbox'+i+'').checked
         lsBill[i].status = Boolean(1);
         document.getElementById('message'+i+'').textContent = 'Delivery';
     }
