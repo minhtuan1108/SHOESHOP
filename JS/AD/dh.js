@@ -57,18 +57,6 @@ function showOrderDetail(x)
     document.getElementById('DetailOrderArea').innerHTML = str2; 
 }
 
-function checkDate()
-{
-    let start = document.getElementById('dateStartInput').value;
-    let end = document.getElementById('dateEndInput').value;
-    if(start != '' && end != '' && start > end)
-    {
-        alert('Date error');
-        return 0;
-    }
-    return 1;
-}
-
 function displaylsBillDetail(i)
 {
     let str =  '<tr><td class="text_center">' + lsBill[i].id + '</td>' +
