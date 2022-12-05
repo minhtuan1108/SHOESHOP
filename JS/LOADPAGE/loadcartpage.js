@@ -229,12 +229,62 @@ function setNotify(){
 
 //Check out 1: Xuất hóa đơn mẫu cho khách
 function checkOut1(){
-    //Show hóa đơn cho khách hàng
-    showBillCheckOut(calculateTotalPriceOfCurrentCart());    
+    if(getProductInCurrentCart().length == 0){
+        showBillCheckOut(0, '^^!','^^!');
+        innerProductToBillDetail(getProductInCurrentCart());
+    }else{
+        var deliveryInfo = `<div class="delivery-info">
+                            <div class="delete" onclick="closeProductCard();">
+                                <i class="fa-solid fa-xmark"></i>
+                            </div>
+                            <div class="bill-title">
+                                <h2>Delivery Information</h2>
+                            </div>
+
+                            <div class="container-phonenumber">
+                                <label for="phone">Enter phonenumber</label>
+                                <input type="text" name="phone" id="phone" placeholder="*Phone number (10 or 11)">
+                            </div>
+
+                            <div class="container-address">
+                                <label for="address">Enter delivery address</label>
+                                <input type="text" name="address" id="address" placeholder="*address">
+                            </div>
+
+                            <div class="to-checkOut" onclick="checkAndCallDemoBill();">Next</div>
+                        </div>`
+        document.querySelector('.container-popUp').innerHTML = deliveryInfo;
+        document.querySelector('.container-popUp').style.display = 'flex'; 
+    }
+    
+    
+
+}
+
+function checkAndCallDemoBill(){
+    var inpPhone = document.querySelector('#phone');
+    var inpAddr = document.querySelector('#address');
+    var phoneNumber = inpPhone.value;
+    var addr = inpAddr.value;
+    var inValidPhoneNumber = (phoneNumber == '' || phoneNumber.length < 10 || phoneNumber.length > 11);
+    var inValidAddress = addr == '';
+    if(inValidPhoneNumber){
+        alert("Phone number is invalid!");
+        inpPhone.value = '';
+        inpPhone.focus();
+    }else{
+        if(inValidAddress){
+            alert("Address delivery is invalid!");
+            inpAddr.value='';
+            inpAddr.focus;
+        }else{
+            showBillCheckOut(calculateTotalPriceOfCurrentCart(), phoneNumber, addr);   
+        }
+    }
 }
 
 //Check out 2: Lưu hóa đơn
-function checkOut2(){
+function checkOut2(phoneNumber, addr){
     lsBill = JSON.parse(data.getItem("listBill"));
 
     var idBill = createGeneralID(lsBill);
@@ -243,7 +293,7 @@ function checkOut2(){
     var dateCreate = new Date().toLocaleString();
     var status = false;
 
-    lsBill = lsBill.concat(new bill(idBill,idCustomer, total, dateCreate, status));
+    lsBill = lsBill.concat(new bill(idBill, idCustomer, phoneNumber, addr, total, dateCreate, status));
     storeBillDetail(idBill);
     data.setItem("listBill", JSON.stringify(lsBill));
     innerBillPaid();
@@ -279,7 +329,7 @@ function getProductInCurrentCart(){
     var idCart = getCartIdByActiveAccount();
     lsCartDetail = JSON.parse(data.getItem("listCartDetail"));
     var productInCart = [];
-    for(let i = 0; i< lsCartDetail.length ; i++){
+    for(let i = 0; i < lsCartDetail.length ; i++){
         if(idCart == lsCartDetail[i].idCart){
             productInCart = productInCart.concat(lsCartDetail[i]);
         }
@@ -287,7 +337,7 @@ function getProductInCurrentCart(){
     return productInCart;
 }
 
-function showBillCheckOut(total){
+function showBillCheckOut(total, phoneNumber, addr){
     var custommerName = activeAccount.name;
     var bill_detail = `
     <div class="bill-detail">
@@ -301,7 +351,8 @@ function showBillCheckOut(total){
 
         <div class="top">
             <h3 class="cus-name">${custommerName}</h3>
-            <!--<p class="time">Time create: <span></span></p>-->
+            <p class="time">Phone: <span>${phoneNumber}</span></p>
+            <p class="time">Address: <span>${addr}</span></p>
         </div>
 
         <div class="main-content-bill">
@@ -311,7 +362,7 @@ function showBillCheckOut(total){
             <div class="total">
                 <p>Total: <span class="total-money">${formatNumberToMoney(total)}đ</span></p>
                 <div class="button">
-                    <input type="button" id="checkOut-button" value="Check out" onclick="checkOut2();">
+                    <input type="button" id="checkOut-button" value="Check out" onclick="checkOut2('${phoneNumber}','${addr}');">
                 </div>
             </div>
         </div>
@@ -343,6 +394,8 @@ function openBillDetail(bill){
         <div class="top">
             <h3 class="cus-name">${custommerName}</h3>
             <p class="time">Time create: <span>${bill.date}</span></p>
+            <p class="time">Phone: <span>${bill.phone}</span></p>
+            <p class="time">Address: <span>${bill.address}</span></p>
         </div>
 
         <div class="main-content-bill">

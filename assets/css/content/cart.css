@@ -221,14 +221,60 @@
     border: 1px solid var(--main-border-color);
 }
 
+.container-popUp .delivery-info{
+    width: 400px;
+    position: relative;
+    background-color: #fff;
+    border: 1px solid var(--main-border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    border-radius: 20px;
+}
+
+.container-popUp .delivery-info .delete{
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.container-popUp .delivery-info .delete i{
+    padding: 0 5px;
+}
+
+.container-popUp .delivery-info .container-phonenumber{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-content: flex-start;
+    margin: 20px 0 5px 0;
+}
+
+.container-popUp .delivery-info .container-address{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-content: flex-start;
+    margin: 10px 0;
+}
+
+.container-popUp .delivery-info input{
+    margin: 0!important;
+    padding: 10px 15px!important;
+    border: 1px solid #000 !important;
+    border-radius: 20px !important;
+}
+
 .container-popUp .bill-detail .top{
-    max-height: 50px;
+    height: max-content;
     padding: 5px 10px;
     margin-top: 10px;
     background-color: #fff;
 }
 
-.container-popUp .bill-detail .delete{
+.container-popUp .delete{
     position: absolute;
     right: 0;
     top: 0;
@@ -242,11 +288,37 @@
     transition: 0.2s ease-in-out;
 }
 
-.container-popUp .bill-detail .bill-title{
+.container-popUp .bill-title{
     display: flex;
     justify-content: center;
     align-items: center;
     border: 1px dotted #000;
+    margin-top: 20px;
+}
+
+.container-popUp input{
+    display: block;
+    width: 100%;
+    margin: 0 10px;
+    padding: 10px 5px;
+    border: none;
+    border-bottom: 1px solid var(--main-border-color);
+}
+
+.container-popUp .to-checkOut{
+    width: 40%;
+    padding: 10px;
+    margin: 30px 0 10px 0;
+    background-color: var(--main-color);
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    border-radius: 20px;
+}
+
+.container-popUp .to-checkOut:hover{
+    opacity: 0.6;
 }
 
 .container-popUp .bill-detail .top p{
@@ -334,8 +406,13 @@
     padding: 5px;
     border-radius: 10px;
     border: 1px solid #000;
-    background-color: green;
+    background-color: var(--main-color);
     color: #fff;
+    margin: 0 !important;
+}
+
+.container-popUp .bill-detail .total #checkOut-button:hover{
+    opacity: 0.6;
 }
 
 /* Pop up  */

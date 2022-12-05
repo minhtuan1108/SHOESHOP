@@ -45,7 +45,7 @@ function innerLandingPage(){
                     <i class="fa-sharp fa-solid fa-gear"></i>
                     <div class="option-mode popUp-card" style="display:none">
                         <p>Customer mode</p>
-                        <p>Manager mode</p>
+                        <a href="./admin.html"><p>Manager mode</p></a>
                     </div>
                 </div>
 

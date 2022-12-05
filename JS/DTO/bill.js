@@ -1,7 +1,9 @@
 class bill{
-    constructor(id, idKH, total, date, status){
+    constructor(id, idKH, phone, address, total, date, status){
         this.id = id;
         this.idKH = idKH;
+        this.phone = phone;
+        this.address = address;
         this.total = total;
         this.date = date;
         this.status = status;
