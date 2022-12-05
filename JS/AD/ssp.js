@@ -21,7 +21,7 @@ function displayAllwithEdit(i) {
                 '<tr><td class="text_center">' + lsProduct[i].id + '</td>' +
                 '<td class="text_center">' + lsProduct[i].name + '</td>' 
                 if(lsProduct[i].image.length < 100)
-                    str +=  '<td class="text_center"><img class="size_img" src="'+lsProduct[i].image +'/1.jpg " alt=""></td>' 
+                    str +=  '<td class="text_center"><img class="size_img" src="'+lsProduct[i].image +'1.jpg " alt=""></td>' 
                 else
                     str +=  '<td class="text_center"><img class="size_img" src="'+lsProduct[i].image +'" alt=""></td>' 
                 str +=  '<td class="text_center">' + lsProduct[i].brand + '</td>' +
@@ -76,7 +76,7 @@ function saveProduct(i, j) {
     if(discount == "")
         discount = 0;
 
-    if(checkerror(name, brand, price) == 0)
+    if(checkerror(name, brand, price, discount) == 0)
     if(quantity == "")
     {
         alert('The form has not been filled in completely');
@@ -135,7 +135,7 @@ function showFormEdit(i, j) {
 
                 '       <div class="product_row product_img">  '
                         if(lsProduct[i].image.length < 100)
-                            str  +=   '<label for="edit-img" class="form_label line_height_100"  style="flex: 1">Image: </label><img class="size_img border_radius_5px current_img" src="'+lsProduct[i].image+'/1.jpg" alt="" >'
+                            str  +=   '<label for="edit-img" class="form_label line_height_100"  style="flex: 1">Image: </label><img class="size_img border_radius_5px current_img" src="'+lsProduct[i].image+'1.jpg" alt="" >'
                         else
                             str  +=   '<label for="edit-img" class="form_label line_height_100"  style="flex: 1">Image: </label><img class="size_img border_radius_5px current_img" src="'+lsProduct[i].image+'" alt="" >'
         str  += '       <input class="form_input padding_0_16" type="file" id="edit-img" accept="image/*" onchange="showPreviewEdit(event), UpdateFileImg();">    '+
@@ -151,24 +151,24 @@ function showFormEdit(i, j) {
                                 '<option value="Asics">Asics</option>'+
                                 '<option value="Mizuno">Mizuno</option>'+
                                 '<option value="Beyono">Beyono</option>'+
-                                '<option value="Nike">Nike</option>'+
+                                '<option value="Kawasaki">Kawasaki</option>'+
                                 '<option value="Adidas">Adidas</option>'+
                             '</select> ' +
                 '       </div>'+
         
                 '       <div class="product_row product_quantity">'+
                 '       <label for="edit-quantity" class="form_label">Quantity: </label>'+
-                '       <input class="form_input"  value = "'+ lsProductDetail[j].quantity + '" type="text" id="edit-quantity">'+
+                '       <input class="form_input"  value = "'+ lsProductDetail[j].quantity + '" type="number" onchange="fixErrorInputEdit()" id="edit-quantity">'+
                 '       </div>'+
         
                 '       <div class="product_row product_price">'+
                 '       <label for="edit-price" class="form_label">Price: </label>'+
-                '       <input class="form_input"  value = "'+ lsProduct[i].price + '" type="number" id="edit-price">'+
+                '       <input class="form_input"  value = "'+ lsProduct[i].price + '" onchange="fixErrorInputEdit()" type="number" id="edit-price">'+
                 '       </div>'+
                 
                 '       <div class="product_row product_price">'+
                 '       <label for="edit-discount" class="form_label">Discount: </label>'+
-                '       <input class="form_input"  value = "'+ lsProduct[i].discount + '" type="number" id="edit-discount">'+
+                '       <input class="form_input"  value = "'+ lsProduct[i].discount + '" onchange="fixErrorInputEdit()" type="number" id="edit-discount">'+
                 '       </div>'+
 
                 '       <div class="product_row product_type">'+
