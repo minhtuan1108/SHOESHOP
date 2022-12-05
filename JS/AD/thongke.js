@@ -367,29 +367,33 @@ function openDetailProduct(id){
     for(let i=0;i<lsProduct.length;i++)
         if(lsProduct[i].id==id)
         {
-            chitiet = `
-            <div id="left">
-                    <ul>
-                        <li>Id Product</li>
-                        <li>Name</li>
-                        <li style="height: 110px">Image</li>
-                        <li>Brand</li>
-                        <li>Quantity</li>
-                        <li>Price</li>
-                        <li>Type</li>
-                    </ul>
-                </div>
-            <div id="right">
-            <ul>
-            <li class="text_center">${lsProduct[i].id}</li>
-            <li class="text_center">${lsProduct[i].name}</li>
-            <li class="text_center"><img class="size_img" src="${lsProduct[i].image}"></li>
-            <li class="text_center">${lsProduct[i].brand}</li>
-            <li class="text_center">${lsProductDetail[i].quantity}</li>
-            <li class="text_center">${lsProduct[i].price}</li>
-            <li class="text_center">${lsProduct[i].type}</li>
-            </ul>
-            </div>`
+            chitiet = 
+            '<div id="left">'+
+                    '<ul>'+
+                        '<li>Id Product</li>'+
+                        '<li>Name</li>'+
+                        '<li style="height: 110px">Image</li>'+
+                        '<li>Brand</li>'+
+                        '<li>Quantity</li>'+
+                        '<li>Price</li>'+
+                       ' <li>Type</li>'+
+                    '</ul>'+
+                '</div>'+
+            '<div id="right">'+
+            '<ul>'+
+            '<li class="text_center">'+lsProduct[i].id+'</li>'+
+            '<li class="text_center">'+lsProduct[i].name+'</li>'
+            if(tempListProduct[i].image.length < 100)
+            chitiet +='<li class="text_center"><img class="size_img" src="'+lsProduct[i].image+'/1.jpg"></li>'
+            else
+            chitiet +='<li class="text_center"><img class="size_img" src="'+lsProduct[i].image+'"></li>'
+
+            chitiet +='<li class="text_center">'+lsProduct[i].brand+'</li>'+
+            '<li class="text_center">'+lsProductDetail[i].quantity+'</li>'+
+            '<li class="text_center">'+lsProduct[i].price+'</li>'+
+            '<li class="text_center">'+lsProduct[i].type+'</li>'+
+            '</ul>'+
+            '</div>'
         }
     document.getElementById("showDetailByProduct").innerHTML = chitiet;
 }
