@@ -57,18 +57,6 @@ function showOrderDetail(x)
     document.getElementById('DetailOrderArea').innerHTML = str2; 
 }
 
-function checkDate()
-{
-    let start = document.getElementById('dateStartInput').value;
-    let end = document.getElementById('dateEndInput').value;
-    if(start != '' && end != '' && start > end)
-    {
-        alert('Date error');
-        return 0;
-    }
-    return 1;
-}
-
 function displaylsBillDetail(i)
 {
     let str =  '<tr><td class="text_center">' + lsBill[i].id + '</td>' +
@@ -76,16 +64,22 @@ function displaylsBillDetail(i)
                     '<td class="text_center">' + lsBill[i].date + '</td>' +
                     '<td class="text_center"><button class="btn" onclick="showOrderDetail('+i+')";>See detail</button></td>' +
                     '<td class="text_center">' + lsBill[i].total + '</td>' 
-                    if(lsBill[i].status == false)
-                        str +='<td class="text_center" id="message'+i+'"> Not delivery </td>'  
-                    else
-                        str +='<td class="text_center" id="message'+i+'"> Delivery </td>'
-                    
-                        str +='<td class="text_center"><div id="toggle-btn"><label class="switch">'+
+                    if(lsBill[i].status == false){
+                        str +='<td class="text_center" id="message'+i+'"> Not delivery </td>'  +
+                        '<td class="text_center"><div id="toggle-btn"><label class="switch">'+
                     '   <input type="checkbox" id="checkbox'+i+'" onclick="check('+i+')";>'+
                     '   <span class="slider round"></span>'+
-                    '</label></div></td>'
+                    '</label></div></td>'+
                     '</tr>'
+                    }
+                    else{
+                        str +='<td class="text_center" id="message'+i+'"> Delivery </td>'+
+                                '<td class="text_center"><div id="toggle-btn"><label class="switch">'+
+                                '   <input type="checkbox" checked id="checkbox'+i+'" onclick="check('+i+')";>'+
+                                '   <span class="slider round"></span>'+
+                                '</label></div></td>'+
+                                '</tr>'
+                    }
     return str;
 }
 
@@ -101,41 +95,66 @@ function displayAllOrder() {
                 '   <td class="table_pd_fifth_column text_center">Status</td>\n' +
                 '   <td class="table_pd_sixth_column text_center">Confirm</td>\n' +
                 '   </tr>';
-        if(checkDate()){
+
             let start = document.getElementById('dateStartInput').value;
             let end = document.getElementById('dateEndInput').value;
-                var count = str.length;
-                if(start == '' && end == '')
+            var count = str.length;
+
+            var d;
+            if(start != '' && end != '' && start > end)
+                alert('Date error');
+            else{            
+                let dateStart = new Date(start);
+                let dateEnd = new Date(end);
+                if(start == '' && end == ''){
+                    console.log("Bắt đầu: rỗng. Kết thúc: rỗng");
                     for (let i = 0; i < lsBill.length; i++) {
-                        str +=  displaylsBillDetail(i);
-                    }              
-                else if(start == '' && end != ''){
+                        str +=  displaylsBillDetail(i);             
+                    }                            
+                }else if(start == '' && end != ''){
+                    console.log("Bắt đầu: rỗng. Kết thúc: !rỗng");
+                    
                     for (let i = 0; i < lsBill.length; i++) 
-                        if(lsBill[i].date < end)
-                            str +=  displaylsBillDetail(i);      
-                        }
-                else if(start != '' && end == ''){
-                    for (let i = 0; i < lsBill.length; i++) 
-                        if(lsBill[i].date > start)
+                        {
+                        d = new Date(lsBill[i].date);
+                        if(d < dateEnd)
+                        {
+                            console.log(lsBill[i].id)
                             str +=  displaylsBillDetail(i);
                         }
-                else{
-                    for (let i = 0; i < lsBill.length; i++) 
-                        if(lsBill[i].date > start && lsBill[i].date < end)
-                            str +=  displaylsBillDetail(i);    
+                    }
+                }else if(start != '' && end == ''){
+                    console.log("Bắt đầu: !rỗng. Kết thúc: rỗng");
+                    for (let i = 0; i < lsBill.length; i++) {
+                        d = new Date(lsBill[i].date);
+                        if(d > dateStart)
+                        {
+                            console.log(lsBill[i].id)
+                            str +=  displaylsBillDetail(i);
                         }
-                
-                if(str.length == count){    
-                    str =  '<tr><td>No orders</td></tr>'
+                    }
                 }
-            }     
+                else{
+                    for (let i = 0; i < lsBill.length; i++){
+                        d = new Date(lsBill[i].date);
+                        if( d > dateStart && d < dateEnd){
+                            
+                            console.log(lsBill[i].id)
+                            str +=  displaylsBillDetail(i);
+                        }
+                    }
+                }
+            }
+            if(str.length == count){    
+                str =  '<tr><td>No orders</td></tr>'
+            }
             document.getElementById('displayListOrder').innerHTML = str; 
-    }
+}
 function check(i) {
     lsBill= JSON.parse(localStorage.getItem('listBill'));
+
     if(document.getElementById('checkbox'+i+'').checked)
     {
-        document.getElementById('checkbox'+i+'').checked
         lsBill[i].status = Boolean(1);
         document.getElementById('message'+i+'').textContent = 'Delivery';
     }

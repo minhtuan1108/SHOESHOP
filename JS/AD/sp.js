@@ -67,7 +67,7 @@ function displayAllProduct() {
         str +=  '<tr><td class="text_center item">' + lsProduct[i].id + '</td>' +
                 '<td class="text_center">' + lsProduct[i].name + '</td>' 
                 if(lsProduct[i].image.length < 100)
-                    str +=  '<td class="text_center"><img class="size_img" src="'+lsProduct[i].image +'/1.jpg " alt=""></td>' 
+                    str +=  '<td class="text_center"><img class="size_img" src="'+lsProduct[i].image +'1.jpg " alt=""></td>' 
                 else
                     str +=  '<td class="text_center"><img class="size_img" src="'+lsProduct[i].image +'" alt=""></td>' 
                 str +=  '<td class="text_center">' + lsProduct[i].brand + '</td>' +
@@ -100,7 +100,7 @@ function showFormAddQuantity(i) {
                 '       <label for="add-img" class="form_label line_height_100" style="flex: 1">Image: </label>'+
                 '       <div class="preview">'
                         if(lsProduct[i].image.length < 100)
-                            str+='<img class="size_img border_radius_5px" src="'+ lsProduct[i].image + '/1.jpg" alt=""  id="file-preview">'
+                            str+='<img class="size_img border_radius_5px" src="'+ lsProduct[i].image + '1.jpg" alt=""  id="file-preview">'
                         else
                             str+='<img class="size_img border_radius_5px" src="'+ lsProduct[i].image + '" alt=""  id="file-preview">'
                 str +=' </div>'+
@@ -114,12 +114,12 @@ function showFormAddQuantity(i) {
         
                 '       <div class="product_row product_price">'+
                 '       <label for="add-price" class="form_label">Price: </label>'+
-                '       <input class="form_input"  value = "'+ lsProduct[i].price + '" min="1000" type="number" id="priceProductAddQuantity" disabled>'+
+                '       <input class="form_input"  value = "'+ lsProduct[i].price + '"  type="number" id="priceProductAddQuantity" disabled>'+
                 '       </div>'+
 
                 '       <div class="product_row product_discount">'+
                 '       <label for="add-discount" class="form_label">Discount: </label>'+
-                '       <input class="form_input"  value = "'+ lsProduct[i].discount + '" min="0" type="number" id="discountProductAddQuantity" disabled>'+
+                '       <input class="form_input"  value = "'+ lsProduct[i].discount + '" type="number" id="discountProductAddQuantity" disabled>'+
                 '       </div>'+
         
                 '       <div class="product_row product_type">'+
@@ -150,14 +150,14 @@ function showFormAddQuantity(i) {
 
                         '       <div class="flex_1">'+
                         '       <label for="name" class="form_label">Size: </label>'+
-                        '       <input class="form_input" type="number" min="0" id="add-size-Product-exist">'+
+                        '       <input class="form_input" type="number" onchange="fixErrorInputExist()" id="add-size-Product-exist">'+
                         '       </div>'+
                         '       <div class="flex_1">'+
                         '       <label for="name" class="form_label">Quantity: </label>'+
-                        '       <input class="form_input" type="number" min="0" id="add-quantity-Product-exist">'+
+                        '       <input class="form_input" type="number" onchange="fixErrorInputExist()" id="add-quantity-Product-exist">'+
                         '       </div>'+
                         '       <div class="flex_1">'+
-                        '           <div class="TempList" style="z-index:3" onmouseover="ShowTempListSizeExit()"; onmouseout="HideTempListSizeExit()">List size<div id="listTempSizeArea2" class="TempListArea"  style="display: none"></div></div>'+
+                        '           <div class="TempList" style="z-index:3" onmouseover="ShowTempListSizeExist()"; onmouseout="HideTempListSizeExist()">List size<div id="listTempSizeArea2" class="TempListArea"  style="display: none"></div></div>'+
                         '       </div>'+
                     '       </div>'+
 
@@ -262,7 +262,7 @@ function showFormAdd() {
                                 '<option value="Asics">Asics</option>'+
                                 '<option value="Mizuno">Mizuno</option>'+
                                 '<option value="Beyono">Beyono</option>'+
-                                '<option value="Nike">Nike</option>'+
+                                '<option value="Kawasaki">Kawasaki</option>'+
                                 '<option value="Adidas">Adidas</option>'+
                             '</select> ' +
                 '       </div>'+
@@ -270,12 +270,12 @@ function showFormAdd() {
         
                 '       <div class="product_row product_price">'+
                 '       <label for="add-price" class="form_label">Price: </label>'+
-                '       <input class="form_input" type="number" min="1000" id="add-price">'+
+                '       <input class="form_input" type="number" onchange="fixErrorInput()"id="add-price">'+
                 '       </div>'+
 
                 '       <div class="product_row product_discount">'+
                 '       <label for="add-discount" class="form_label">Discount: </label>'+
-                '       <input class="form_input" type="number" min="0" id="add-discount">'+
+                '       <input class="form_input" type="number" onchange="fixErrorInput()"id="add-discount">'+
                 '       </div>'+
         
                 '       <div class="product_row product_type">'+
@@ -300,11 +300,11 @@ function showFormAdd() {
 
                         '       <div class="flex_1">'+
                         '       <label for="name" class="form_label">Size: </label>'+
-                        '       <input class="form_input" type="number" min="0" id="add-size">'+
+                        '       <input class="form_input" onchange="fixErrorInputDetail()" type="number" id="add-size">'+
                         '       </div>'+
                         '       <div class="flex_1">'+
                         '       <label for="name" class="form_label">Quantity: </label>'+
-                        '       <input class="form_input" type="number" min="0" id="add-quantity">'+
+                        '       <input class="form_input" onchange="fixErrorInputDetail()" type="number" id="add-quantity">'+
                         '       </div>'+
                         '       <div class="flex_1">'+
                         '           <div class="TempList" style="z-index:3" onmouseover="ShowTempListSize()"; onmouseout="HideTempListSize()">List size<div id="listTempSizeArea1" class="TempListArea"  style="display: none"></div></div>'+
@@ -355,7 +355,7 @@ function HideTempListSize()
     document.getElementById('listTempSizeArea1').style.display = "none";
 }
 
-function ShowTempListSizeExit()
+function ShowTempListSizeExist()
 {
     tempSizeList = JSON.parse(localStorage.getItem('tempList'));
     var temp = [];
@@ -379,7 +379,7 @@ function ShowTempListSizeExit()
     document.getElementById('listTempSizeArea2').innerHTML = str; 
 }
 
-function HideTempListSizeExit()
+function HideTempListSizeExist()
 {
     document.getElementById('listTempSizeArea2').style.display = "none";
 }
@@ -456,7 +456,7 @@ function addProduct(){
         discount = 0;
     if(document.getElementById('add-img').value == "")
         alert("There are no photos for this product yet")
-    else   if(!checkerror(name, brand, price) && !checkEmptyQuantity())
+    else   if(!checkerror(name, brand, price, discount) && !checkEmptyQuantity())
     {
         document.getElementById('add-name').value  = '';
         document.getElementById('add-img').value  = '';
@@ -544,6 +544,7 @@ function displayAllFilteredProduct()
     var brandEdit = document.getElementById('Filter_brand_product').value;
     var priceEdit = document.getElementById('Filter_price_product').value;
     var typeEdit = document.getElementById('Filter_type_product').value;
+    console.log(typeEdit)
 
     document.getElementById('Filter_name_product').value  = '';   
     document.getElementById('Filter_brand_product').value  = '0';
@@ -565,8 +566,10 @@ function displayAllFilteredProduct()
             }
     if(typeEdit != "0")
         for(let i = 0; i < tempListProduct.length; i++)
-            if(tempListProduct[i].type != typeEdit)
+            if(String(tempListProduct[i].type) != typeEdit)
             {
+                console.log(tempListProduct[i].type)
+                console.log(typeEdit)
                 tempListProduct.splice(i, 1);
                 i--;
             }
@@ -611,14 +614,14 @@ function displayAllFilteredProduct()
         str +=  '<tr><td class="text_center">' + tempListProduct[i].id + '</td>' +
                 '<td class="text_center">' + tempListProduct[i].name + '</td>' 
                 if(tempListProduct[i].image.length < 100)
-                    str +=  '<td class="text_center"><img class="size_img" src="'+tempListProduct[i].image +'/1.jpg " alt=""></td>' 
+                    str +=  '<td class="text_center"><img class="size_img" src="'+tempListProduct[i].image +'1.jpg " alt=""></td>' 
                 else
                     str +=  '<td class="text_center"><img class="size_img" src="'+tempListProduct[i].image +'" alt=""></td>' 
         str +=      '<td class="text_center">' + tempListProduct[i].brand + '</td>' +
                     '<td class="text_center quantityProduct" onmouseover="displayListSizeOfProduct('+i+')"; onmouseout="hideListSizeOfProduct('+i+')">' + getQuantityOfProduct(tempListProduct[i].id) + '<div id="listSizeArea'+i+'" class="SizeArea" style="display: none"></div></div></td>' +
                     '<td class="text_center">' + tempListProduct[i].price + '</td>' +
                     '<td class="text_center">' + tempListProduct[i].discount + '%</td>' 
-                    if(lsProduct[i].type == true)
+                    if(tempListProduct[i].type == true)
                         str +='<td class="text_center">Male</td>'
                     else
                         str +='<td class="text_center">Female</td>'
@@ -630,10 +633,46 @@ function displayAllFilteredProduct()
 }
 
 
+function fixErrorInput()
+{
+    if(document.getElementById('add-price').value <= 0)
+    document.getElementById('add-price').value = 1;
+    if(document.getElementById('add-discount').value < 0)
+    document.getElementById('add-discount').value = 0;
+    if(document.getElementById('add-discount').value > 100)
+    document.getElementById('add-discount').value = 100;
 
+}
+
+function fixErrorInputDetail(){
+    
+    if(document.getElementById('add-size').value <= 0)
+    document.getElementById('add-size').value = 1;
+    if(document.getElementById('add-quantity').value <= 0)
+    document.getElementById('add-quantity').value = 1;
+}
+
+function fixErrorInputExist(){
+    if(document.getElementById('add-size-Product-exist').value <= 0)
+    document.getElementById('add-size-Product-exist').value = 1;
+    if(document.getElementById('add-quantity-Product-exist').value <= 0)
+    document.getElementById('add-quantity-Product-exist').value = 1;
+}
+
+function fixErrorInputEdit(){
+    if(document.getElementById('edit-quantity').value < 0)
+        document.getElementById('edit-quantity').value = 1;
+    if(document.getElementById('edit-price').value <= 0)
+        document.getElementById('edit-price').value = 1;
+    if(document.getElementById('edit-discount').value < 0)
+        document.getElementById('edit-discount').value = 0;
+    if(document.getElementById('edit-discount').value > 100)
+        document.getElementById('edit-discount').value = 100;
+}
 
 function checkerror(name, brand, price)
 {
+    
     if(name == ""  || brand == "" || price =="")
         {
             alert('The form has not been filled in completely');
