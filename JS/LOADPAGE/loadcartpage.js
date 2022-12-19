@@ -143,17 +143,6 @@ function addProductToCart(inp){
     }
 }
 
-function getCartIdByActiveAccount(){
-    lsCart = JSON.parse(data.getItem("listCart"));
-
-    if(lsCart.length == 0 || activeAccount == null) return null;
-
-    for(let i = 0; i < lsCart.length; i++){
-        if(lsCart[i].idAccount == activeAccount.idAcc){
-            return lsCart[i].id;
-        }
-    }
-}
 
 function checkAndAddToCartDetail(idCart, idPr, idSize, quantity, Subprice){
 
@@ -211,21 +200,6 @@ function calculateTotalPriceOfCurrentCart(){
     return total;
 }
 
-function setNotify(){
-
-    var l;
-    //Nếu k có account đang hoạt động thì l = 0
-    if(activeAccount == null) l = 0;
-    else l = getProductInCurrentCart().length;
-    var notify = document.querySelector('#header').querySelector('.notify');
-
-    if(l == 0){
-        notify.style.display = 'none';
-    }else{
-        notify.setAttribute('data_count_pr',l);
-        notify.style.display = 'block';
-    }
-}
 
 //Check out 1: Xuất hóa đơn mẫu cho khách
 function checkOut1(){
@@ -322,19 +296,6 @@ function setDataProductQuantity(idPr, idSize, quantity){
         }
     }
     data.setItem("listProductDetail", JSON.stringify(lsProductDetail));
-}
-
-//Lấy những sản phẩm trong cart của tài khoản đang onl
-function getProductInCurrentCart(){
-    var idCart = getCartIdByActiveAccount();
-    lsCartDetail = JSON.parse(data.getItem("listCartDetail"));
-    var productInCart = [];
-    for(let i = 0; i < lsCartDetail.length ; i++){
-        if(idCart == lsCartDetail[i].idCart){
-            productInCart = productInCart.concat(lsCartDetail[i]);
-        }
-    }
-    return productInCart;
 }
 
 function showBillCheckOut(total, phoneNumber, addr){

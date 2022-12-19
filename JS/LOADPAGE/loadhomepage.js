@@ -44,7 +44,7 @@ function innerLandingPage(){
                 <div class="setting-icon icon" title="Change mode" style="display:none" onclick="changeMode(this)">
                     <i class="fa-sharp fa-solid fa-gear"></i>
                     <div class="option-mode popUp-card" style="display:none">
-                        <p>Customer mode</p>
+                        <p onclick="innerProductPage();">Customer mode</p>
                         <a href="./admin.html"><p>Manager mode</p></a>
                     </div>
                 </div>
@@ -311,6 +311,14 @@ function innerLandingPage(){
     </div>
     <!-- End popup items -->`;
     content.innerHTML=contentInner;
+    activeAccount = JSON.parse(data.getItem("activeAccount"));
+    if(activeAccount != null){
+        setNotify();
+        changeButtonLogin("Logout");
+        displayAdminAccount();
+        loadAvatar();
+        setNotify();
+    }
     i=0;
     slide();
 }
@@ -403,4 +411,42 @@ function searchEvent(){
         innerProductPage();
     }
     document.querySelector('#search-input').focus();
+}
+
+function displayAdminAccount(){
+    
+    if(getAccountByID(activeAccount.idAcc).positionID == 2){
+        document.querySelector('#group-account').querySelector('.setting-icon').style.display = 'flex';
+    }
+}
+
+function setNotify(){
+
+    var l;
+    //Nếu k có account đang hoạt động thì l = 0
+    if(activeAccount == null) l = 0;
+    else l = getProductInCurrentCart().length;
+    var notify = document.querySelector('#header').querySelector('.notify');
+
+    if(l == 0){
+        notify.style.display = 'none';
+    }else{
+        notify.setAttribute('data_count_pr',l);
+        notify.style.display = 'block';
+    }
+}
+
+function changeButtonLogin(value){
+    document.querySelector('#header').querySelector('.login').setAttribute("data-before", value);
+}
+
+function loadAvatar(){
+    var acc = document.querySelector('#header').querySelector('#group-account').querySelector('.account-icon');
+    var avatar ='';
+    if(activeAccount == null){
+        avatar = `<i class="ti-user"></i>
+                    <div class="account-info popUp-card" style="display:none"></div>`;
+    }else avatar = `<img src="${activeAccount.avatar}">
+                     <div class="account-info popUp-card" style="display:none"></div>`;
+    acc.innerHTML = avatar;
 }

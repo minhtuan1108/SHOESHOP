@@ -279,16 +279,7 @@ function setAutoAvatarForCustomer(customer){
     customer.avatar = `./assets/img/avatar/auto/${firstCharacter}.jpg`;
 }
 
-function loadAvatar(){
-    var acc = document.querySelector('#header').querySelector('#group-account').querySelector('.account-icon');
-    var avatar ='';
-    if(activeAccount == null){
-        avatar = `<i class="ti-user"></i>
-                    <div class="account-info popUp-card" style="display:none"></div>`;
-    }else avatar = `<img src="${activeAccount.avatar}">
-                     <div class="account-info popUp-card" style="display:none"></div>`;
-    acc.innerHTML = avatar;
-}
+
 
 function isValidPhoneNumber(phone){
     var announce = document.querySelector('.phone-annouce');
@@ -372,8 +363,13 @@ function isValidPassword(pass){
         if(pass != checked){
             annouceText = '*Sorry, just fill a-z, A-Z, 0-9';
         }else{
-            announce.style.display = 'none';
-            return true;
+            if(pass.length < 6 || pass.length > 14){
+                annouceText = 'Length password from 6 to 14';
+            }else{
+                announce.style.display = 'none';
+                return true;
+            }
+            
         } 
     }
 
@@ -495,13 +491,5 @@ function signInRightAccount(username, password){
     return false;
 }
 
-function changeButtonLogin(value){
-    document.querySelector('#header').querySelector('.login').setAttribute("data-before", value);
-}
 
-function displayAdminAccount(){
-    
-    if(getAccountByID(activeAccount.idAcc).positionID == 2){
-        document.querySelector('#group-account').querySelector('.setting-icon').style.display = 'flex';
-    }
-}
+

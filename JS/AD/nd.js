@@ -115,7 +115,10 @@ function isValidPassword(){
     }else{
         if(pass != checked){
             annouceText = '*Sorry, just fill a-z, A-Z, 0-9';
+        }else if(pass.length < 6 || pass.length > 14){
+            annouceText = 'Length password from 6 to 14';
         }else{
+            // announce.style.display = 'none';
             return true;
         } 
     }
@@ -369,7 +372,7 @@ function changeClient(){
         id :    listCustomer[index].id,
         idAcc: lsAccount[index].id,
         name: document.getElementById("client-name").value,
-        avatar: document.getElementById("client-image").value,
+        avatar: "",
         address: document.getElementById("client-address").value,
         phoneNumber: document.getElementById("client-phone").value,
         gender: document.getElementById("client-gender").value,

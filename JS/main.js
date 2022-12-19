@@ -31,7 +31,7 @@ if(data.getItem('listProduct') == null){
     data.setItem("listSize", JSON.stringify(lsSize));
     data.setItem("tempList", JSON.stringify(tempSizeList));
     console.log("Có vào đây hoq");
-    createData()
+    createData();
 }
 
 
@@ -120,6 +120,33 @@ function formatNumberToMoney(number){
     }
     return money.join('');
 }
+
+//Lấy những sản phẩm trong cart của tài khoản đang onl
+function getProductInCurrentCart(){
+    var idCart = getCartIdByActiveAccount();
+    lsCartDetail = JSON.parse(data.getItem("listCartDetail"));
+    var productInCart = [];
+    for(let i = 0; i < lsCartDetail.length ; i++){
+        if(idCart == lsCartDetail[i].idCart){
+            productInCart = productInCart.concat(lsCartDetail[i]);
+        }
+    }
+    return productInCart;
+}
+
+function getCartIdByActiveAccount(){
+    lsCart = JSON.parse(data.getItem("listCart"));
+
+    if(lsCart.length == 0 || activeAccount == null) return null;
+
+    for(let i = 0; i < lsCart.length; i++){
+        if(lsCart[i].idAccount == activeAccount.idAcc){
+            return lsCart[i].id;
+        }
+    }
+}
+
+
 
 function createData(){
     //Create size data

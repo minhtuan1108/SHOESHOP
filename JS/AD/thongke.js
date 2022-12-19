@@ -18,7 +18,10 @@ function displayAllStatistic(){
     let lsbrands = []
     let dateStart = new Date(start);
     let dateEnd = new Date(end);
+    console.log(dateStart);
+    console.log(dateEnd);
     console.log(start);
+    console.log(dateEnd-dateStart)
 
     //THỐNG KÊ THEO SẢN PHẨM
     let str1='  <tr>\n '+
@@ -37,14 +40,13 @@ function displayAllStatistic(){
         var tongdt=0
         var tiledt =[]
         var list=[]
-        for(let j=0;j < lsProduct.length;j++)
-            {
+        for(let j=0;j < lsProduct.length;j++){
                 sl[j]=0
                 dt[j]=0
                 list[j]=0
                 tile[j]=0
                 tiledt[j]=0
-            }
+        }
         let a=0;
         // Lọc theo thương hiệu
         if(brand==0)
@@ -70,7 +72,7 @@ function displayAllStatistic(){
         else if(brand==4)
         {
             for(let i=0;i<lsProduct.length;i++)
-                if(lsProduct[i].brand=="Nike")
+                if(lsProduct[i].brand=="Kawasaki")
                     lsbrands.push(lsProduct[i])
         }
         else if(brand==5)
@@ -86,7 +88,15 @@ function displayAllStatistic(){
         else{
             if(start == '' && end == ''){
                 console.log("Bắt đầu: rỗng. Kết thúc: rỗng");
-                list=listOrderDetail;           
+                for(let i = 0; i < listOrder.length; i++){
+                    
+                    for(let j=0;j<listOrderDetail.length;j++)
+                    if(listOrder[i].id==listOrderDetail[j].idBill && listOrder[i].status == true)
+                    {
+                        list[a]=listOrderDetail[j];
+                        a++;
+                    }
+                }
             }else if(start == '' && end != ''){
                 console.log("Bắt đầu: rỗng. Kết thúc: !rỗng");
                 
@@ -96,7 +106,7 @@ function displayAllStatistic(){
                     {
                         console.log(listOrder[i].id)
                         for(let j=0;j<listOrderDetail.length;j++)
-                            if(listOrder[i].id==listOrderDetail[j].idBill)
+                            if(listOrder[i].id==listOrderDetail[j].idBill && listOrder[i].status == true)
                             {
                                 list[a]=listOrderDetail[j];
                                 a++;
@@ -111,7 +121,7 @@ function displayAllStatistic(){
                     {
                         console.log(listOrder[i].id)
                         for(let j=0;j<listOrderDetail.length;j++)
-                            if(listOrder[i].id==listOrderDetail[j].idBill)
+                            if(listOrder[i].id==listOrderDetail[j].idBill && listOrder[i].status == true)
                             {
                                 list[a]=listOrderDetail[j];
                                 a++;
@@ -126,7 +136,7 @@ function displayAllStatistic(){
                         
                         console.log(listOrder[i].id)
                         for(let j=0;j<listOrderDetail.length;j++)
-                            if(listOrder[i].id==listOrderDetail[j].idBill)
+                            if(listOrder[i].id==listOrderDetail[j].idBill && listOrder[i].status == true)
                             {
                                 list[a]=listOrderDetail[j];
                                 a++;
@@ -208,164 +218,164 @@ function displayAllStatistic(){
 
     document.getElementById("ByProduct").innerHTML = str1;
     //THỐNG KÊ THEO NGÀY
-    let str2='  <tr>\n '+
-    '   <td class="table_pd_second_column text_center">Date</td>\n' +
-    '   <td class="table_pd_second_column text_center">Order Number</td>\n' +
-    '   <td class="table_pd_second_column text_center">Proportion</td>\n' +
-    '   <td class="table_pd_second_column text_center">Product Number</td>\n' +
-    '   <td class="table_pd_second_column text_center">Proportion</td>\n' +
-    '   <td class="table_pd_second_column text_center">Revenue</td>\n' +
-    '   <td class="table_pd_second_column text_center">Proportion</td>\n' +
-    '   <td class="table_pd_second_column text_center">Detail</td>\n' +
-    '   </tr>';
+    // let str2='  <tr>\n '+
+    // '   <td class="table_pd_second_column text_center">Date</td>\n' +
+    // '   <td class="table_pd_second_column text_center">Order Number</td>\n' +
+    // '   <td class="table_pd_second_column text_center">Proportion</td>\n' +
+    // '   <td class="table_pd_second_column text_center">Product Number</td>\n' +
+    // '   <td class="table_pd_second_column text_center">Proportion</td>\n' +
+    // '   <td class="table_pd_second_column text_center">Revenue</td>\n' +
+    // '   <td class="table_pd_second_column text_center">Proportion</td>\n' +
+    // '   <td class="table_pd_second_column text_center">Detail</td>\n' +
+    // '   </tr>';
     
-        var day = []
-        var dh= []
-        var sp =[]
-        var dtday = []
-        var tldh = []
-        var tlsp = []
-        var tldt = []
-        var tongdhngay=0
-        var tongspngay=0
-        var tongdtngay=0
-        //console.log(listOrder)
-        let b=0;
-        //Lọc theo ngày
-        if(start != '' && end != '' && start > end)
-            alert('Date error');
-        else{
-            for(let i=0;i<listOrder.length;i++)
-        {
-            day[i] = listOrder[i].date
-            dh[i] = 0
-            sp[i] = 0
-            dtday[i] = 0
-        }
-            if(start == '' && end == '')
-                {}          
-            else if(start == '' && end != ''){
-                for (let i = 0; i < listOrder.length; i++) 
-                    if(listOrder[i].date < end)
-                    {
-                        day[b]=listOrder[i].date
-                        b++;
-                    }
-            }
-            else if(start != '' && end == ''){
-                for (let i = 0; i < listOrder.length; i++) 
-                    if(listOrder[i].date > start)
-                    {
-                        day[b]=listOrder[i].date
-                        b++;
-                    }
-            }
-            else{
-                for (let i = 0; i < listOrder.length; i++) 
-                    if(listOrder[i].date > start && listOrder[i].date < end)
-                    {
-                        day[b]=listOrder[i].date
-                        b++;  
-                    }
-                }
-        }
-        for(let i=0;i<day.length;i++)
-        {
-            let temp= day[i]
-            for (let j = i+1; j < day.length; j++)
-                if(temp == day[j])
-                {
-                    day.splice(j, 1);
-                    i--;
-                }
-        }
-        // for(let a=0;a<lsbrands.length;a++)
-        // {
-        //     for(let b = 0; b< listOrderDetail.length;b++)
-        //     {
-        //         if(lsbrands[a].id == listOrderDetail[b].idProduct)
-        //         {
-                    for(let i=0;i<listOrder.length;i++)
-                    {
-                        for(let j = 0; j< day.length;j++)
-                        {
-                            if(day[j] == listOrder[i].date)
-                            {
-                                for(let a=0;a<lsbrands.length;a++)
-                                {
-                                 for(let b = 0; b< listOrderDetail.length;b++)
-                                 {
-                                     if(lsbrands[a].id == listOrderDetail[b].idProduct)
-                                    {
-                                        tongdhngay++;
-                                        dh[j]++;//cộng hóa đơn trong ngày
-                                        b=listOrderDetail.length;
-                                        a=lsbrands.length;
-                                    }
-                                 }
-                                }
-                                for(let k = 0;k<listOrderDetail.length;k++)
-                                {
-                                    if(listOrder[i].id==listOrderDetail[k].id)
-                                     {    
+    //     var day = []
+    //     var dh= []
+    //     var sp =[]
+    //     var dtday = []
+    //     var tldh = []
+    //     var tlsp = []
+    //     var tldt = []
+    //     var tongdhngay=0
+    //     var tongspngay=0
+    //     var tongdtngay=0
+    //     //console.log(listOrder)
+    //     let b=0;
+    //     //Lọc theo ngày
+    //     if(start != '' && end != '' && start > end)
+    //         alert('Date error');
+    //     else{
+    //         for(let i=0;i<listOrder.length;i++)
+    //     {
+    //         day[i] = listOrder[i].date
+    //         dh[i] = 0
+    //         sp[i] = 0
+    //         dtday[i] = 0
+    //     }
+    //         if(start == '' && end == '')
+    //             {}          
+    //         else if(start == '' && end != ''){
+    //             for (let i = 0; i < listOrder.length; i++) 
+    //                 if(listOrder[i].date < end)
+    //                 {
+    //                     day[b]=listOrder[i].date
+    //                     b++;
+    //                 }
+    //         }
+    //         else if(start != '' && end == ''){
+    //             for (let i = 0; i < listOrder.length; i++) 
+    //                 if(listOrder[i].date > start)
+    //                 {
+    //                     day[b]=listOrder[i].date
+    //                     b++;
+    //                 }
+    //         }
+    //         else{
+    //             for (let i = 0; i < listOrder.length; i++) 
+    //                 if(listOrder[i].date > start && listOrder[i].date < end)
+    //                 {
+    //                     day[b]=listOrder[i].date
+    //                     b++;  
+    //                 }
+    //             }
+    //     }
+    //     for(let i=0;i<day.length;i++)
+    //     {
+    //         let temp= day[i]
+    //         for (let j = i+1; j < day.length; j++)
+    //             if(temp == day[j])
+    //             {
+    //                 day.splice(j, 1);
+    //                 i--;
+    //             }
+    //     }
+    //     // for(let a=0;a<lsbrands.length;a++)
+    //     // {
+    //     //     for(let b = 0; b< listOrderDetail.length;b++)
+    //     //     {
+    //     //         if(lsbrands[a].id == listOrderDetail[b].idProduct)
+    //     //         {
+    //                 for(let i=0;i<listOrder.length;i++)
+    //                 {
+    //                     for(let j = 0; j< day.length;j++)
+    //                     {
+    //                         if(day[j] == listOrder[i].date)
+    //                         {
+    //                             for(let a=0;a<lsbrands.length;a++)
+    //                             {
+    //                              for(let b = 0; b< listOrderDetail.length;b++)
+    //                              {
+    //                                  if(lsbrands[a].id == listOrderDetail[b].idProduct)
+    //                                 {
+    //                                     tongdhngay++;
+    //                                     dh[j]++;//cộng hóa đơn trong ngày
+    //                                     b=listOrderDetail.length;
+    //                                     a=lsbrands.length;
+    //                                 }
+    //                              }
+    //                             }
+    //                             for(let k = 0;k<listOrderDetail.length;k++)
+    //                             {
+    //                                 if(listOrder[i].id==listOrderDetail[k].id)
+    //                                  {    
                                         
-                                        for(let z=0;z < lsbrands.length;z++)
-                                        {
-                                        //console.log(lsbrands[z])
-                                            if(lsbrands[z].id == listOrderDetail[k].idProduct)
-                                            {   
-                                                console.log(listOrderDetail[k].quantity) 
-                                                sp[j]+= listOrderDetail[k].quantity
-                                                tongspngay+= listOrderDetail[k].quantity
-                                                dtday[j] += listOrderDetail[k].quantity * lsbrands[z].price *(100- lsbrands[j].discount)/100//tính doanh thu
-                                                if(dtday[j]%1000 != 0){
-                                                    dtday[j] += 1000 - (dtday[j]%1000);
-                                                } 
+    //                                     for(let z=0;z < lsbrands.length;z++)
+    //                                     {
+    //                                     //console.log(lsbrands[z])
+    //                                         if(lsbrands[z].id == listOrderDetail[k].idProduct)
+    //                                         {   
+    //                                             console.log(listOrderDetail[k].quantity) 
+    //                                             sp[j]+= listOrderDetail[k].quantity
+    //                                             tongspngay+= listOrderDetail[k].quantity
+    //                                             dtday[j] += listOrderDetail[k].quantity * lsbrands[z].price *(100- lsbrands[j].discount)/100//tính doanh thu
+    //                                             if(dtday[j]%1000 != 0){
+    //                                                 dtday[j] += 1000 - (dtday[j]%1000);
+    //                                             } 
                                                 
-                                            }
+    //                                         }
                                             
-                                        }
+    //                                     }
                                         
-                                    }
-                                }
-                                tongdtngay += dtday[j]
-                            }
-                        }
-                    }
-        //         }
-        //     }
-        // }
-        for(let j=0;j < lsbrands.length;j++)
-        {
-        tldt[j]= Math.round((dtday[j]/tongdtngay)*10000)/100
-        tlsp[j]= Math.round((sp[j]/tongspngay)*10000)/100
-        tldh[j]= Math.round((dh[j]/tongdhngay)*10000)/100
-        }
-        for(let j=0;j < day.length;j++)
-        {      
-            // var date = new Date(day[j])
-            // console.log(date)
-            str2 += '<tr class="a_client">'+
-            '<td class="text_center">'+day[j] +'</td>' +
-            '<td class="text_center">'+ dh[j] +'</td>' +
-            '<td class="text_center">'+ tldh[j] +'%</td>' +
-            '<td class="text_center">'+ sp[j] +'</td>' +
-            '<td class="text_center">'+ tlsp[j] +'%</td>' +
-            '<td class="text_center">'+ dtday[j] +'</td>' +
-            '<td class="text_center">'+ tldt[j] +'%</td>' +
-            `<td class="text_center"><button class="btn" id="ct" onclick="openDetailDay(${day[j]})">See Detail</button></td>` +
-            '</tr>'
-        }
-        str2 += '<tr class="a_client">'+
-            '<td class="text_center"><h4>Tổng</h4></td>' +
-            '<td class="text_center"><h4>'+ tongdhngay +'</h4></td>' +
-            '<td class="text_center"><h4>100%</h4></td>' +
-            '<td class="text_center"><h4>'+ tongspngay +'</h4></td>' +
-            '<td class="text_center"><h4>100%</h4></td>' +
-            '<td class="text_center"><h4>'+ tongdtngay +'</h4></td>' +
-            '<td class="text_center"><h4>100%</h4></td>' +
-            '</tr>'
-    document.getElementById("ByTime").innerHTML = str2;
+    //                                 }
+    //                             }
+    //                             tongdtngay += dtday[j]
+    //                         }
+    //                     }
+    //                 }
+    //     //         }
+    //     //     }
+    //     // }
+    //     for(let j=0;j < lsbrands.length;j++)
+    //     {
+    //     tldt[j]= Math.round((dtday[j]/tongdtngay)*10000)/100
+    //     tlsp[j]= Math.round((sp[j]/tongspngay)*10000)/100
+    //     tldh[j]= Math.round((dh[j]/tongdhngay)*10000)/100
+    //     }
+    //     for(let j=0;j < day.length;j++)
+    //     {      
+    //         // var date = new Date(day[j])
+    //         // console.log(date)
+    //         str2 += '<tr class="a_client">'+
+    //         '<td class="text_center">'+day[j] +'</td>' +
+    //         '<td class="text_center">'+ dh[j] +'</td>' +
+    //         '<td class="text_center">'+ tldh[j] +'%</td>' +
+    //         '<td class="text_center">'+ sp[j] +'</td>' +
+    //         '<td class="text_center">'+ tlsp[j] +'%</td>' +
+    //         '<td class="text_center">'+ dtday[j] +'</td>' +
+    //         '<td class="text_center">'+ tldt[j] +'%</td>' +
+    //         `<td class="text_center"><button class="btn" id="ct" onclick="openDetailDay(${day[j]})">See Detail</button></td>` +
+    //         '</tr>'
+    //     }
+    //     str2 += '<tr class="a_client">'+
+    //         '<td class="text_center"><h4>Tổng</h4></td>' +
+    //         '<td class="text_center"><h4>'+ tongdhngay +'</h4></td>' +
+    //         '<td class="text_center"><h4>100%</h4></td>' +
+    //         '<td class="text_center"><h4>'+ tongspngay +'</h4></td>' +
+    //         '<td class="text_center"><h4>100%</h4></td>' +
+    //         '<td class="text_center"><h4>'+ tongdtngay +'</h4></td>' +
+    //         '<td class="text_center"><h4>100%</h4></td>' +
+    //         '</tr>'
+    // document.getElementById("ByTime").innerHTML = str2;
     }
 
 function openDetailProduct(id){

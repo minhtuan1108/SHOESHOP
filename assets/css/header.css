@@ -97,6 +97,11 @@
     display: none;
 }
 
+#header .popUp-card a{
+    text-decoration: none;
+    color:#000;
+}
+
 #header .popUp-card p{
     padding: 10px 15px;
     border-radius: 10px;
